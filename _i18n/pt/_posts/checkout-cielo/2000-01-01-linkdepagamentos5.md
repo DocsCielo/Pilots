@@ -27,9 +27,9 @@ Para utilizar o Cielo Oauth são necessarias as seguintes credenciais:
 | `ClientId`     | Identificador chave fornecido pela CIELO                              | guid   |
 | `ClientSecret` | Chave que valida o ClientID. Fornecida pela Cielo junto ao `ClientID` | string |
 
-## Obter Credênciais
+## Obter Credenciais
 
-Para obter as credênciais no Checkout Cielo, basta seguir o fluxo abaixo:
+Para obter as credenciais no Checkout Cielo, basta seguir o fluxo abaixo:
 
 1 - Acesso o Backoffice **Checkout Cielo**
 2 - Na aba **"Configurações"**, acesse a opção **"Dados cadastrais"** clique em **"Gerar Credenciais de acesso às APIs"** como na imagem abaixo
