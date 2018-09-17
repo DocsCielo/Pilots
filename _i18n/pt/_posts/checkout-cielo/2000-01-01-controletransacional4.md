@@ -221,6 +221,8 @@ Para consultar uma transação pelo `Checkout_Cielo_Order_Number`, basta realiza
         "numberOfPayments": 1,
         "createdDate": "2018-03-02T14:29:43.767",
         "finishedDate": "2018-03-02T14:29:46.117",
+        "cardMaskedNumber":"123654******7325",
+        "brand":"Master",
         "antifraud": { 
             "antifraudeResult": 0,
             "description": "Lojista optou não realizar a análise do antifraude." 
