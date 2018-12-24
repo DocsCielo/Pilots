@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2018-11-23T16:45:58+00:00</updated>
+    <updated>2018-12-24T13:16:00+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -28473,7 +28473,7 @@ O response possuirá o &lt;code class=&quot;highlighter-rouge&quot;&gt;Checkout_
 
 &lt;h2 id=&quot;autenticação&quot;&gt;Autenticação&lt;/h2&gt;
 
-&lt;p&gt;O Processo de autenticação na API do link de pagamento é o &lt;strong&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/manual/appcielo-link#cielo-oauth&quot;&gt;Cielo OAUTH&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;O Processo de autenticação na API do link de pagamento é o &lt;strong&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/manual/controletransacional4#cielo-oauth&quot;&gt;Cielo OAUTH&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;criar-link&quot;&gt;Criar Link&lt;/h2&gt;
 
