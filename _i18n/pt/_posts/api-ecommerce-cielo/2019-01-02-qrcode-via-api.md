@@ -241,13 +241,11 @@ curl
 |`ReturnCode`|Código de retorno da Adquirência.|Texto|32|Texto alfanumérico|
 |`ReturnMessage`|Mensagem de retorno da Adquirência.|Texto|512|Texto alfanumérico|
 
-# Consulta de transações
-
-## Consulta - PaymentID
+# Consulta - PaymentID
 
 Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.
 
-### Requisição
+## Requisição
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales/{PaymentId}</span></aside>
 
@@ -269,7 +267,7 @@ curl
 |`RequestId`|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT|Guid|36|Não|
 |`PaymentId`|Numero de identificação do Pagamento.|Texto|36|Sim|
 
-### Resposta
+## Resposta
 
 ```json
 {
@@ -392,13 +390,13 @@ curl
 |`CreditCard.SecurityCode`|Texto|4|Não|Código de segurança impresso no verso do cartão - Ver Anexo.|
 |`CreditCard.Brand`|Texto|10|Não|Bandeira do cartão (Visa / Master / Amex / Elo / Aura / JCB / Diners / Discover / Hipercard).|
 
-## Consulta - MerchandOrderID
+# Consulta - MerchandOrderID
 
 Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.
 
 Para consultar uma venda pelo identificador da loja, é necessário fazer um GET para o recuso sales conforme o exemplo.
 
-### Requisição
+## Requisição
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales?merchantOrderId={merchantOrderId}</span></aside>
 
@@ -420,7 +418,7 @@ curls
 |`RequestId`|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT|Guid|36|Não|
 |`MerchantOrderId`|Campo Identificador do Pedido na Loja.|Texto|36|Sim|
 
-### Resposta
+## Resposta
 
 ```json
 {
@@ -459,7 +457,7 @@ curls
 |---|---|---|---|---|
 |`PaymentId`|Campo Identificador do Pedido.|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 
-## Captura
+# Captura
 
 A **Captura** é passo exclusivo para transações de Cartões de Crédito.
 
@@ -475,7 +473,7 @@ O que a captura gera:
 
 <aside class="notice"><strong>Atenção:</strong> Captura parcial disponível apenas para transações de crédito</aside>
 
-### Requisição - Captura Parcial
+## Requisição - Captura Parcial
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}</span></aside>
 
@@ -504,7 +502,7 @@ curl
 |`Amount`|Valor do Pedido (ser enviado em centavos).|Número|15|Não|
 |`ServiceTaxAmount`|[Veja Anexo](https://developercielo.github.io/manual/cielo-ecommerce#service-tax-amount-taxa-de-embarque)|Número|15|Não|
 
-### Resposta
+## Resposta
 
 ```json
 {
@@ -569,7 +567,7 @@ curl
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}&serviceTaxAmount=xxx</span></aside>
 
-### Resposta
+## Resposta
 
 ```json
 {
@@ -630,7 +628,7 @@ curl
 |`ProviderReturnCode`|Código de retorno do Provider.|Texto|32|Texto alfanumérico|
 |`ProviderReturnMessage`|Mensagem de retorno do Provider.|Texto|512|Texto alfanumérico|
 
-## Cancelamento
+# Cancelamento
 
 O **cancelamento** é a operação responsável pela cancelamento total ou parcial de um valor autorizado ou capturado.
 
@@ -640,7 +638,7 @@ Basta realizar um `POST` enviando o valor a ser cancelado.
 
 <aside class="notice"><strong>Atenção:</strong> O retorno da API soma o total de cancelamentos Parciais, ou seja, se 3 cancelamentos de R$10,00 forem realizados, a API apresentará em seu retorno um total de R$30,00 cancelados</aside>
 
-### Requisição - cancelamento
+## Requisição - cancelamento
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/void?amount=XXX </span></aside>
 
@@ -662,7 +660,7 @@ curl
 |`PaymentId`|Campo Identificador do Pedido.|Guid|36|Sim|
 |`Amount`|Valor do Pedido (ser enviado em centavos).|Número|15|Não|
 
-### Resposta
+## Resposta
 
 ```json
 {
