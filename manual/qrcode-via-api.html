@@ -297,13 +297,13 @@
 
 <p>As informações de <strong>Cód.Segurança (CVV)</strong> e validade podem ser aleatórias, mantendo o formato - CVV (3 dígitos) Validade (MM/YYYY).</p>
 
-<h2 id="gerando-um-qrcode-via-api">Gerando um QRCode via API</h2>
+<h1 id="gerando-um-qrcode-via-api">Gerando um QRCode via API</h1>
 
 <p>Para criar uma transação que utilizará cartão de crédito, é necessário enviar uma requisição utilizando o método <code class="highlighter-rouge">POST</code> para o recurso Payment, conforme o exemplo. Esse exemplo contempla o mínimo de campos necessários a serem enviados para a autorização.</p>
 
 <aside class="notice">Atenção: Não é possivel realizar uma transação com valor (`Amount`) 0.</aside>
 
-<h3 id="requisição">Requisição</h3>
+<h2 id="requisição">Requisição</h2>
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/sales/</span></aside>
 
@@ -429,7 +429,7 @@
   </tbody>
 </table>
 
-<h3 id="resposta">Resposta</h3>
+<h2 id="resposta">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019010101"</span><span class="p">,</span><span class="w">
@@ -560,15 +560,13 @@
   </tbody>
 </table>
 
-<h1 id="consulta---captura---cancelamento">Consulta - Captura - Cancelamento</h1>
+<h1 id="consulta-de-transações">Consulta de transações</h1>
 
-<h2 id="consulta-de-transações">Consulta de transações</h2>
-
-<h3 id="consulta---paymentid">Consulta - PaymentID</h3>
+<h2 id="consulta---paymentid">Consulta - PaymentID</h2>
 
 <p>Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.</p>
 
-<h4 id="requisição-1">Requisição</h4>
+<h3 id="requisição-1">Requisição</h3>
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales/{PaymentId}</span></aside>
 
@@ -624,7 +622,7 @@
   </tbody>
 </table>
 
-<h4 id="resposta-1">Resposta</h4>
+<h3 id="resposta-1">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014111706"</span><span class="p">,</span><span class="w">
@@ -846,13 +844,13 @@
   </tbody>
 </table>
 
-<h3 id="consulta---merchandorderid">Consulta - MerchandOrderID</h3>
+<h2 id="consulta---merchandorderid">Consulta - MerchandOrderID</h2>
 
 <p>Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.</p>
 
 <p>Para consultar uma venda pelo identificador da loja, é necessário fazer um GET para o recuso sales conforme o exemplo.</p>
 
-<h4 id="requisição-2">Requisição</h4>
+<h3 id="requisição-2">Requisição</h3>
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales?merchantOrderId={merchantOrderId}</span></aside>
 
@@ -908,7 +906,7 @@
   </tbody>
 </table>
 
-<h4 id="resposta-2">Resposta</h4>
+<h3 id="resposta-2">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1158,7 +1156,7 @@
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}&amp;serviceTaxAmount=xxx</span></aside>
 
-<h4 id="resposta-4">Resposta</h4>
+<h3 id="resposta-4">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
