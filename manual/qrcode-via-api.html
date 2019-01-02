@@ -560,13 +560,11 @@
   </tbody>
 </table>
 
-<h1 id="consulta-de-transações">Consulta de transações</h1>
-
-<h2 id="consulta---paymentid">Consulta - PaymentID</h2>
+<h1 id="consulta---paymentid">Consulta - PaymentID</h1>
 
 <p>Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.</p>
 
-<h3 id="requisição-1">Requisição</h3>
+<h2 id="requisição-1">Requisição</h2>
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales/{PaymentId}</span></aside>
 
@@ -622,7 +620,7 @@
   </tbody>
 </table>
 
-<h3 id="resposta-1">Resposta</h3>
+<h2 id="resposta-1">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014111706"</span><span class="p">,</span><span class="w">
@@ -844,13 +842,13 @@
   </tbody>
 </table>
 
-<h2 id="consulta---merchandorderid">Consulta - MerchandOrderID</h2>
+<h1 id="consulta---merchandorderid">Consulta - MerchandOrderID</h1>
 
 <p>Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.</p>
 
 <p>Para consultar uma venda pelo identificador da loja, é necessário fazer um GET para o recuso sales conforme o exemplo.</p>
 
-<h3 id="requisição-2">Requisição</h3>
+<h2 id="requisição-2">Requisição</h2>
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales?merchantOrderId={merchantOrderId}</span></aside>
 
@@ -906,7 +904,7 @@
   </tbody>
 </table>
 
-<h3 id="resposta-2">Resposta</h3>
+<h2 id="resposta-2">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -960,7 +958,7 @@
   </tbody>
 </table>
 
-<h2 id="captura">Captura</h2>
+<h1 id="captura">Captura</h1>
 
 <p>A <strong>Captura</strong> é passo exclusivo para transações de Cartões de Crédito.</p>
 
@@ -978,7 +976,7 @@
 
 <aside class="notice">Atenção: Captura parcial disponível apenas para transações de crédito</aside>
 
-<h3 id="requisição---captura-parcial">Requisição - Captura Parcial</h3>
+<h2 id="requisição---captura-parcial">Requisição - Captura Parcial</h2>
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}</span></aside>
 
@@ -1052,7 +1050,7 @@
   </tbody>
 </table>
 
-<h3 id="resposta-3">Resposta</h3>
+<h2 id="resposta-3">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -1156,7 +1154,7 @@
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}&amp;serviceTaxAmount=xxx</span></aside>
 
-<h3 id="resposta-4">Resposta</h3>
+<h2 id="resposta-4">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -1256,7 +1254,7 @@
   </tbody>
 </table>
 
-<h2 id="cancelamento">Cancelamento</h2>
+<h1 id="cancelamento">Cancelamento</h1>
 
 <p>O <strong>cancelamento</strong> é a operação responsável pela cancelamento total ou parcial de um valor autorizado ou capturado.</p>
 
@@ -1266,7 +1264,7 @@
 
 <aside class="notice">Atenção: O retorno da API soma o total de cancelamentos Parciais, ou seja, se 3 cancelamentos de R$10,00 forem realizados, a API apresentará em seu retorno um total de R$30,00 cancelados</aside>
 
-<h3 id="requisição---cancelamento">Requisição - cancelamento</h3>
+<h2 id="requisição---cancelamento">Requisição - cancelamento</h2>
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/void?amount=XXX </span></aside>
 
@@ -1328,7 +1326,7 @@
   </tbody>
 </table>
 
-<h3 id="resposta-5">Resposta</h3>
+<h2 id="resposta-5">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
