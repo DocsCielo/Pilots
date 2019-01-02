@@ -562,6 +562,8 @@
   </tbody>
 </table>
 
+<aside class="notice">Exemplo do código HTML para apresentar uma imagem codificada:<br />]]&gt;</aside>
+
 <h1 id="consulta---captura---cancelamento">Consulta - Captura - Cancelamento</h1>
 
 <h2 id="consulta-de-transações">Consulta de transações</h2>
@@ -980,173 +982,9 @@
 
 <aside class="notice">Atenção: A captura é um processo com prazo de execução. Verifique em sem cadastro cielo qual o limite habilitado para a sua afiliação. Após esse periodo, não é possivel realiza a Captura da transação</aside>
 
-<h3 id="captura-total">Captura total</h3>
-
-<p>Para captura uma venda que utiliza cartão de crédito, é necessário fazer um PUT para o recurso Payment conforme o exemplo.</p>
-
-<h4 id="requisição-3">Requisição</h4>
-
-<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/capture</span></aside>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="err">https</span><span class="p">:</span><span class="err">//apisandbox.cieloecommerce.cielo.com.br/</span><span class="mi">1</span><span class="err">/sales/</span><span class="p">{</span><span class="err">PaymentId</span><span class="p">}</span><span class="err">/capture</span><span class="w">
-
-</span></code></pre></div></div>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
-<span class="nt">--request</span> PUT <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/capture"</span>
-<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
-<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
-<span class="nt">--header</span> <span class="s2">"MerchantKey: 0123456789012345678901234567890123456789"</span>
-<span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
-<span class="nt">--verbose</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Propriedade</th>
-      <th>Descrição</th>
-      <th>Tipo</th>
-      <th>Tamanho</th>
-      <th>Obrigatório</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">MerchantId</code></td>
-      <td>Identificador da loja na API Cielo eCommerce.</td>
-      <td>Guid</td>
-      <td>36</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">MerchantKey</code></td>
-      <td>Chave Publica para Autenticação Dupla na API Cielo eCommerce.</td>
-      <td>Texto</td>
-      <td>40</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">RequestId</code></td>
-      <td>Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT</td>
-      <td>Guid</td>
-      <td>36</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">PaymentId</code></td>
-      <td>Campo Identificador do Pedido.</td>
-      <td>Guid</td>
-      <td>36</td>
-      <td>Sim</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">Amount</code></td>
-      <td>Valor do Pedido (ser enviado em centavos).</td>
-      <td>Número</td>
-      <td>15</td>
-      <td>Não</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ServiceTaxAmount</code></td>
-      <td><a href="https://developercielo.github.io/manual/cielo-ecommerce#service-tax-amount-taxa-de-embarque">Veja Anexo</a></td>
-      <td>Número</td>
-      <td>15</td>
-      <td>Não</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="resposta-3">Resposta</h4>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ReturnCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation Successful"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
-<span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
-<span class="nt">--data-binary</span>
-<span class="o">{</span>
-    <span class="s2">"Status"</span>: 2,
-    <span class="s2">"ReturnCode"</span>: <span class="s2">"6"</span>,
-    <span class="s2">"ReturnMessage"</span>: <span class="s2">"Operation Successful"</span>,
-    <span class="s2">"Links"</span>: <span class="o">[</span>
-        <span class="o">{</span>
-            <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
-            <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
-            <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span>
-        <span class="o">}</span>,
-        <span class="o">{</span>
-            <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
-            <span class="s2">"Rel"</span>: <span class="s2">"void"</span>,
-            <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span>
-        <span class="o">}</span>
-    <span class="o">]</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Propriedade</th>
-      <th>Descrição</th>
-      <th>Tipo</th>
-      <th>Tamanho</th>
-      <th>Formato</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">Status</code></td>
-      <td>Status da Transação.</td>
-      <td>Byte</td>
-      <td>—</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ReturnCode</code></td>
-      <td>Código de retorno da adquirente.</td>
-      <td>Texto</td>
-      <td>32</td>
-      <td>Texto alfanumérico</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">ReturnMessage</code></td>
-      <td>Mensagem de retorno da adquirente.</td>
-      <td>Texto</td>
-      <td>512</td>
-      <td>Texto alfanumérico</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="captura-parcial">Captura parcial</h3>
-
-<p>A <strong>captura parcial</strong> é o ato de capturar um valor menor que o valor autorizado.Esse modelo de captura pode ocorrer apenas 1 vez por transação.</p>
-
-<p><strong>Após a captura, não é possível realizar capturas adicionais no mesmo pedido.</strong></p>
-
-<p>Basta realizar um <code class="highlighter-rouge">POST</code> enviando o valor a ser capturado.</p>
-
 <aside class="notice">Atenção: Captura parcial disponível apenas para transações de crédito</aside>
 
-<h4 id="requisição---captura-parcial">Requisição - Captura Parcial</h4>
+<h3 id="requisição---captura-parcial">Requisição - Captura Parcial</h3>
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}</span></aside>
 
@@ -1220,7 +1058,7 @@
   </tbody>
 </table>
 
-<h4 id="resposta-4">Resposta</h4>
+<h3 id="resposta-3">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -1324,7 +1162,7 @@
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}&amp;serviceTaxAmount=xxx</span></aside>
 
-<h4 id="resposta-5">Resposta</h4>
+<h4 id="resposta-4">Resposta</h4>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -1424,17 +1262,17 @@
   </tbody>
 </table>
 
-<h3 id="cancelamento-parcial">Cancelamento parcial</h3>
+<h2 id="cancelamento">Cancelamento</h2>
 
-<p>O <strong>cancelamento  parcial</strong> é o ato de cancelar um valor menor que o valor total autorizado/capturado. Esse modelo de cancelamento pode ocorrer inumeras vezes, até que o valor total da transação seja cancelado.</p>
+<p>O <strong>cancelamento</strong> é a operação responsável pela cancelamento total ou parcial de um valor autorizado ou capturado.</p>
 
 <p>Basta realizar um <code class="highlighter-rouge">POST</code> enviando o valor a ser cancelado.</p>
 
-<aside class="notice">Atenção: Cancelamento parcial disponível apenas para transações de crédito *CAPTURADAS*</aside>
+<aside class="notice">Atenção: Cancelamento parcial é disponível apenas para transações de crédito *CAPTURADAS*</aside>
 
 <aside class="notice">Atenção: O retorno da API soma o total de cancelamentos Parciais, ou seja, se 3 cancelamentos de R$10,00 forem realizados, a API apresentará em seu retorno um total de R$30,00 cancelados</aside>
 
-<h4 id="requisição---cancelamento-parcial">Requisição - cancelamento parcial</h4>
+<h3 id="requisição---cancelamento">Requisição - cancelamento</h3>
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/void?amount=XXX </span></aside>
 
@@ -1496,7 +1334,7 @@
   </tbody>
 </table>
 
-<h4 id="resposta-6">Resposta</h4>
+<h3 id="resposta-5">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
