@@ -92,13 +92,13 @@ Para testar o cenário de autorização com sucesso via QRCode, utilize o cartã
 
 As informações de **Cód.Segurança (CVV)** e validade podem ser aleatórias, mantendo o formato - CVV (3 dígitos) Validade (MM/YYYY).
 
-## Gerando um QRCode via API
+# Gerando um QRCode via API
 
 Para criar uma transação que utilizará cartão de crédito, é necessário enviar uma requisição utilizando o método `POST` para o recurso Payment, conforme o exemplo. Esse exemplo contempla o mínimo de campos necessários a serem enviados para a autorização.
 
 <aside class="notice"><strong>Atenção:</strong> Não é possivel realizar uma transação com valor (`Amount`) 0.</aside>
 
-### Requisição
+## Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/sales/</span></aside>
 
@@ -155,7 +155,7 @@ curl
 |`Payment.Installments`|Número|2|Sim|Número de Parcelas.|
 |`Payment.Capture`|Booleano|-|Não|Enviar **true** para uma trasação de captura automática.|
 
-### Resposta
+## Resposta
 
 ```json
 {
@@ -241,15 +241,13 @@ curl
 |`ReturnCode`|Código de retorno da Adquirência.|Texto|32|Texto alfanumérico|
 |`ReturnMessage`|Mensagem de retorno da Adquirência.|Texto|512|Texto alfanumérico|
 
-# Consulta - Captura - Cancelamento
+# Consulta de transações
 
-## Consulta de transações
-
-### Consulta - PaymentID
+## Consulta - PaymentID
 
 Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales/{PaymentId}</span></aside>
 
@@ -271,7 +269,7 @@ curl
 |`RequestId`|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT|Guid|36|Não|
 |`PaymentId`|Numero de identificação do Pagamento.|Texto|36|Sim|
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -394,13 +392,13 @@ curl
 |`CreditCard.SecurityCode`|Texto|4|Não|Código de segurança impresso no verso do cartão - Ver Anexo.|
 |`CreditCard.Brand`|Texto|10|Não|Bandeira do cartão (Visa / Master / Amex / Elo / Aura / JCB / Diners / Discover / Hipercard).|
 
-### Consulta - MerchandOrderID
+## Consulta - MerchandOrderID
 
 Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.
 
 Para consultar uma venda pelo identificador da loja, é necessário fazer um GET para o recuso sales conforme o exemplo.
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/sales?merchantOrderId={merchantOrderId}</span></aside>
 
@@ -422,7 +420,7 @@ curls
 |`RequestId`|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT|Guid|36|Não|
 |`MerchantOrderId`|Campo Identificador do Pedido na Loja.|Texto|36|Sim|
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -571,7 +569,7 @@ curl
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}&serviceTaxAmount=xxx</span></aside>
 
-#### Resposta
+### Resposta
 
 ```json
 {
