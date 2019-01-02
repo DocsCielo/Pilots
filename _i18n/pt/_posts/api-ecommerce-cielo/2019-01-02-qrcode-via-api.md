@@ -243,6 +243,8 @@ curl
 |`ReturnCode`|Código de retorno da Adquirência.|Texto|32|Texto alfanumérico|
 |`ReturnMessage`|Mensagem de retorno da Adquirência.|Texto|512|Texto alfanumérico|
 
+<aside class="notice">Exemplo do código HTML para apresentar uma imagem codificada:<BR><![CDATA[<img src="data:image/jpeg;base64,/9j/4RiDRXhpZgAATU0AKgA..." width="100" height="50" alt="base64 test">]]></aside>
+
 # Consulta - Captura - Cancelamento
 
 ## Consulta de transações
@@ -477,101 +479,9 @@ O que a captura gera:
 
 <aside class="notice"><strong>Atenção:</strong> A captura é um processo com prazo de execução. Verifique em sem cadastro cielo qual o limite habilitado para a sua afiliação. Após esse periodo, não é possivel realiza a Captura da transação</aside>
 
-### Captura total
-
-Para captura uma venda que utiliza cartão de crédito, é necessário fazer um PUT para o recurso Payment conforme o exemplo.
-
-#### Requisição
-
-<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/capture</span></aside>
-
-```json
-
-https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/capture
-
-```
-
-```shell
-curl
---request PUT "https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/capture"
---header "Content-Type: application/json"
---header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
---header "MerchantKey: 0123456789012345678901234567890123456789"
---header "RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
---verbose
-```
-
-|Propriedade|Descrição|Tipo|Tamanho|Obrigatório|
-|---|---|---|---|---|
-|`MerchantId`|Identificador da loja na API Cielo eCommerce.|Guid|36|Sim|
-|`MerchantKey`|Chave Publica para Autenticação Dupla na API Cielo eCommerce.|Texto|40|Sim|
-|`RequestId`|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT|Guid|36|Não|
-|`PaymentId`|Campo Identificador do Pedido.|Guid|36|Sim|
-|`Amount`|Valor do Pedido (ser enviado em centavos).|Número|15|Não|
-|`ServiceTaxAmount`|[Veja Anexo](https://developercielo.github.io/manual/cielo-ecommerce#service-tax-amount-taxa-de-embarque)|Número|15|Não|
-
-#### Resposta
-
-```json
-{
-    "Status": 2,
-    "ReturnCode": "6",
-    "ReturnMessage": "Operation Successful",
-    "Links": [
-        {
-            "Method": "GET",
-            "Rel": "self",
-            "Href": "https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"
-        },
-        {
-            "Method": "PUT",
-            "Rel": "void",
-            "Href": "https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"
-        }
-    ]
-}
-```
-
-```shell
---header "Content-Type: application/json"
---header "RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
---data-binary
-{
-    "Status": 2,
-    "ReturnCode": "6",
-    "ReturnMessage": "Operation Successful",
-    "Links": [
-        {
-            "Method": "GET",
-            "Rel": "self",
-            "Href": "https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"
-        },
-        {
-            "Method": "PUT",
-            "Rel": "void",
-            "Href": "https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"
-        }
-    ]
-}
-```
-
-|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|---|---|---|---|---|
-|`Status`|Status da Transação.|Byte|---|2|
-|`ReturnCode`|Código de retorno da adquirente.|Texto|32|Texto alfanumérico|
-|`ReturnMessage`|Mensagem de retorno da adquirente.|Texto|512|Texto alfanumérico|
-
-### Captura parcial
-
-A **captura parcial** é o ato de capturar um valor menor que o valor autorizado.Esse modelo de captura pode ocorrer apenas 1 vez por transação. 
-
-**Após a captura, não é possível realizar capturas adicionais no mesmo pedido.**
-
-Basta realizar um `POST` enviando o valor a ser capturado.
-
 <aside class="notice"><strong>Atenção:</strong> Captura parcial disponível apenas para transações de crédito</aside>
 
-#### Requisição - Captura Parcial
+### Requisição - Captura Parcial
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{paymentId}/capture?amount={Valor}</span></aside>
 
@@ -600,7 +510,7 @@ curl
 |`Amount`|Valor do Pedido (ser enviado em centavos).|Número|15|Não|
 |`ServiceTaxAmount`|[Veja Anexo](https://developercielo.github.io/manual/cielo-ecommerce#service-tax-amount-taxa-de-embarque)|Número|15|Não|
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -726,17 +636,17 @@ curl
 |`ProviderReturnCode`|Código de retorno do Provider.|Texto|32|Texto alfanumérico|
 |`ProviderReturnMessage`|Mensagem de retorno do Provider.|Texto|512|Texto alfanumérico|
 
-### Cancelamento parcial
+## Cancelamento
 
-O **cancelamento  parcial** é o ato de cancelar um valor menor que o valor total autorizado/capturado. Esse modelo de cancelamento pode ocorrer inumeras vezes, até que o valor total da transação seja cancelado. 
+O **cancelamento** é a operação responsável pela cancelamento total ou parcial de um valor autorizado ou capturado.
 
- Basta realizar um `POST` enviando o valor a ser cancelado.
+Basta realizar um `POST` enviando o valor a ser cancelado.
 
-<aside class="notice"><strong>Atenção:</strong> Cancelamento parcial disponível apenas para transações de crédito *CAPTURADAS*</aside>
+<aside class="notice"><strong>Atenção:</strong> Cancelamento parcial é disponível apenas para transações de crédito *CAPTURADAS*</aside>
 
 <aside class="notice"><strong>Atenção:</strong> O retorno da API soma o total de cancelamentos Parciais, ou seja, se 3 cancelamentos de R$10,00 forem realizados, a API apresentará em seu retorno um total de R$30,00 cancelados</aside>
 
-#### Requisição - cancelamento parcial
+### Requisição - cancelamento
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/sales/{PaymentId}/void?amount=XXX </span></aside>
 
@@ -758,7 +668,7 @@ curl
 |`PaymentId`|Campo Identificador do Pedido.|Guid|36|Sim|
 |`Amount`|Valor do Pedido (ser enviado em centavos).|Número|15|Não|
 
-#### Resposta
+### Resposta
 
 ```json
 {
