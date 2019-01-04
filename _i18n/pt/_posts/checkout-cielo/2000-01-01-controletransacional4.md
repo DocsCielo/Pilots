@@ -93,7 +93,7 @@ Seu principal objetivo é permitir que lojas e plataformas possam automatizar as
 
 ## Autenticação
 
-O Processo de autenticação na API do link de pagamento é o **[Cielo OAUTH](https://docscielo.github.io/Pilots/manual/appcielo-link#cielo-oauth)**
+O Processo de autenticação na API do link de pagamento é o **[Cielo OAUTH](https://docscielo.github.io/Pilots/manual/controletransacional4#cielo-oauth)**
 
 ## Pré-requisitos
 
