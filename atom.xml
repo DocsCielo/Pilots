@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-01-07T10:23:36+00:00</updated>
+    <updated>2019-01-23T19:11:14+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -202,7 +202,6 @@
       &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;QRCode Test&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Payment&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;isQrCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;   
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CreditCard&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Amount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
      &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Installments&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -224,7 +223,6 @@
       &lt;span class=&quot;s2&quot;&gt;&quot;Name&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;QRCode Test&quot;&lt;/span&gt;
    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;,
    &lt;span class=&quot;s2&quot;&gt;&quot;Payment&quot;&lt;/span&gt;:&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;s2&quot;&gt;&quot;isQrCode&quot;&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;,   
      &lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;:&lt;span class=&quot;s2&quot;&gt;&quot;CreditCard&quot;&lt;/span&gt;,
      &lt;span class=&quot;s2&quot;&gt;&quot;Amount&quot;&lt;/span&gt;:100,
      &lt;span class=&quot;s2&quot;&gt;&quot;Installments&quot;&lt;/span&gt;:1,
@@ -281,18 +279,11 @@
       &lt;td&gt;Nome do Comprador.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.isQrCode&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Booleano&lt;/td&gt;
-      &lt;td&gt;-&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Enviar &lt;strong&gt;true&lt;/strong&gt; para uma transação de QRCode de Pagamento&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Type&lt;/code&gt;&lt;/td&gt;
       &lt;td&gt;Texto&lt;/td&gt;
       &lt;td&gt;100&lt;/td&gt;
       &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Tipo do Meio de Pagamento. Enviar &lt;strong&gt;CreditCard&lt;/strong&gt; para uma transação de QRCode.&lt;/td&gt;
+      &lt;td&gt;Tipo do Meio de Pagamento. Enviar &lt;strong&gt;qrcode&lt;/strong&gt; para uma transação de QRCode.&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Amount&lt;/code&gt;&lt;/td&gt;
@@ -337,11 +328,10 @@
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ReceivedDate&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;2019-01-02 10:14:29&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;12&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;IsSplitted&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;IsQrCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;QrCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;ReturnMessage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;QRCode gerado com sucesso&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;PaymentId&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;5d7e8fd3-70b6-4a88-9660-e064d72fdcdd&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CreditCard&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;qrcode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Currency&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;BRL&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Country&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;BRA&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Links&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -375,8 +365,7 @@
         &lt;span class=&quot;s2&quot;&gt;&quot;ReceivedDate&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;2019-01-02 10:14:29&quot;&lt;/span&gt;,
         &lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;: 12,
         &lt;span class=&quot;s2&quot;&gt;&quot;IsSplitted&quot;&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;false&lt;/span&gt;,
-        &lt;span class=&quot;s2&quot;&gt;&quot;IsQrCode&quot;&lt;/span&gt;: &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;,
-        &lt;span class=&quot;s2&quot;&gt;&quot;QrCode&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)&quot;&lt;/span&gt;,
+        &lt;span class=&quot;s2&quot;&gt;&quot;QrCodeBase64Image&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)&quot;&lt;/span&gt;,
         &lt;span class=&quot;s2&quot;&gt;&quot;ReturnMessage&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;QRCode gerado com sucesso&quot;&lt;/span&gt;,
         &lt;span class=&quot;s2&quot;&gt;&quot;PaymentId&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;5d7e8fd3-70b6-4a88-9660-e064d72fdcdd&quot;&lt;/span&gt;,
         &lt;span class=&quot;s2&quot;&gt;&quot;Type&quot;&lt;/span&gt;: &lt;span class=&quot;s2&quot;&gt;&quot;CreditCard&quot;&lt;/span&gt;,
@@ -405,14 +394,7 @@
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;isQrCode&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Indica se é uma transação de geração de QRCode de Pagamento&lt;/td&gt;
-      &lt;td&gt;Booleano&lt;/td&gt;
-      &lt;td&gt;-&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;true&lt;/strong&gt; ou &lt;strong&gt;false&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;QrCode&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;QrCodeBase64Image&lt;/code&gt;&lt;/td&gt;
       &lt;td&gt;QRCode codificado na base 64. Por exemplo, a imagem poderá ser apresentada na página utilizando o código HTML como este:&lt;br /&gt; &amp;lt;img src=”data:image/png;base64,{código da imagem na base 64}”&amp;gt;&lt;/td&gt;
       &lt;td&gt;Texto&lt;/td&gt;
       &lt;td&gt;variável&lt;/td&gt;

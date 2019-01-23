@@ -313,7 +313,6 @@
       </span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"QRCode Test"</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="s2">"Payment"</span><span class="p">:{</span><span class="w">
-    </span><span class="s2">"isQrCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">   
      </span><span class="s2">"Type"</span><span class="p">:</span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"Amount"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
      </span><span class="s2">"Installments"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -335,7 +334,6 @@
       <span class="s2">"Name"</span>:<span class="s2">"QRCode Test"</span>
    <span class="o">}</span>,
    <span class="s2">"Payment"</span>:<span class="o">{</span>
-    <span class="s2">"isQrCode"</span>: <span class="nb">true</span>,   
      <span class="s2">"Type"</span>:<span class="s2">"CreditCard"</span>,
      <span class="s2">"Amount"</span>:100,
      <span class="s2">"Installments"</span>:1,
@@ -392,18 +390,11 @@
       <td>Nome do Comprador.</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Payment.isQrCode</code></td>
-      <td>Booleano</td>
-      <td>-</td>
-      <td>Sim</td>
-      <td>Enviar <strong>true</strong> para uma transação de QRCode de Pagamento</td>
-    </tr>
-    <tr>
       <td><code class="highlighter-rouge">Payment.Type</code></td>
       <td>Texto</td>
       <td>100</td>
       <td>Sim</td>
-      <td>Tipo do Meio de Pagamento. Enviar <strong>CreditCard</strong> para uma transação de QRCode.</td>
+      <td>Tipo do Meio de Pagamento. Enviar <strong>qrcode</strong> para uma transação de QRCode.</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Payment.Amount</code></td>
@@ -448,11 +439,10 @@
         </span><span class="s2">"ReceivedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-02 10:14:29"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
         </span><span class="s2">"IsSplitted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"IsQrCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"QrCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QRCode gerado com sucesso"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qrcode"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRL"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRA"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -486,8 +476,7 @@
         <span class="s2">"ReceivedDate"</span>: <span class="s2">"2019-01-02 10:14:29"</span>,
         <span class="s2">"Status"</span>: 12,
         <span class="s2">"IsSplitted"</span>: <span class="nb">false</span>,
-        <span class="s2">"IsQrCode"</span>: <span class="nb">true</span>,
-        <span class="s2">"QrCode"</span>: <span class="s2">"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)"</span>,
+        <span class="s2">"QrCodeBase64Image"</span>: <span class="s2">"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)"</span>,
         <span class="s2">"ReturnMessage"</span>: <span class="s2">"QRCode gerado com sucesso"</span>,
         <span class="s2">"PaymentId"</span>: <span class="s2">"5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span>,
         <span class="s2">"Type"</span>: <span class="s2">"CreditCard"</span>,
@@ -516,14 +505,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">isQrCode</code></td>
-      <td>Indica se é uma transação de geração de QRCode de Pagamento</td>
-      <td>Booleano</td>
-      <td>-</td>
-      <td><strong>true</strong> ou <strong>false</strong></td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">QrCode</code></td>
+      <td><code class="highlighter-rouge">QrCodeBase64Image</code></td>
       <td>QRCode codificado na base 64. Por exemplo, a imagem poderá ser apresentada na página utilizando o código HTML como este:<br /> &lt;img src=”data:image/png;base64,{código da imagem na base 64}”&gt;</td>
       <td>Texto</td>
       <td>variável</td>
