@@ -109,7 +109,7 @@ Para criar uma transação que utilizará cartão de crédito, é necessário en
       "Name":"QRCode Test"
    },
    "Payment":{
-     "Type":"CreditCard",
+     "Type":"qrcode",
      "Amount":100,
      "Installments":1,
      "Capture":false
@@ -131,7 +131,7 @@ curl
       "Name":"QRCode Test"
    },
    "Payment":{
-     "Type":"CreditCard",
+     "Type":"qrcode",
      "Amount":100,
      "Installments":1,
      "Capture":false
@@ -213,7 +213,7 @@ curl
         "QrCodeBase64Image": "iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)",
         "ReturnMessage": "QRCode gerado com sucesso",
         "PaymentId": "5d7e8fd3-70b6-4a88-9660-e064d72fdcdd",
-        "Type": "CreditCard",
+        "Type": "qrcode",
         "Currency": "BRL",
         "Country": "BRA",
         "Links": [
@@ -286,7 +286,7 @@ curl
         "ProofOfSale": "674532",
         "AuthorizationCode": "123456",
         "PaymentId": "24bc8366-fc31-4d6c-8555-17049a836a07",
-        "Type": "CreditCard",
+        "Type": "qrcode",
         "Amount": 15700,
         "Currency": "BRL",
         "Country": "BRA",
