@@ -109,7 +109,6 @@ Para criar uma transação que utilizará cartão de crédito, é necessário en
       "Name":"QRCode Test"
    },
    "Payment":{
-    "isQrCode": true,   
      "Type":"CreditCard",
      "Amount":100,
      "Installments":1,
@@ -132,7 +131,6 @@ curl
       "Name":"QRCode Test"
    },
    "Payment":{
-    "isQrCode": true,   
      "Type":"CreditCard",
      "Amount":100,
      "Installments":1,
@@ -149,8 +147,7 @@ curl
 |`RequestId`|Guid|36|Não|Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT.|
 |`MerchantOrderId`|Texto|50|Sim|Numero de identificação do Pedido.|
 |`Customer.Name`|Texto|255|Não|Nome do Comprador.|
-|`Payment.isQrCode`|Booleano|-|Sim|Enviar **true** para uma transação de QRCode de Pagamento|
-|`Payment.Type`|Texto|100|Sim|Tipo do Meio de Pagamento. Enviar **CreditCard** para uma transação de QRCode.|
+|`Payment.Type`|Texto|100|Sim|Tipo do Meio de Pagamento. Enviar **qrcode** para uma transação de QRCode.|
 |`Payment.Amount`|Número|15|Sim|Valor do Pedido (ser enviado em centavos).|
 |`Payment.Installments`|Número|2|Sim|Número de Parcelas.|
 |`Payment.Capture`|Booleano|-|Não|Enviar **true** para uma trasação de captura automática.|
@@ -175,11 +172,10 @@ curl
         "ReceivedDate": "2019-01-02 10:14:29",
         "Status": 12,
         "IsSplitted": false,
-        "IsQrCode": true,
         "QrCode": "iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)",
         "ReturnMessage": "QRCode gerado com sucesso",
         "PaymentId": "5d7e8fd3-70b6-4a88-9660-e064d72fdcdd",
-        "Type": "CreditCard",
+        "Type": "qrcode",
         "Currency": "BRL",
         "Country": "BRA",
         "Links": [
@@ -214,8 +210,7 @@ curl
         "ReceivedDate": "2019-01-02 10:14:29",
         "Status": 12,
         "IsSplitted": false,
-        "IsQrCode": true,
-        "QrCode": "iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)",
+        "QrCodeBase64Image": "iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)",
         "ReturnMessage": "QRCode gerado com sucesso",
         "PaymentId": "5d7e8fd3-70b6-4a88-9660-e064d72fdcdd",
         "Type": "CreditCard",
@@ -234,8 +229,7 @@ curl
 
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |---|---|---|---|---|
-|`isQrCode`|Indica se é uma transação de geração de QRCode de Pagamento|Booleano|-|**true** ou **false**|
-|`QrCode`|QRCode codificado na base 64. Por exemplo, a imagem poderá ser apresentada na página utilizando o código HTML como este:<br> <code>&lt;img src="data:image/png;base64,{código da imagem na base 64}"&gt;</code>|Texto|variável|Texto alfanumérico|
+|`QrCodeBase64Image`|QRCode codificado na base 64. Por exemplo, a imagem poderá ser apresentada na página utilizando o código HTML como este:<br> <code>&lt;img src="data:image/png;base64,{código da imagem na base 64}"&gt;</code>|Texto|variável|Texto alfanumérico|
 |`PaymentId`|Campo Identificador do Pedido, necessário para futuras operações como Consulta, Captura e Cancelamento.|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Status da Transação. No caso de uma transação de geração de QRCode de pagamento, o status inicial é 12 (Pending).|Byte|---|2|
 |`ReturnCode`|Código de retorno da Adquirência.|Texto|32|Texto alfanumérico|
