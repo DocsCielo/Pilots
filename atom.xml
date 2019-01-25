@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-01-25T16:49:02+00:00</updated>
+    <updated>2019-01-25T16:50:07+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -1360,7 +1360,7 @@
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;No parâmetro “ &lt;strong&gt;gatewayMerchantId&lt;/strong&gt;”, preencha o identificador de sua loja gerado pelo gateway. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).&lt;/p&gt;
+&lt;p&gt;No parâmetro “ &lt;strong&gt;gatewayMerchantId&lt;/strong&gt;”, preencha o identificador de sua loja gerado pela Cielo. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).&lt;/p&gt;
 
 &lt;h3 id=&quot;definição-das-bandeiras-aceitas&quot;&gt;Definição das Bandeiras aceitas&lt;/h3&gt;
 
