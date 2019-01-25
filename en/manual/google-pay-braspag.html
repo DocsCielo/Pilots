@@ -178,7 +178,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>To the field “ <strong>gatewayMerchantId</strong>”, send your application code registered at Google Pay. To test purpose, use “18045945416119260263”</p>
+<p>To the field “ <strong>gatewayMerchantId</strong>”, send your merchant identification provided by the gateway. The merchant identification is formated as XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).</p>
 
 <h3 id="definition-of-brands">Definition of brands</h3>
 
@@ -225,21 +225,21 @@
   </thead>
   <tbody>
     <tr>
-      <td>encryptedMessage</td>
+      <td>signedMessage</td>
       <td>string</td>
-      <td>Base64-encoded encrypted message containing payment information and some additional security fields.</td>
+      <td>Signed message.</td>
     </tr>
     <tr>
-      <td>ephemeralPublicKey</td>
+      <td>signature</td>
       <td>string</td>
-      <td>Base64-encoded ephemeral public key associated with the private key to encrypt the message in uncompressed point format.</td>
+      <td>Signature.</td>
     </tr>
   </tbody>
 </table>
 
 <p>(to see more details: <a href="https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography">https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography</a>)</p>
 
-<p>Keep the values “<em>encryptedMessage</em>” and “<em>ephemeralPublicKey</em>”. They will be requested in the Braspag’s authorization process in the next step (Step 2: Authorization with Google Pay)</p>
+<p>Keep the values “<em>signedMessage</em>” and “<em>signature</em>”. They will be requested in the Braspag’s authorization process in the next step (Step 2: Authorization with Google Pay)</p>
 
 <h1 id="step-2-authorization-with-google-pay">Step 2: Authorization with Google Pay</h1>
 
@@ -259,9 +259,9 @@
     </span><span class="s2">"Installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AndroidPay"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"WalletKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZW5jcnlwdGVkTWVzc2FnZQ=="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"WalletKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">encryptedMessage</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">ZW5jcnlwdGVkTWVzc2FnZQ==</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">ephemeralPublicKey</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">ZXBoZW1lcmFsUHVibGljS2V5</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">tag</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">c2lnbmF0dXJl</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"AdditionalData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"EphemeralPublicKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZXBoZW1lcmFsUHVibGljS2V5"</span><span class="w">
+        </span><span class="s2">"Signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZXBoZW1lcmFsUHVibGljS2V5"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -337,12 +337,12 @@
     <tr>
       <td>Payment.Wallet.WalletKey</td>
       <td>String</td>
-      <td>Provide the “encryptedMessage” received from Google Pay</td>
+      <td>Provide the “signedMessage” received from Google Pay</td>
     </tr>
     <tr>
-      <td>Payment.Wallet.AdditionalData. EphemeralPublicKey</td>
+      <td>Payment.Wallet.AdditionalData.Signature</td>
       <td>String</td>
-      <td>Provide the “ephemeralPublicKey” received from Google Pay</td>
+      <td>Provide the “signature” received from Google Pay</td>
     </tr>
   </tbody>
 </table>
