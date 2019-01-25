@@ -55,12 +55,12 @@ private static JSONObject getTokenizationSpecification() {
       "parameters",
       new JSONObject()
           .put("gateway", "cielo")
-          .put("gatewayMerchantId", "exampleMerchantId"));
+          .put("gatewayMerchantId", "MerchantId"));
   return tokenizationSpecification;
 }
 ```
 
-No parâmetro " **gatewayMerchantId**", preencha com o seu código do aplicativo registrado no Google Pay. Para efeitos de teste, utilize o valor "18045945416119260263"
+No parâmetro " **gatewayMerchantId**", preencha o identificador de sua loja gerado pelo gateway. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).
 
 ### Definição das Bandeiras aceitas
 
@@ -100,12 +100,12 @@ O token obtido no passo anterior, possui uma estrutura descrita abaixo:
 
 | **Parâmetro** | **Type** | **Descrição** |
 | --- | --- | --- |
-| encryptedMessage | string | Mensagem criptografada com codificação base 64, contendo informações de pagamento e de segurança. |
-| ephemeralPublicKey | string | Mensagem criptografada com codificação base 64, contendo informações referente à chave pública efêmera, compatível com a chave privada da Cielo. |
+| signedMessage      | string | Mensagem asssinada. |
+| signature          | string | Assinatura da mensagem. |
 
 (vide mais informações em: [https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography](https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography))
 
-Guarde os dados "_encryptedMessage_" e "_ephemeralPublicKey_", que serão requisitados na autorização via Cielo 3.0 na próxima etapa (Etapa 2: Autorização com token do Google Pay)
+Guarde os dados "_signedMessage_" e "_signature_", que serão requisitados na autorização via Cielo 3.0 na próxima etapa (Etapa 2: Autorização com token do Google Pay)
 
 # Etapa 2: Autorização com o token do Google Pay
 
@@ -125,9 +125,9 @@ A autorização com o token do Google Pay acontece da mesma forma que uma autori
     "Installments": 1,
     "Wallet": {
       "Type": "AndroidPay",
-      "WalletKey": "ZW5jcnlwdGVkTWVzc2FnZQ==",
+      "WalletKey": "{\"encryptedMessage\": \"ZW5jcnlwdGVkTWVzc2FnZQ==\",\"ephemeralPublicKey\": \"ZXBoZW1lcmFsUHVibGljS2V5\",\"tag\": \"c2lnbmF0dXJl\"}",
       "AdditionalData": {
-        "EphemeralPublicKey": "ZXBoZW1lcmFsUHVibGljS2V5"
+        "Signature": "ZXBoZW1lcmFsUHVibGljS2V5"
       }
     }
   }
@@ -147,8 +147,8 @@ A autorização com o token do Google Pay acontece da mesma forma que uma autori
 | Payment.Amount | Número (15) | Valor do Pedido (ser enviado em centavos) |
 | Payment.Installments | Número (2) | Número de Parcelas |
 | Payment.Wallet.Type | String (15) | Nome da provedora de Meio de Pagamento. Para transações Google Pay, utilize "AndroidPay" |
-| Payment.Wallet.WalletKey | String | Preencher com o valor do parâmetro "encryptedMessage" retornado pelo Google Pay |
-| Payment.Wallet.AdditionalData. EphemeralPublicKey | String | Preencher com o valor do parâmetro "ephemeralPublicKey" retornado pelo Google Pay |
+| Payment.Wallet.WalletKey | String | Preencher com o valor do parâmetro "signedMessage" retornado pelo Google Pay |
+| Payment.Wallet.AdditionalData.Signature | String | Preencher com o valor do parâmetro "signature" retornado pelo Google Pay |
 
 Para mais informações, acesse [https://developercielo.github.io/manual/cielo-ecommerce](https://developercielo.github.io/manual/cielo-ecommerce)
 
