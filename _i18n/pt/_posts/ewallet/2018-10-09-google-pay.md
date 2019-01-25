@@ -60,7 +60,7 @@ private static JSONObject getTokenizationSpecification() {
 }
 ```
 
-No parâmetro " **gatewayMerchantId**", preencha o identificador de sua loja gerado pelo gateway. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).
+No parâmetro " **gatewayMerchantId**", preencha o identificador de sua loja gerado pela Cielo. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).
 
 ### Definição das Bandeiras aceitas
 
