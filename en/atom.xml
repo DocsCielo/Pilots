@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/en/"/>
     <logo>https://docscielo.github.io/Pilots/en/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/en/assets/favicon.ico</icon>
-    <updated>2019-01-25T16:50:12+00:00</updated>
+    <updated>2019-01-25T16:51:07+00:00</updated>
     <id>https://docscielo.github.io/Pilots/en/</id>
     <author>
         <name>João Batista Neto</name>
@@ -68,7 +68,7 @@
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;To the field “ &lt;strong&gt;gatewayMerchantId&lt;/strong&gt;”, send your merchant identification provided by the gateway. The merchant identification is formated as XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).&lt;/p&gt;
+&lt;p&gt;To the field “ &lt;strong&gt;gatewayMerchantId&lt;/strong&gt;”, send your merchant identification provided by Cielo. The merchant identification is formated as XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).&lt;/p&gt;
 
 &lt;h3 id=&quot;definition-of-brands&quot;&gt;Definition of brands&lt;/h3&gt;
 
