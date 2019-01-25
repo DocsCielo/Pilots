@@ -178,7 +178,7 @@
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
-<p>No parâmetro “ <strong>gatewayMerchantId</strong>”, preencha com o seu código do aplicativo registrado no Google Pay. Para efeitos de teste, utilize o valor “18045945416119260263”</p>
+<p>No parâmetro “ <strong>gatewayMerchantId</strong>”, preencha o identificador de sua loja gerado pelo gateway. O identificador da loja tem o formato XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).</p>
 
 <h3 id="definição-das-bandeiras-aceitas">Definição das Bandeiras aceitas</h3>
 
@@ -225,21 +225,21 @@
   </thead>
   <tbody>
     <tr>
-      <td>encryptedMessage</td>
+      <td>signedMessage</td>
       <td>string</td>
-      <td>Mensagem criptografada com codificação base 64, contendo informações de pagamento e de segurança.</td>
+      <td>Mensagem asssinada.</td>
     </tr>
     <tr>
-      <td>ephemeralPublicKey</td>
+      <td>signature</td>
       <td>string</td>
-      <td>Mensagem criptografada com codificação base 64, contendo informações referente à chave pública efêmera, compatível com a chave privada da Braspag.</td>
+      <td>Assinatura da mensagem.</td>
     </tr>
   </tbody>
 </table>
 
 <p>(vide mais informações em: <a href="https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography">https://developers.google.com/pay/api/android/guides/resources/payment-data-cryptography</a>)</p>
 
-<p>Guarde os dados “<em>encryptedMessage</em>” e “<em>ephemeralPublicKey</em>”, que serão requisitados na autorização via Pagador da Braspag na próxima etapa (Etapa 2: Autorização com token do Google Pay)</p>
+<p>Guarde os dados “<em>signedMessage</em>” e “<em>signature</em>”, que serão requisitados na autorização via Pagador da Braspag na próxima etapa (Etapa 2: Autorização com token do Google Pay)</p>
 
 <h1 id="etapa-2-autorização-com-o-token-do-google-pay">Etapa 2: Autorização com o token do Google Pay</h1>
 
@@ -259,9 +259,9 @@
     </span><span class="s2">"Installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
       </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AndroidPay"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"WalletKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZW5jcnlwdGVkTWVzc2FnZQ=="</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"WalletKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">encryptedMessage</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">ZW5jcnlwdGVkTWVzc2FnZQ==</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">ephemeralPublicKey</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">ZXBoZW1lcmFsUHVibGljS2V5</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">tag</span><span class="se">\"</span><span class="s2">: </span><span class="se">\"</span><span class="s2">c2lnbmF0dXJl</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"AdditionalData"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"EphemeralPublicKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZXBoZW1lcmFsUHVibGljS2V5"</span><span class="w">
+        </span><span class="s2">"Signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZXBoZW1lcmFsUHVibGljS2V5"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">}</span><span class="w">
@@ -337,12 +337,12 @@
     <tr>
       <td>Payment.Wallet.WalletKey</td>
       <td>String</td>
-      <td>Preencher com o valor do parâmetro “encryptedMessage” retornado pelo Google Pay</td>
+      <td>Preencher com o valor do parâmetro “signedMessage” retornado pelo Google Pay</td>
     </tr>
     <tr>
-      <td>Payment.Wallet.AdditionalData. EphemeralPublicKey</td>
+      <td>Payment.Wallet.AdditionalData.Signature</td>
       <td>String</td>
-      <td>Preencher com o valor do parâmetro “ephemeralPublicKey” retornado pelo Google Pay</td>
+      <td>Preencher com o valor do parâmetro “signature” retornado pelo Google Pay</td>
     </tr>
   </tbody>
 </table>
