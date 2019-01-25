@@ -58,7 +58,7 @@ private static JSONObject getTokenizationSpecification() {
 }
 ```
 
-To the field " **gatewayMerchantId**", send your merchant identification provided by the gateway. The merchant identification is formated as XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).
+To the field " **gatewayMerchantId**", send your merchant identification provided by Cielo. The merchant identification is formated as XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX (i.e. GUID(36)).
 
 ### Definition of brands
 
