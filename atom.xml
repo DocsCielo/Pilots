@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-01-28T17:07:54+00:00</updated>
+    <updated>2019-01-28T17:18:32+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -41,7 +41,7 @@
   &lt;li&gt;&lt;strong&gt;POST&lt;/strong&gt; /payments&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;img src=&quot;/home/andersonlandgraf/Downloads/fluxointegraçãoqrcode.png&quot; alt=&quot;Fluxo de integração Qr Code&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/qrcode/qrcode-fluxointegracaoqrcode.png&quot; alt=&quot;Fluxo de integração Qr Code&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;access-token&quot;&gt;Access Token&lt;/h3&gt;
 
@@ -371,7 +371,7 @@ curl --request GET \
 
 &lt;p&gt;Atualmente o POS cria o QR Code a partir das informações especificadas abaixo com base na especificação “&lt;strong&gt;EMVCo-Merchant-Presented-QR-Specification-v1&lt;/strong&gt;”.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/home/andersonlandgraf/Projetos/POS.png&quot; alt=&quot;QrCode Gerado Pelo POS&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/qrcode/qrcode-POS.png&quot; alt=&quot;QrCode Gerado Pelo POS&quot; /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;como-testar&quot;&gt;Como Testar&lt;/h1&gt;
 
@@ -390,7 +390,7 @@ curl --request GET \
 &lt;blockquote&gt;
   &lt;p&gt;QR Code Gerado a partir do código Exemplo&lt;/p&gt;
 
-  &lt;p&gt;&lt;img src=&quot;/home/andersonlandgraf/Projetos/QrCodeImg.png&quot; alt=&quot;QrCode gerado a partir do código Exemplo&quot; /&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/qrcode/qrcode-QrCodeImg.png&quot; alt=&quot;QrCode gerado a partir do código Exemplo&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;** Observação: Ao testar com o QR Code especificado um erro do tipo 422 é esperado, pois, não existe dados transacionais referentes no autorizador da Cielo.**&lt;/p&gt;
