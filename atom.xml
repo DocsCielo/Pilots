@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-01-28T17:02:34+00:00</updated>
+    <updated>2019-01-28T17:07:54+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -13,7 +13,7 @@
     </author>
     
     <entry>
-        <title>Pagamento QR Code</title>
+        <title>Manual de Integração</title>
         <category term="manual" />
         <link href="https://docscielo.github.io/Pilots/manual/qrcode"/>
         <updated>2019-01-28T00:00:00+00:00</updated>
