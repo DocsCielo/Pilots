@@ -12,7 +12,7 @@
 
     <title>
         
-        QRCode via API E-Commerce &middot; Documentações e tutoriais
+        P2M via API E-Commerce &middot; Documentações e tutoriais
         
     </title>
 
@@ -26,11 +26,11 @@
 
     
         
-            <link rel="alternate" hreflang="pt" href="/manual/qrcode-via-api" />
+            <link rel="alternate" hreflang="pt" href="/manual/p2m-via-api" />
         
     
         
-            <link rel="alternate" hreflang="en" href="en/manual/qrcode-via-api" />
+            <link rel="alternate" hreflang="en" href="en/manual/p2m-via-api" />
         
     
 
@@ -66,14 +66,14 @@
 
                                 
                                     
-                                    <a href="https://docscielo.github.io/Pilots/manual/qrcode-via-api">
+                                    <a href="https://docscielo.github.io/Pilots/manual/p2m-via-api">
                                     
 
                                         <img alt="Português" src="https://docscielo.github.io/Pilots/assets/images/pt.png"/>
                                     </a>
                                 
                                     
-                                    <a href="https://docscielo.github.io/Pilots/en/manual/qrcode-via-api">
+                                    <a href="https://docscielo.github.io/Pilots/en/manual/p2m-via-api">
                                     
 
                                         <img alt="English" src="https://docscielo.github.io/Pilots/assets/images/en.png"/>
@@ -119,7 +119,7 @@
                             
                                 
                                     
-                                    <li class="active">&gt; <a href="https://docscielo.github.io/Pilots/manual/qrcode-via-api">QRCode via API E-Commerce</a></li>
+                                    <li class="active">&gt; <a href="https://docscielo.github.io/Pilots/manual/p2m-via-api">P2M via API E-Commerce</a></li>
                                     
                                 
                             
@@ -182,7 +182,7 @@
 
 <h2 id="produtos-e-bandeiras-suportadas">Produtos e Bandeiras suportadas</h2>
 
-<p>QR Code de Pagamento possui suporte às seguintes bandeiras e produtos:</p>
+<p>API E-Commerce para escopo P2M possui suporte às seguintes bandeiras e produtos:</p>
 
 <table>
   <thead>
@@ -201,7 +201,7 @@
       <td><em>Não</em></td>
     </tr>
     <tr>
-      <td>Master Card</td>
+      <td>Mastercard</td>
       <td>Sim</td>
       <td>Sim</td>
       <td><em>Não</em></td>
@@ -275,12 +275,12 @@
   </tbody>
 </table>
 
-<p><strong>Vantagens de utilizar o Sandbox</strong></p>
+<p><strong>Observações Importantes</strong></p>
 
 <ul>
-  <li>Não é necessário uma afiliação para utilizar o Sandbox Cielo.</li>
-  <li>Basta acessar o <a href="https://cadastrosandbox.cieloecommerce.cielo.com.br/"><strong>Cadastro do Sandbox</strong></a> criar uma conta.</li>
-  <li>com o cadastro você receberá um <code class="highlighter-rouge">MerchantId</code> e um <code class="highlighter-rouge">MerchantKey</code>,que são as credenciais necessarias para os métodos da API</li>
+  <li>Utilizar MerchantId (bcd6b14e-ca09-47e2-8425-89d5abc5ddc3)</li>
+  <li>Utilizar MerchantKey (BXAVZIFSVPAEIFRHNMKVWJQOLLINAGOVFNQCCMEL)</li>
+  <li>O ambiente Sandbox transaciona através do ambiente de homologação da Cielo, via EC 1006993069</li>
 </ul>
 
 <h2 id="ferramenta-para-integração-postman">Ferramenta para Integração: POSTMAN</h2>
@@ -293,11 +293,9 @@
 
 <h2 id="cartão-de-crédito---sandbox">Cartão de crédito - Sandbox</h2>
 
-<p>Para testar o cenário de autorização com sucesso via QRCode, utilize o cartão 4551.8700.0000.0183</p>
+<p>Para testar o cenário de autorização com sucesso, utilize o cartão 4551.8700.0000.0183</p>
 
-<p>As informações de <strong>Cód.Segurança (CVV)</strong> e validade podem ser aleatórias, mantendo o formato - CVV (3 dígitos) Validade (MM/YYYY).</p>
-
-<h1 id="gerando-um-qrcode-via-api">Gerando um QRCode via API</h1>
+<h1 id="autorizando-um-cartão-de-crédito-via-api">Autorizando um cartão de crédito via API</h1>
 
 <p>Para criar uma transação que utilizará cartão de crédito, é necessário enviar uma requisição utilizando o método <code class="highlighter-rouge">POST</code> para o recurso Payment, conforme o exemplo. Esse exemplo contempla o mínimo de campos necessários a serem enviados para a autorização.</p>
 
@@ -308,16 +306,51 @@
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/sales/</span></aside>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="s2">"2019010101"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="s2">"2019012101"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"Customer"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"QRCode Test"</span><span class="w">
+      </span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Mobile"</span><span class="p">:</span><span class="s2">"5521995760078"</span><span class="w">
    </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"Payment"</span><span class="p">:{</span><span class="w">
-     </span><span class="s2">"Type"</span><span class="p">:</span><span class="s2">"qrcode"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"Payment"</span><span class="p">:{</span><span class="w">  
+     </span><span class="s2">"Type"</span><span class="p">:</span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
      </span><span class="s2">"Amount"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
      </span><span class="s2">"Installments"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"Capture"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+     </span><span class="s2">"Currency"</span><span class="p">:</span><span class="s2">"BRL"</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"Capture"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"CreditCard"</span><span class="p">:{</span><span class="w">  
+         </span><span class="s2">"CardNumber"</span><span class="p">:</span><span class="s2">"4551870000000183"</span><span class="p">,</span><span class="w"> 
+         </span><span class="s2">"Holder"</span><span class="p">:</span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="s2">"12/2030"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CieloPay"</span><span class="w">
+    </span><span class="p">},</span><span class="w">     
+    </span><span class="s2">"ExtraDataCollection"</span><span class="p">:[</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"68"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXXXX"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"69"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"21"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"70"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"71"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"000000-00-000000-0"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"72"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12323W"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"73"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"BR"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"74"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"TIMSP"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"75"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"wifi-petz-house"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"76"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"682BG987789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"77"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"40"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"78"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"79"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"80"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"81"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"MOTOROLA"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"82"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"310150123456789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"83"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"84"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"85"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"G6 PLUS"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"86"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12321sw1dsd21e21e21e"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"87"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"192.87.12.208"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"88"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"38.123"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"89"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"-18.123"</span><span class="p">}</span><span class="w">
+     </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
 
@@ -329,16 +362,52 @@
 <span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
 <span class="nt">--data-binary</span>
 <span class="o">{</span>  
-   <span class="s2">"MerchantOrderId"</span>:<span class="s2">"2019010101"</span>,
+   <span class="s2">"MerchantOrderId"</span>:<span class="s2">"2019012101"</span>,
    <span class="s2">"Customer"</span>:<span class="o">{</span>  
-      <span class="s2">"Name"</span>:<span class="s2">"QRCode Test"</span>
+      <span class="s2">"Name"</span>:<span class="s2">"Comprador P2M"</span>,
+      <span class="s2">"Mobile"</span>:<span class="s2">"5521995760078"</span>
    <span class="o">}</span>,
-   <span class="s2">"Payment"</span>:<span class="o">{</span>
-     <span class="s2">"Type"</span>:<span class="s2">"qrcode"</span>,
+   <span class="s2">"Payment"</span>:<span class="o">{</span>  
+     <span class="s2">"Type"</span>:<span class="s2">"CreditCard"</span>,
      <span class="s2">"Amount"</span>:100,
      <span class="s2">"Installments"</span>:1,
-     <span class="s2">"Capture"</span>:false
-   <span class="o">}</span>
+     <span class="s2">"Currency"</span>:<span class="s2">"BRL"</span>,
+     <span class="s2">"Capture"</span>:true,
+     <span class="s2">"CreditCard"</span>:<span class="o">{</span>  
+         <span class="s2">"CardNumber"</span>:<span class="s2">"4551870000000183"</span>, 
+         <span class="s2">"Holder"</span>:<span class="s2">"Comprador P2M"</span>,
+         <span class="s2">"ExpirationDate"</span>:<span class="s2">"12/2030"</span>,
+ <span class="s2">"Brand"</span>:<span class="s2">"Visa"</span>
+     <span class="o">}</span>,
+    <span class="s2">"Wallet"</span>: <span class="o">{</span>
+        <span class="s2">"Type"</span>: <span class="s2">"CieloPay"</span>
+    <span class="o">}</span>,     
+    <span class="s2">"ExtraDataCollection"</span>:[
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"2"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"68"</span>,<span class="s2">"Value"</span>:<span class="s2">"XXXXXXXXXXXXXX"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"69"</span>,<span class="s2">"Value"</span>:<span class="s2">"21"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"70"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"71"</span>,<span class="s2">"Value"</span>:<span class="s2">"000000-00-000000-0"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"72"</span>,<span class="s2">"Value"</span>:<span class="s2">"12323W"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"73"</span>,<span class="s2">"Value"</span>:<span class="s2">"BR"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"74"</span>,<span class="s2">"Value"</span>:<span class="s2">"TIMSP"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"75"</span>,<span class="s2">"Value"</span>:<span class="s2">"wifi-petz-house"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"76"</span>,<span class="s2">"Value"</span>:<span class="s2">"682BG987789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"77"</span>,<span class="s2">"Value"</span>:<span class="s2">"40"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"78"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"79"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"80"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"81"</span>,<span class="s2">"Value"</span>:<span class="s2">"MOTOROLA"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"82"</span>,<span class="s2">"Value"</span>:<span class="s2">"310150123456789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"83"</span>,<span class="s2">"Value"</span>:<span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"84"</span>,<span class="s2">"Value"</span>:<span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"85"</span>,<span class="s2">"Value"</span>:<span class="s2">"G6 PLUS"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"86"</span>,<span class="s2">"Value"</span>:<span class="s2">"12321sw1dsd21e21e21e"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"87"</span>,<span class="s2">"Value"</span>:<span class="s2">"192.87.12.208"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"88"</span>,<span class="s2">"Value"</span>:<span class="s2">"38.123"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"89"</span>,<span class="s2">"Value"</span>:<span class="s2">"-18.123"</span><span class="o">}</span>
+     <span class="o">]</span>
+  <span class="o">}</span>
 <span class="o">}</span>
 <span class="nt">--verbose</span>
 </code></pre></div></div>
@@ -351,6 +420,14 @@
       <th>Tamanho</th>
       <th>Obrigatório</th>
       <th>Descrição</th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
+      <th> </th>
     </tr>
   </thead>
   <tbody>
@@ -360,6 +437,14 @@
       <td>36</td>
       <td>Sim</td>
       <td>Identificador da loja na Cielo.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">MerchantKey</code></td>
@@ -367,6 +452,14 @@
       <td>40</td>
       <td>Sim</td>
       <td>Chave Publica para Autenticação Dupla na Cielo.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">RequestId</code></td>
@@ -374,6 +467,14 @@
       <td>36</td>
       <td>Não</td>
       <td>Identificador do Request, utilizado quando o lojista usa diferentes servidores para cada GET/POST/PUT.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">MerchantOrderId</code></td>
@@ -381,6 +482,14 @@
       <td>50</td>
       <td>Sim</td>
       <td>Numero de identificação do Pedido.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Customer.Name</code></td>
@@ -388,13 +497,44 @@
       <td>255</td>
       <td>Não</td>
       <td>Nome do Comprador.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Customer.Mobile</code></td>
+      <td>Texto</td>
+      <td>15</td>
+      <td>Sim</td>
+      <td>Número de celular do Comprador.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Payment.Type</code></td>
       <td>Texto</td>
       <td>100</td>
       <td>Sim</td>
-      <td>Tipo do Meio de Pagamento. Enviar <strong>qrcode</strong> para uma transação de QRCode.</td>
+      <td>Tipo do Meio de Pagamento. Enviar <strong>CreditCard</strong>.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Payment.Amount</code></td>
@@ -402,6 +542,14 @@
       <td>15</td>
       <td>Sim</td>
       <td>Valor do Pedido (ser enviado em centavos).</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Payment.Installments</code></td>
@@ -409,13 +557,222 @@
       <td>2</td>
       <td>Sim</td>
       <td>Número de Parcelas.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Payment.Capture</code></td>
       <td>Booleano</td>
       <td>-</td>
-      <td>Não</td>
+      <td>Sim</td>
       <td>Enviar <strong>true</strong> para uma trasação de captura automática.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.CreditCard.CardNumber</code></td>
+      <td>Número</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>Enviar <strong>DPAN</strong>.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.CreditCard.Holder</code></td>
+      <td>Texto</td>
+      <td>Não</td>
+      <td>Enviar o nome do portador no cartão.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.CreditCard.ExpirationDate</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>Enviar a data de validade do cartão no formato MM/AAAA.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.CreditCard.Brand</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Não</td>
+      <td>Bandeira do cartão. Visa</td>
+      <td>Master</td>
+      <td>Amex</td>
+      <td>Diners</td>
+      <td>Elo</td>
+      <td>Discover</td>
+      <td>JCB</td>
+      <td>Hipercard</td>
+      <td>Aura.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Wallet.Type</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>Enviar <strong>CieloPay</strong>.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ExtraDataCollection</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>Enviar o par Nome/Valor conforme a lista abaixo.</td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <thead>
+    <tr>
+      <th>ExtraDataCollection.Name</th>
+      <th>ExtraDataCollection.Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>2</td>
+      <td>frd_anls_registration_date</td>
+    </tr>
+    <tr>
+      <td>68</td>
+      <td>PAR</td>
+    </tr>
+    <tr>
+      <td>69</td>
+      <td>frd_anls_partner_risk_score</td>
+    </tr>
+    <tr>
+      <td>70</td>
+      <td>frd_anls_registration_date</td>
+    </tr>
+    <tr>
+      <td>71</td>
+      <td>frd_anls_imei</td>
+    </tr>
+    <tr>
+      <td>72</td>
+      <td>frd_anls_cell_id</td>
+    </tr>
+    <tr>
+      <td>73</td>
+      <td>frd_anls_location_provider</td>
+    </tr>
+    <tr>
+      <td>74</td>
+      <td>frd_anls_mobile_carriers</td>
+    </tr>
+    <tr>
+      <td>75</td>
+      <td>frd_anls_wifi</td>
+    </tr>
+    <tr>
+      <td>76</td>
+      <td>frd_anls_wa_account_id</td>
+    </tr>
+    <tr>
+      <td>77</td>
+      <td>frd_anls_amount_user_contact_list</td>
+    </tr>
+    <tr>
+      <td>78</td>
+      <td>frd_anls_emulator_detect</td>
+    </tr>
+    <tr>
+      <td>79</td>
+      <td>frd_anls_root_cloak_detect</td>
+    </tr>
+    <tr>
+      <td>80</td>
+      <td>frd_anls_root_detec</td>
+    </tr>
+    <tr>
+      <td>81</td>
+      <td>frd_anls_device_manufacture</td>
+    </tr>
+    <tr>
+      <td>82</td>
+      <td>frd_anls_imsi</td>
+    </tr>
+    <tr>
+      <td>83</td>
+      <td>frd_anls_certificate_fingerprint</td>
+    </tr>
+    <tr>
+      <td>84</td>
+      <td>frd_anls_profile_image</td>
+    </tr>
+    <tr>
+      <td>85</td>
+      <td>frd_anls_device_model</td>
+    </tr>
+    <tr>
+      <td>86</td>
+      <td>frd_anls_advertisement_id</td>
+    </tr>
+    <tr>
+      <td>87</td>
+      <td>frd_anls_ip</td>
+    </tr>
+    <tr>
+      <td>88</td>
+      <td>frd_anls_lat</td>
+    </tr>
+    <tr>
+      <td>89</td>
+      <td>frd_anls_long</td>
     </tr>
   </tbody>
 </table>
@@ -423,33 +780,80 @@
 <h2 id="resposta">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019010101"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019012101"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QRCode Test"</span><span class="w">
+        </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5521995760078"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"ServiceTaxAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Authenticate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Recurrent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cielo"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CreditCard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"CardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000******0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2030"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"SaveCard"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"Tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0131105305165"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ProofOfSale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20190131105305165"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"AuthorizationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"926419"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simulado"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"IsQrCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ReceivedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-02 10:14:29"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReceivedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-31 10:53:04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CapturedAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CapturedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-31 10:53:05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CieloPay"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="s2">"ExtraDataCollection"</span><span class="p">:[</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"68"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXXXX"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"69"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"21"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"70"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"71"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"000000-00-000000-0"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"72"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12323W"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"73"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"BR"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"74"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"TIMSP"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"75"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"wifi-petz-house"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"76"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"682BG987789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"77"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"40"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"78"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"79"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"80"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"81"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"MOTOROLA"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"82"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"310150123456789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"83"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"84"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"85"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"G6 PLUS"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"86"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12321sw1dsd21e21e21e"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"87"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"192.87.12.208"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"88"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"38.123"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"89"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"-18.123"</span><span class="p">}</span><span class="w">
+     </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
         </span><span class="s2">"IsSplitted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"QrCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QRCode gerado com sucesso"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qrcode"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation Successful"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f49886f3-84ab-445e-a2a5-bc0155061984"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRL"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRA"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984/void"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -460,33 +864,80 @@
 <span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
 <span class="nt">--data-binary</span>
 <span class="o">{</span>
-    <span class="s2">"MerchantOrderId"</span>: <span class="s2">"2019010101"</span>,
+    <span class="s2">"MerchantOrderId"</span>: <span class="s2">"2019012101"</span>,
     <span class="s2">"Customer"</span>: <span class="o">{</span>
-        <span class="s2">"Name"</span>: <span class="s2">"QRCode Test"</span>
+        <span class="s2">"Name"</span>: <span class="s2">"Comprador P2M"</span>,
+        <span class="s2">"Mobile"</span>: <span class="s2">"5521995760078"</span>
     <span class="o">}</span>,
     <span class="s2">"Payment"</span>: <span class="o">{</span>
         <span class="s2">"ServiceTaxAmount"</span>: 0,
         <span class="s2">"Installments"</span>: 1,
         <span class="s2">"Interest"</span>: 0,
-        <span class="s2">"Capture"</span>: <span class="nb">false</span>,
+        <span class="s2">"Capture"</span>: <span class="nb">true</span>,
         <span class="s2">"Authenticate"</span>: <span class="nb">false</span>,
         <span class="s2">"Recurrent"</span>: <span class="nb">false</span>,
-        <span class="s2">"Provider"</span>: <span class="s2">"Cielo"</span>,
+        <span class="s2">"CreditCard"</span>: <span class="o">{</span>
+            <span class="s2">"CardNumber"</span>: <span class="s2">"000000******0001"</span>,
+            <span class="s2">"Holder"</span>: <span class="s2">"Comprador P2M"</span>,
+            <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2030"</span>,
+            <span class="s2">"SaveCard"</span>: <span class="nb">false</span>,
+            <span class="s2">"Brand"</span>: <span class="s2">"Visa"</span>
+        <span class="o">}</span>,
+        <span class="s2">"Tid"</span>: <span class="s2">"0131105305165"</span>,
+        <span class="s2">"ProofOfSale"</span>: <span class="s2">"20190131105305165"</span>,
+        <span class="s2">"AuthorizationCode"</span>: <span class="s2">"926419"</span>,
+        <span class="s2">"Provider"</span>: <span class="s2">"Simulado"</span>,
+        <span class="s2">"IsQrCode"</span>: <span class="nb">false</span>,
         <span class="s2">"Amount"</span>: 100,
-        <span class="s2">"ReceivedDate"</span>: <span class="s2">"2019-01-02 10:14:29"</span>,
-        <span class="s2">"Status"</span>: 12,
+        <span class="s2">"ReceivedDate"</span>: <span class="s2">"2019-01-31 10:53:04"</span>,
+        <span class="s2">"CapturedAmount"</span>: 100,
+        <span class="s2">"CapturedDate"</span>: <span class="s2">"2019-01-31 10:53:05"</span>,
+    <span class="s2">"Wallet"</span>: <span class="o">{</span>
+        <span class="s2">"Type"</span>: <span class="s2">"CieloPay"</span>
+    <span class="o">}</span>, 
+    <span class="s2">"ExtraDataCollection"</span>:[
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"2"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"68"</span>,<span class="s2">"Value"</span>:<span class="s2">"XXXXXXXXXXXXXX"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"69"</span>,<span class="s2">"Value"</span>:<span class="s2">"21"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"70"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"71"</span>,<span class="s2">"Value"</span>:<span class="s2">"000000-00-000000-0"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"72"</span>,<span class="s2">"Value"</span>:<span class="s2">"12323W"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"73"</span>,<span class="s2">"Value"</span>:<span class="s2">"BR"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"74"</span>,<span class="s2">"Value"</span>:<span class="s2">"TIMSP"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"75"</span>,<span class="s2">"Value"</span>:<span class="s2">"wifi-petz-house"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"76"</span>,<span class="s2">"Value"</span>:<span class="s2">"682BG987789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"77"</span>,<span class="s2">"Value"</span>:<span class="s2">"40"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"78"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"79"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"80"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"81"</span>,<span class="s2">"Value"</span>:<span class="s2">"MOTOROLA"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"82"</span>,<span class="s2">"Value"</span>:<span class="s2">"310150123456789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"83"</span>,<span class="s2">"Value"</span>:<span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"84"</span>,<span class="s2">"Value"</span>:<span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"85"</span>,<span class="s2">"Value"</span>:<span class="s2">"G6 PLUS"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"86"</span>,<span class="s2">"Value"</span>:<span class="s2">"12321sw1dsd21e21e21e"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"87"</span>,<span class="s2">"Value"</span>:<span class="s2">"192.87.12.208"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"88"</span>,<span class="s2">"Value"</span>:<span class="s2">"38.123"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"89"</span>,<span class="s2">"Value"</span>:<span class="s2">"-18.123"</span><span class="o">}</span>
+     <span class="o">]</span>,
+        <span class="s2">"Status"</span>: 2,
         <span class="s2">"IsSplitted"</span>: <span class="nb">false</span>,
-        <span class="s2">"QrCodeBase64Image"</span>: <span class="s2">"iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAYAAAB5fY51AAAQ1klEQVR42u3de6hlVR(...)"</span>,
-        <span class="s2">"ReturnMessage"</span>: <span class="s2">"QRCode gerado com sucesso"</span>,
-        <span class="s2">"PaymentId"</span>: <span class="s2">"5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span>,
-        <span class="s2">"Type"</span>: <span class="s2">"qrcode"</span>,
+        <span class="s2">"ReturnMessage"</span>: <span class="s2">"Operation Successful"</span>,
+        <span class="s2">"ReturnCode"</span>: <span class="s2">"6"</span>,
+        <span class="s2">"PaymentId"</span>: <span class="s2">"f49886f3-84ab-445e-a2a5-bc0155061984"</span>,
+        <span class="s2">"Type"</span>: <span class="s2">"CreditCard"</span>,
         <span class="s2">"Currency"</span>: <span class="s2">"BRL"</span>,
         <span class="s2">"Country"</span>: <span class="s2">"BRA"</span>,
         <span class="s2">"Links"</span>: <span class="o">[</span>
             <span class="o">{</span>
                 <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
                 <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
-                <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/5d7e8fd3-70b6-4a88-9660-e064d72fdcdd"</span>
+                <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984"</span>
+            <span class="o">}</span>,
+            <span class="o">{</span>
+                <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
+                <span class="s2">"Rel"</span>: <span class="s2">"void"</span>,
+                <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984/void"</span>
             <span class="o">}</span>
         <span class="o">]</span>
     <span class="o">}</span>
@@ -505,13 +956,6 @@
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">QrCodeBase64Image</code></td>
-      <td>QRCode codificado na base 64. Por exemplo, a imagem poderá ser apresentada na página utilizando o código HTML como este:<br /> &lt;img src=”data:image/png;base64,{código da imagem na base 64}”&gt;</td>
-      <td>Texto</td>
-      <td>variável</td>
-      <td>Texto alfanumérico</td>
-    </tr>
-    <tr>
       <td><code class="highlighter-rouge">PaymentId</code></td>
       <td>Campo Identificador do Pedido, necessário para futuras operações como Consulta, Captura e Cancelamento.</td>
       <td>Guid</td>
@@ -520,7 +964,7 @@
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Status</code></td>
-      <td>Status da Transação. No caso de uma transação de geração de QRCode de pagamento, o status inicial é 12 (Pending).</td>
+      <td>Status da Transação. No caso de uma transação P2M recusada pelas regras do COP, o status retornado será Aborted (13).</td>
       <td>Byte</td>
       <td>—</td>
       <td>2</td>
@@ -605,48 +1049,80 @@
 <h2 id="resposta-1">Resposta</h2>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014111706"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019012101"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprador Teste"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Address"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+        </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5521995760078"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"ServiceTaxAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Interest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ByMerchant"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Interest"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Authenticate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Recurrent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
         </span><span class="s2">"CreditCard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"CardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"455187******0183"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Teste Holder"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"CardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"000000******0001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Comprador P2M"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2030"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"SaveCard"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
             </span><span class="s2">"Brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="w">
         </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"ProofOfSale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"674532"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"AuthorizationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24bc8366-fc31-4d6c-8555-17049a836a07"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"qrcode"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">15700</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0131105305165"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ProofOfSale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20190131105305165"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"AuthorizationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"926419"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Provider"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Simulado"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"IsQrCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReceivedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-31 10:53:04"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CapturedAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CapturedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-31 10:53:05"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Wallet"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CieloPay"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="s2">"ExtraDataCollection"</span><span class="p">:[</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"2"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"68"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"XXXXXXXXXXXXXX"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"69"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"21"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"70"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"71"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"000000-00-000000-0"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"72"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12323W"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"73"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"BR"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"74"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"TIMSP"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"75"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"wifi-petz-house"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"76"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"682BG987789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"77"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"40"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"78"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"79"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"80"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"81"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"MOTOROLA"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"82"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"310150123456789"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"83"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"84"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"85"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"G6 PLUS"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"86"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"12321sw1dsd21e21e21e"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"87"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"192.87.12.208"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"88"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"38.123"</span><span class="p">},</span><span class="w">
+</span><span class="p">{</span><span class="s2">"Name"</span><span class="p">:</span><span class="s2">"89"</span><span class="p">,</span><span class="s2">"Value"</span><span class="p">:</span><span class="s2">"-18.123"</span><span class="p">}</span><span class="w">
+     </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"IsSplitted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation Successful"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"f49886f3-84ab-445e-a2a5-bc0155061984"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRL"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRA"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ExtraDataCollection"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-        </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"capture"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/capture"</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
                 </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
                 </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984/void"</span><span class="w">
             </span><span class="p">}</span><span class="w">
         </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
@@ -657,48 +1133,80 @@
 <span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
 <span class="nt">--data-binary</span>
 <span class="o">{</span>
-    <span class="s2">"MerchantOrderId"</span>: <span class="s2">"2014111706"</span>,
+    <span class="s2">"MerchantOrderId"</span>: <span class="s2">"2019012101"</span>,
     <span class="s2">"Customer"</span>: <span class="o">{</span>
-        <span class="s2">"Name"</span>: <span class="s2">"Comprador Teste"</span>,
-        <span class="s2">"Address"</span>: <span class="o">{}</span>
+        <span class="s2">"Name"</span>: <span class="s2">"Comprador P2M"</span>,
+        <span class="s2">"Mobile"</span>: <span class="s2">"5521995760078"</span>
     <span class="o">}</span>,
     <span class="s2">"Payment"</span>: <span class="o">{</span>
         <span class="s2">"ServiceTaxAmount"</span>: 0,
         <span class="s2">"Installments"</span>: 1,
-        <span class="s2">"Interest"</span>: <span class="s2">"ByMerchant"</span>,
-        <span class="s2">"Capture"</span>: <span class="nb">false</span>,
+        <span class="s2">"Interest"</span>: 0,
+        <span class="s2">"Capture"</span>: <span class="nb">true</span>,
         <span class="s2">"Authenticate"</span>: <span class="nb">false</span>,
+        <span class="s2">"Recurrent"</span>: <span class="nb">false</span>,
         <span class="s2">"CreditCard"</span>: <span class="o">{</span>
-            <span class="s2">"CardNumber"</span>: <span class="s2">"455187******0183"</span>,
-            <span class="s2">"Holder"</span>: <span class="s2">"Teste Holder"</span>,
+            <span class="s2">"CardNumber"</span>: <span class="s2">"000000******0001"</span>,
+            <span class="s2">"Holder"</span>: <span class="s2">"Comprador P2M"</span>,
             <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2030"</span>,
             <span class="s2">"SaveCard"</span>: <span class="nb">false</span>,
             <span class="s2">"Brand"</span>: <span class="s2">"Visa"</span>
         <span class="o">}</span>,
-        <span class="s2">"ProofOfSale"</span>: <span class="s2">"674532"</span>,
-        <span class="s2">"AuthorizationCode"</span>: <span class="s2">"123456"</span>,
-        <span class="s2">"PaymentId"</span>: <span class="s2">"24bc8366-fc31-4d6c-8555-17049a836a07"</span>,
+        <span class="s2">"Tid"</span>: <span class="s2">"0131105305165"</span>,
+        <span class="s2">"ProofOfSale"</span>: <span class="s2">"20190131105305165"</span>,
+        <span class="s2">"AuthorizationCode"</span>: <span class="s2">"926419"</span>,
+        <span class="s2">"Provider"</span>: <span class="s2">"Simulado"</span>,
+        <span class="s2">"IsQrCode"</span>: <span class="nb">false</span>,
+        <span class="s2">"Amount"</span>: 100,
+        <span class="s2">"ReceivedDate"</span>: <span class="s2">"2019-01-31 10:53:04"</span>,
+        <span class="s2">"CapturedAmount"</span>: 100,
+        <span class="s2">"CapturedDate"</span>: <span class="s2">"2019-01-31 10:53:05"</span>,
+    <span class="s2">"Wallet"</span>: <span class="o">{</span>
+        <span class="s2">"Type"</span>: <span class="s2">"CieloPay"</span>
+    <span class="o">}</span>, 
+    <span class="s2">"ExtraDataCollection"</span>:[
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"2"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"68"</span>,<span class="s2">"Value"</span>:<span class="s2">"XXXXXXXXXXXXXX"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"69"</span>,<span class="s2">"Value"</span>:<span class="s2">"21"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"70"</span>,<span class="s2">"Value"</span>:<span class="s2">"10"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"71"</span>,<span class="s2">"Value"</span>:<span class="s2">"000000-00-000000-0"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"72"</span>,<span class="s2">"Value"</span>:<span class="s2">"12323W"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"73"</span>,<span class="s2">"Value"</span>:<span class="s2">"BR"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"74"</span>,<span class="s2">"Value"</span>:<span class="s2">"TIMSP"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"75"</span>,<span class="s2">"Value"</span>:<span class="s2">"wifi-petz-house"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"76"</span>,<span class="s2">"Value"</span>:<span class="s2">"682BG987789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"77"</span>,<span class="s2">"Value"</span>:<span class="s2">"40"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"78"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"79"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"80"</span>,<span class="s2">"Value"</span>:<span class="s2">"true"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"81"</span>,<span class="s2">"Value"</span>:<span class="s2">"MOTOROLA"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"82"</span>,<span class="s2">"Value"</span>:<span class="s2">"310150123456789"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"83"</span>,<span class="s2">"Value"</span>:<span class="s2">"DSER56789IOKJHGTYUIK"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"84"</span>,<span class="s2">"Value"</span>:<span class="s2">"jJBIUNDIJ09E2093UF932F-I3DI"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"85"</span>,<span class="s2">"Value"</span>:<span class="s2">"G6 PLUS"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"86"</span>,<span class="s2">"Value"</span>:<span class="s2">"12321sw1dsd21e21e21e"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"87"</span>,<span class="s2">"Value"</span>:<span class="s2">"192.87.12.208"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"88"</span>,<span class="s2">"Value"</span>:<span class="s2">"38.123"</span><span class="o">}</span>,
+<span class="o">{</span><span class="s2">"Name"</span>:<span class="s2">"89"</span>,<span class="s2">"Value"</span>:<span class="s2">"-18.123"</span><span class="o">}</span>
+     <span class="o">]</span>,
+        <span class="s2">"Status"</span>: 2,
+        <span class="s2">"IsSplitted"</span>: <span class="nb">false</span>,
+        <span class="s2">"ReturnMessage"</span>: <span class="s2">"Operation Successful"</span>,
+        <span class="s2">"ReturnCode"</span>: <span class="s2">"6"</span>,
+        <span class="s2">"PaymentId"</span>: <span class="s2">"f49886f3-84ab-445e-a2a5-bc0155061984"</span>,
         <span class="s2">"Type"</span>: <span class="s2">"CreditCard"</span>,
-        <span class="s2">"Amount"</span>: 15700,
         <span class="s2">"Currency"</span>: <span class="s2">"BRL"</span>,
         <span class="s2">"Country"</span>: <span class="s2">"BRA"</span>,
-        <span class="s2">"ExtraDataCollection"</span>: <span class="o">[]</span>,
-        <span class="s2">"Status"</span>: 1,
         <span class="s2">"Links"</span>: <span class="o">[</span>
             <span class="o">{</span>
                 <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
                 <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
-                <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span>
-            <span class="o">}</span>,
-            <span class="o">{</span>
-                <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
-                <span class="s2">"Rel"</span>: <span class="s2">"capture"</span>,
-                <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/capture"</span>
+                <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984"</span>
             <span class="o">}</span>,
             <span class="o">{</span>
                 <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
                 <span class="s2">"Rel"</span>: <span class="s2">"void"</span>,
-                <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span>
+                <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/f49886f3-84ab-445e-a2a5-bc0155061984/void"</span>
             <span class="o">}</span>
         <span class="o">]</span>
     <span class="o">}</span>
@@ -1461,10 +1969,10 @@
                 
             
                 
-                    
-                    <li><a href="https://docscielo.github.io/Pilots/manual/p2m-via-api" title="Manual de Integração P2M via API E-Commerce">P2M via API E-Commerce</a></li>
-                
             
+                
+                    
+                    <li><a href="https://docscielo.github.io/Pilots/manual/qrcode-via-api" title="Manual de Integração QRCode via API E-Commerce">QRCode via API E-Commerce</a></li>
                 
             
                 
