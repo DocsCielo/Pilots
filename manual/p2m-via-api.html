@@ -1785,7 +1785,56 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{paymentId}/void?amount={Valor}&amp;serviceTaxAmount=xxx
 </code></pre></div></div>
 
-<h1 id="códigos-de-retorno">Códigos de Retorno</h1>
+<h1 id="lista-de-status">Lista de Status</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Código</th>
+      <th>Status</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td><strong>NotFinished</strong></td>
+      <td>Transação que teve falha de comunicação com Skyline. Neste caso, a transação será sondada durante 48h ou até obter o retorno do Skyline.</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Authorized</strong></td>
+      <td>Transação Autorizada</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>PaymentConfirmed</strong></td>
+      <td>Transação Autorizada e Capturada</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Denied</strong></td>
+      <td>Transação Negada</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Voided</strong></td>
+      <td>Transação cancelada</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td><strong>Refunded</strong></td>
+      <td>Transação estornada</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td><strong>Aborted</strong></td>
+      <td>Transação rejeitada por COP ou por Antifraude. Neste caso, não terá o retorno do ReturnCode/ReturnMessage, pois a transação não foi gerada.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="lista-de-códigos-de-retorno">Lista de Códigos de Retorno</h1>
 
 <blockquote>
   <p><strong>Retorno das Vendas</strong> - Formado por um <strong>código de Retorno</strong> e uma <strong>mensagem</strong>, esses códigos indicam o <strong>motivo</strong> de um determinado <code class="highlighter-rouge">Status</code> dentro de uma transação. <br />
