@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-01-31T20:29:00+00:00</updated>
+    <updated>2019-01-31T20:34:25+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -1674,7 +1674,7 @@
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{paymentId}/void?amount={Valor}&amp;amp;serviceTaxAmount=xxx
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;códigos-de-retorno&quot;&gt;Códigos de Retorno&lt;/h2&gt;
+&lt;h1 id=&quot;códigos-de-retorno&quot;&gt;Códigos de Retorno&lt;/h1&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Retorno das Vendas&lt;/strong&gt; - Formado por um &lt;strong&gt;código de Retorno&lt;/strong&gt; e uma &lt;strong&gt;mensagem&lt;/strong&gt;, esses códigos indicam o &lt;strong&gt;motivo&lt;/strong&gt; de um determinado &lt;code class=&quot;highlighter-rouge&quot;&gt;Status&lt;/code&gt; dentro de uma transação. &lt;br /&gt;
