@@ -14,7 +14,7 @@ language_tabs:
 
 # Overview - API Cielo eCommerce
 
-The purpose of this documentation is to guide the developer on how to integrate with Cielo's API Cielo eCommerce, describing the features, methods to be used, listing information to be sent and received, and providing examples.
+The purpose of this documentation is to guide the developer on how to integrate with Cielo's API Cielo eCommerce using the feature Dynamic MCC (Merchant Category Code), listing information to be sent and received, and providing examples.
 
 The integration mechanism with Cielo e-Commerce is simple, so only intermediate knowledge in Web programming language, HTTP/HTTPS requests and JSON file manipulation are required to successfully deploy the Cielo e-Commerce solution.
 
