@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="theme-color" content="#00aeef">
+    <meta http-equiv="Content-Language" content="en">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>
+        
+        Integration Manual with Dynamic MCC &middot; Documentações e tutoriais
+        
+    </title>
+
+    <link rel="shortcut icon" href="https://docscielo.github.io/Pilots/en/assets/favicon.ico">
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <script async src="https://use.fontawesome.com/3ae06f1030.js"></script>
+
+    <link rel="stylesheet" href="https://docscielo.github.io/Pilots/en/assets/bundles/css/bundle.min.css">
+
+    
+        
+            <link rel="alternate" hreflang="pt" href="/manual/api-ecommerce-dynamic-mcc" />
+        
+    
+        
+            <link rel="alternate" hreflang="en" href="en/manual/api-ecommerce-dynamic-mcc" />
+        
+    
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://docscielo.github.io/Pilots/en/atom.xml">
+</head>
+
+    <body>
+        
+        <div class="content-container">
+            <div class="language-tabs">
+                <a class='hide-btn' id="hide-button" title="Toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                <ul class="language-buttons">
+                    
+                    <li><a data-language-name='json'>JSON</a></li>
+                    
+                    <li><a data-language-name='shell'>cURL</a></li>
+                    
+                </ul>
+            </div>
+            <div class="dark-box"></div>
+            <div class="overlay"></div>
+        
+            <div id="submenu">
+                <div class="submenu-container">
+                    <div class="submenu-row sub-items">
+                        <div class="submenu-itens">
+                            <a href="https://desenvolvedores.cielo.com.br/api-portal/pt-br/contact" class="help">Help</a>
+
+                            
+                            <div class="lang">
+                                <span>Languages</span>
+
+                                
+                                    
+                                    <a href="https://docscielo.github.io/Pilots/manual/api-ecommerce-dynamic-mcc">
+                                    
+
+                                        <img alt="Português" src="https://docscielo.github.io/Pilots/en/assets/images/pt.png"/>
+                                    </a>
+                                
+                                    
+                                    <a href="https://docscielo.github.io/Pilots/en/manual/api-ecommerce-dynamic-mcc">
+                                    
+
+                                        <img alt="English" src="https://docscielo.github.io/Pilots/en/assets/images/en.png"/>
+                                    </a>
+                                
+                            </div>
+                            
+                        </div>
+
+                        
+                        <div class="search">
+                            <input type="text" class="search" id="input-search">
+                        </div>
+                    </div>
+                    <div class="submenu-row results">
+                        <div class="search-results-container">
+                            <ul class="search-results"></ul>
+                        </div>
+                    </div>
+                        
+
+                    <div class="submenu-row breads">
+                        <ol class="breadcrumb">
+                            
+                            <li><a href="https://docscielo.github.io/Pilots/en/">Home</a></li>
+                            
+                            
+                            
+                            
+                                
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                    
+                                
+                            
+                                
+                                    
+                                    <li class="active">&gt; <a href="https://docscielo.github.io/Pilots/en/manual/api-ecommerce-dynamic-mcc">Integration Manual with Dynamic MCC</a></li>
+                                    
+                                
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+  <h1 id="overview---api-cielo-ecommerce">Overview - API Cielo eCommerce</h1>
+
+<p>The purpose of this documentation is to guide the developer on how to integrate with Cielo’s API Cielo eCommerce, describing the features, methods to be used, listing information to be sent and received, and providing examples.</p>
+
+<p>The integration mechanism with Cielo e-Commerce is simple, so only intermediate knowledge in Web programming language, HTTP/HTTPS requests and JSON file manipulation are required to successfully deploy the Cielo e-Commerce solution.</p>
+
+<p>In this manual, you will find the reference on all operations available on API REST of API Cielo eCommerce. These operations must be performed using its specific key (Merchant ID and Merchant Key) in the respective environment endpoints:</p>
+
+<p>Production Environment</p>
+
+<ul>
+  <li><strong>Transaction request</strong>: https://api.cieloecommerce.cielo.com.br/</li>
+  <li><strong>Transaction query</strong>: https://apiquery.cieloecommerce.cielo.com.br/</li>
+</ul>
+
+<p>Sandbox Environment</p>
+
+<ul>
+  <li><strong>Transaction request</strong>: https://apisandbox.cieloecommerce.cielo.com.br</li>
+  <li><strong>Transaction query</strong>: https://apiquerysandbox.cieloecommerce.cielo.com.br</li>
+</ul>
+
+<p>To perform an operation, combine the base URL of the environment with the URL of the desired operation and send it using the HTTP verb as described in the operation.</p>
+
+<h1 id="requests-and-responses">Requests and Responses</h1>
+
+<h2 id="creating-a-transaction-using-dynamic-mcc">Creating a transaction using Dynamic MCC</h2>
+
+<p>To create a transaction with Dynamic MCC, it is necessary to send a request using the <code class="highlighter-rouge">POST</code> method to the Payment feature as shown.</p>
+
+<h3 id="request">Request</h3>
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/sales/</span></aside>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"merchantorderid"</span><span class="p">:</span><span class="s2">"7864411894"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"customer"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"joao da silva"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"payment"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"creditcard"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"currency"</span><span class="p">:</span><span class="s2">"brl"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"installments"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"capture"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"softdescriptor"</span><span class="p">:</span><span class="s2">"softdescriptor"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"Mcc"</span><span class="p">:</span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"creditcard"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"cardnumber"</span><span class="p">:</span><span class="s2">"4551870000000183"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"holder"</span><span class="p">:</span><span class="s2">"joao da silva"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expirationdate"</span><span class="p">:</span><span class="s2">"12/2026"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"savecard"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"brand"</span><span class="p">:</span><span class="s2">"visa"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> POST <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantKey: 0123456789012345678901234567890123456789"</span>
+<span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+   <span class="s2">"merchantorderid"</span>:<span class="s2">"7864411894"</span>,
+   <span class="s2">"customer"</span>:<span class="o">{</span>
+      <span class="s2">"name"</span>:<span class="s2">"joao da silva"</span>
+   <span class="o">}</span>,
+   <span class="s2">"payment"</span>:<span class="o">{</span>
+      <span class="s2">"type"</span>:<span class="s2">"creditcard"</span>,
+      <span class="s2">"amount"</span>:100,
+      <span class="s2">"currency"</span>:<span class="s2">"brl"</span>,
+      <span class="s2">"installments"</span>:1,
+      <span class="s2">"capture"</span>:false,
+      <span class="s2">"softdescriptor"</span>:<span class="s2">"softdescriptor"</span>,
+      <span class="s2">"Mcc"</span>:<span class="s2">"0000"</span>,
+      <span class="s2">"creditcard"</span>:<span class="o">{</span>
+         <span class="s2">"cardnumber"</span>:<span class="s2">"4551870000000183"</span>,
+         <span class="s2">"holder"</span>:<span class="s2">"joao da silva"</span>,
+         <span class="s2">"expirationdate"</span>:<span class="s2">"12/2026"</span>,
+         <span class="s2">"savecard"</span>:false,
+         <span class="s2">"brand"</span>:<span class="s2">"visa"</span>
+      <span class="o">}</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+<span class="nt">--verbose</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Required</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">MerchantId</code></td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>Yes</td>
+      <td>Store identifier in Cielo.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">MerchantKey</code></td>
+      <td>Text</td>
+      <td>40</td>
+      <td>Yes</td>
+      <td>Public Key for Double Authentication in Cielo.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">RequestId</code></td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>No</td>
+      <td>Request Identifier, used when the merchant uses different servers for each GET/POST/PUT.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">MerchantOrderId</code></td>
+      <td>Text</td>
+      <td>50</td>
+      <td>Yes</td>
+      <td>Order ID number.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Customer.Name</code></td>
+      <td>Text</td>
+      <td>255</td>
+      <td>No</td>
+      <td>Buyer’s name.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Type</code></td>
+      <td>Text</td>
+      <td>100</td>
+      <td>Yes</td>
+      <td>Means of Payment Type.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Amount</code></td>
+      <td>Number</td>
+      <td>15</td>
+      <td>Yes</td>
+      <td>Order Amount (to be sent in cents).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Currency</code></td>
+      <td>Text</td>
+      <td>3</td>
+      <td>No</td>
+      <td>Currency in which payment will be made (BRL).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Installments</code></td>
+      <td>Number</td>
+      <td>2</td>
+      <td>Yes</td>
+      <td>Number of Installments.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Capture</code></td>
+      <td>Boolean</td>
+      <td>—</td>
+      <td>No (Default false)</td>
+      <td>Boolean that identifies that the authorization should be with automatic capture.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.SoftDescriptor</code></td>
+      <td>Text</td>
+      <td>13</td>
+      <td>No</td>
+      <td>Text printed on the buyer’s bank invoice - Only available for VISA/MASTER - does not allow special characters</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Mcc</code></td>
+      <td>Text</td>
+      <td>4</td>
+      <td>No</td>
+      <td>Merchant Category Code that identifies the sub-merchant’s category code.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.CardNumber</code></td>
+      <td>Text</td>
+      <td>19</td>
+      <td>Yes</td>
+      <td>Buyer’s Card Number.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.Holder</code></td>
+      <td>Text</td>
+      <td>25</td>
+      <td>No</td>
+      <td>Buyer’s name printed on card.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.ExpirationDate</code></td>
+      <td>Text</td>
+      <td>7</td>
+      <td>Yes</td>
+      <td>Expiry date printed on card.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.SecurityCode</code></td>
+      <td>Text</td>
+      <td>4</td>
+      <td>No</td>
+      <td>Security code printed on back of card - See Annex.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.SaveCard</code></td>
+      <td>Boolean</td>
+      <td>—</td>
+      <td>No (Default false)</td>
+      <td>Boolean that identifies whether the card will be saved to generate the CardToken.</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.Brand</code></td>
+      <td>Text</td>
+      <td>10</td>
+      <td>Yes</td>
+      <td>Card issuer (Visa / Master / Amex / Elo / Aura / JCB / Diners / Discover / Hipercard).</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="response">Response</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"MerchantOrderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7864411894"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joao da silva"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Payment"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"ServiceTaxAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Installments"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Interest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ByMerchant"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Capture"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Authenticate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CreditCard"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"CardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"455187******0183"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"joao da silva"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2026"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"SaveCard"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"ProofOfSale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"674532"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Tid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0305020554239"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"AuthorizationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123456"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SoftDescriptor"</span><span class="p">:</span><span class="s2">"softdescriptor"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Mcc"</span><span class="p">:</span><span class="s2">"0000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"PaymentId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24bc8366-fc31-4d6c-8555-17049a836a07"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CreditCard"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"CapturedAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BRA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExtraDataCollection"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ReturnMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Operation Successful"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"void"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"Href"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"RequestId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"MerchantOrderId"</span>: <span class="s2">"7864411894"</span>,
+    <span class="s2">"Customer"</span>: <span class="o">{</span>
+        <span class="s2">"Name"</span>: <span class="s2">"joao da silva"</span>
+    <span class="o">}</span>,
+    <span class="s2">"Payment"</span>: <span class="o">{</span>
+        <span class="s2">"ServiceTaxAmount"</span>: 0,
+        <span class="s2">"Installments"</span>: 1,
+        <span class="s2">"Interest"</span>: <span class="s2">"ByMerchant"</span>,
+        <span class="s2">"Capture"</span>: <span class="nb">true</span>,
+        <span class="s2">"Authenticate"</span>: <span class="nb">false</span>,
+        <span class="s2">"CreditCard"</span>: <span class="o">{</span>
+            <span class="s2">"CardNumber"</span>: <span class="s2">"455187******0183"</span>,
+            <span class="s2">"Holder"</span>: <span class="s2">"joao da silva"</span>,
+            <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2026"</span>,
+            <span class="s2">"SaveCard"</span>: <span class="nb">false</span>,
+            <span class="s2">"Brand"</span>: <span class="s2">"Visa"</span>
+        <span class="o">}</span>,
+        <span class="s2">"ProofOfSale"</span>: <span class="s2">"674532"</span>,
+        <span class="s2">"Tid"</span>: <span class="s2">"0305020554239"</span>,
+        <span class="s2">"AuthorizationCode"</span>: <span class="s2">"123456"</span>,
+        <span class="s2">"SoftDescriptor"</span>:<span class="s2">"softdescriptor"</span>,
+        <span class="s2">"Mcc"</span>:<span class="s2">"0000"</span>,
+        <span class="s2">"PaymentId"</span>: <span class="s2">"24bc8366-fc31-4d6c-8555-17049a836a07"</span>,
+        <span class="s2">"Type"</span>: <span class="s2">"CreditCard"</span>,
+        <span class="s2">"Amount"</span>: 100,
+        <span class="s2">"CapturedAmount"</span>: 0,
+        <span class="s2">"Country"</span>: <span class="s2">"BRA"</span>,
+        <span class="s2">"ExtraDataCollection"</span>: <span class="o">[]</span>,
+        <span class="s2">"Status"</span>: 1,
+        <span class="s2">"ReturnCode"</span>: <span class="s2">"6"</span>,
+        <span class="s2">"ReturnMessage"</span>: <span class="s2">"Operation Successful"</span>,
+        <span class="s2">"Links"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
+                <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
+                <span class="s2">"Href"</span>: <span class="s2">"https://apiquerysandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}"</span>
+            <span class="o">}</span>
+            <span class="o">{</span>
+                <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
+                <span class="s2">"Rel"</span>: <span class="s2">"void"</span>,
+                <span class="s2">"Href"</span>: <span class="s2">"https://apisandbox.cieloecommerce.cielo.com.br/1/sales/{PaymentId}/void"</span>
+            <span class="o">}</span>
+        <span class="o">]</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Property</th>
+      <th>Description</th>
+      <th>Type</th>
+      <th>Size</th>
+      <th>Format</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">ProofOfSale</code></td>
+      <td>Authorization number, identical to NSU.</td>
+      <td>Text</td>
+      <td>6</td>
+      <td>Alphanumeric text</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Tid</code></td>
+      <td>Transaction Id on the acquirer.</td>
+      <td>Text</td>
+      <td>20</td>
+      <td>Alphanumeric text</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">AuthorizationCode</code></td>
+      <td>Authorization code.</td>
+      <td>Text</td>
+      <td>6</td>
+      <td>Alphanumeric text</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">SoftDescriptor</code></td>
+      <td>Text that will be printed on the carrier’s bank invoice - Available only for VISA/MASTER - does not allow special characters</td>
+      <td>Text</td>
+      <td>13</td>
+      <td>Alphanumeric text</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">PaymentId</code></td>
+      <td>Order Identifier Field.</td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ECI</code></td>
+      <td>Eletronic Commerce Indicator. Represents how secure a transaction is.</td>
+      <td>Text</td>
+      <td>2</td>
+      <td>Examples: 7</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Status</code></td>
+      <td>Transaction Status.</td>
+      <td>Byte</td>
+      <td>—</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ReturnCode</code></td>
+      <td>Return code of Acquiring.</td>
+      <td>Text</td>
+      <td>32</td>
+      <td>Alphanumeric text</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ReturnMessage</code></td>
+      <td>Return message of Acquiring.</td>
+      <td>Text</td>
+      <td>512</td>
+      <td>Alphanumeric texto</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="test-cards-for-sandbox-enviroment">Test cards for sandbox enviroment</h2>
+
+<p>To test purpose, we are providing <strong>test cards</strong> in the table below.</p>
+
+<aside class="notice">The status of the transactions are defined by the FINALS of each card, as well as the ReturnCode.</aside>
+
+<table>
+  <thead>
+    <tr>
+      <th>Transaction Status</th>
+      <th>Card End</th>
+      <th>Return Code</th>
+      <th>Return message</th>
+      <th> </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Authorized</td>
+      <td>0000.0000.0000.0001<br />0000.0000.0000.0004</td>
+      <td>4/6</td>
+      <td>Operation performed successfully</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0002</td>
+      <td>05</td>
+      <td>Not Authorized</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0003</td>
+      <td>57</td>
+      <td>Expired Card</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0005</td>
+      <td>78</td>
+      <td>Locked Card</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0006</td>
+      <td>99</td>
+      <td>Time Out</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0007</td>
+      <td>77</td>
+      <td>Canceled Card</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Not Authorized</td>
+      <td>0000.0000.0000.0008</td>
+      <td>70</td>
+      <td>Problems with the Credit Card</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Random Authorization</td>
+      <td>0000.0000.0000.0009</td>
+      <td>99</td>
+      <td>Operation Successful / Time Out</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Example of a Test card - 4024.0071.5376.3191</p>
+
+<p>The information of <strong>Security Code (CVV)</strong> and validity may be random, keeping the format - CVV (3 digits) Validity (MM/YYYY).</p>
+
+<aside class="notice">Warning: The **sandbox** environment evaluates the format and end of the card, if an actual card is sent, the result of the operation will be identical to that described in the test cards table.</aside>
+
+<aside class="notice">Tokenization: Transactions in sandbox environment involving tokenization did not work based on test cards. Every card saved at the tokenization is treated as a real card, so it is not used in the simulation process</aside>
+
+<h1 id="api-codes">API codes</h1>
+
+<p>API Cielo e-commerce has 4 types of returned codes that represent different moments of the transaction.</p>
+
+<p>See more at https://developercielo.github.io/en/manual/cielo-ecommerce#api-codes</p>
+
+</div>
+
+
+            <div class="footer-conteudo">
+    <div id="footer-conteudo-img" class="col-lg-1 col-md-1">
+            <img src="https://docscielo.github.io/Pilots/en/assets/images/icon-doubt.svg" width="55px" height="53px" alt="Need Help?">
+    </div>
+
+    <div id="footer-conteudo-texto" class="col-lg-11 col-md-11">
+        <h2>Need Help?</h2>
+        <p>If you didn't find your answer, <a href="https://desenvolvedores.cielo.com.br/api-portal/pt-br/content/suporte">send us a message</a>.</p>
+    </div>
+</div>
+
+        </div>
+
+        <div class="sidebar">
+  <div class="sidebar-sticky">
+    <div class="sidebar-about">
+      <a title="Toggle left column" class="hamburger">
+        <i class="fa fa-bars hamb-menu" aria-hidden="true"></i>
+      </a>
+      <a href="https://docscielo.github.io/Pilots/en/">
+        <img src="https://docscielo.github.io/Pilots/en/assets/images/logo.png" alt="Documentações e tutoriais">
+      </a>
+      <div></div>
+    </div>
+
+    <div id="toc"></div>
+
+    <div class="fixed-footer">
+        
+
+    <div class="toc-contact">
+      <div class="contact">
+        <a title="Contact" href="#">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          <span>Contact</span>
+        </a>
+      </div>
+      <div class="github">
+        <a title="GitHub" href="https://github.com/developercielo">
+          <i class="fa fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+        <script src="https://docscielo.github.io/Pilots/en/assets/bundles/js/bundle.min.js"></script>
+        <script>
+            
+            var selectors = 'h1,h2,h3,h4,h5,h6';
+            
+        </script>
+
+        
+        <script src="https://docscielo.github.io/Pilots/en/assets/bundles/js/search.min.js"></script>
+        
+
+        
+        <script>
+            let langs = '';
+            let langsArray = [];
+
+            
+            langs += "<a data-language-name='json'>JSON</a>";
+            langsArray.push('json');
+            
+            langs += "<a data-language-name='shell'>cURL</a>";
+            langsArray.push('shell');
+            
+
+            var toggleCode = 'Toggle';
+        </script>
+
+        <script src='https://docscielo.github.io/Pilots/en/assets/bundles/js/language_buttons.min.js'></script>
+        
+
+        <!-- Hotjar Tracking Code for https://developercielo.github.io/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:674586,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    </body>
+</html>
