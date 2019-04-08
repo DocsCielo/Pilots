@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/en/"/>
     <logo>https://docscielo.github.io/Pilots/en/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/en/assets/favicon.ico</icon>
-    <updated>2019-04-08T12:40:16+00:00</updated>
+    <updated>2019-04-08T12:40:59+00:00</updated>
     <id>https://docscielo.github.io/Pilots/en/</id>
     <author>
         <name>João Batista Neto</name>
@@ -18,7 +18,7 @@
         <link href="https://docscielo.github.io/Pilots/en/manual/api-ecommerce-dynamic-mcc"/>
         <updated>2019-04-08T00:00:00+00:00</updated>
         <id>https://docscielo.github.io/Pilots/en/manual/api-ecommerce-dynamic-mcc</id>
-        <content type="html">&lt;h1 id=&quot;overview---api-cielo-ecommerce&quot;&gt;Overview - API Cielo eCommerce&lt;/h1&gt;
+        <content type="html">&lt;h1 id=&quot;api-cielo-ecommerce&quot;&gt;API Cielo eCommerce&lt;/h1&gt;
 
 &lt;p&gt;The purpose of this documentation is to guide the developer on how to integrate with Cielo’s API Cielo eCommerce using the feature Dynamic MCC (Merchant Category Code), listing information to be sent and received, and providing examples.&lt;/p&gt;
 
