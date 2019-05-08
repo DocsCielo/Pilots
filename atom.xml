@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-08T17:46:21+00:00</updated>
+    <updated>2019-05-08T17:57:11+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -299,140 +299,6 @@
 &lt;blockquote&gt;
   &lt;p&gt;Cartões emitidos no exterior não possuem permissão de parcelamento.&lt;/p&gt;
 &lt;/blockquote&gt;
-
-&lt;h1 id=&quot;certificados-e-segurança&quot;&gt;Certificados e segurança&lt;/h1&gt;
-
-&lt;h2 id=&quot;o-que-é-certificado-ssl&quot;&gt;O que é Certificado SSL?&lt;/h2&gt;
-
-&lt;p&gt;O Certificado SSL para servidor web oferece autenticidade e integridade dos dados de um web site, proporcionando aos clientes das lojas virtuais a garantia de que estão realmente acessando o site que desejam, e não uma um site fraudador.&lt;/p&gt;
-
-&lt;p&gt;Empresas especializadas são responsáveis por fazer a validação do domínio e, dependendo do tipo de certificado, também da entidade detentora do domínio.&lt;/p&gt;
-
-&lt;h3 id=&quot;internet-explorer&quot;&gt;Internet Explorer:&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-ie.jpg&quot; alt=&quot;Certificado EV Internet Explorer&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;firefox&quot;&gt;Firefox&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-firefox.jpg&quot; alt=&quot;Certificado EV Firefox&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;google-chrome&quot;&gt;Google Chrome&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-chrome.jpg&quot; alt=&quot;Certificado EV Google Chrome&quot; /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;o-que-é-certificado-ev-ssl&quot;&gt;O que é Certificado EV SSL?&lt;/h2&gt;
-
-&lt;p&gt;O Certificado EV foi lançado no mercado recentemente e garante um nível de segurança maior para os clientes das lojas virtuais.&lt;/p&gt;
-
-&lt;p&gt;Trata-se de um certificado de maior confiança e quando o https for acessado a barra de endereço ficará verde, dando mais confiabilidade aos visitantes do site.&lt;/p&gt;
-
-&lt;h2 id=&quot;como-instalar-o-certificado-extended-validation-no-servidor-da-loja&quot;&gt;Como instalar o &lt;strong&gt;Certificado Extended Validation&lt;/strong&gt; no servidor da Loja?&lt;/h2&gt;
-
-&lt;p&gt;Basta instalar os três arquivos a seguir na Trustedstore do servidor. A Cielo não oferece suporte para a instalação do Certificado. Caso não esteja seguro sobre como realizar a instalação do Certificado EV, então você deverá ser contatado o suporte do fornecedor do seu servidor.&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/Root.crt&quot;&gt;Certificado Raiz&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/Intermediate1.crt&quot;&gt;Certificado Intermediária&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/intermediate2.cer&quot;&gt;Certificado E-Commerce Cielo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;passo-a-passo-para-a-instalação&quot;&gt;Passo a Passo para a Instalação&lt;/h2&gt;
-
-&lt;h3 id=&quot;instalação-no-servidor-da-loja-virtual&quot;&gt;Instalação no Servidor da Loja Virtual&lt;/h3&gt;
-
-&lt;p&gt;O passo a passo para a instalação do Certificado EV deverá ser contatado o suporte do fornecedor do seu servidor.&lt;/p&gt;
-
-&lt;aside class=&quot;warning&quot;&gt;A Cielo não oferece suporte para a instalação do Certificado.&lt;/aside&gt;
-
-&lt;h3 id=&quot;acesso-do-cliente-à-loja-virtual&quot;&gt;Acesso do Cliente à Loja Virtual&lt;/h3&gt;
-
-&lt;p&gt;Normalmente, o browser faz a atualização do Certificado automaticamente, caso não o faça e o cliente entre em contato deverá ser informado os seguintes passos:&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;1o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Salvar os três arquivos abaixo em uma pasta nova, ou que relembre facilmente, pois será utilizada posteriormente:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/Root.crt&quot;&gt;Certificado Raiz&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/intermediate1.crt&quot;&gt;Certificado Intermediária&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docscielo.github.io/Pilots/attachment/intermediate2.cer&quot;&gt;Certificado E-Commerce Cielo&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;strong&gt;2o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;No “Internet Explorer”, clique no menu “Ferramentas” e acesse as “Opções da Internet”:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-1.jpg&quot; alt=&quot;Instalar IE&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;No “Firefox”, clique no menu “Abrir Menu” e acesse “Avançado” e “Opções”:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ff-1.jpg&quot; alt=&quot;Instalar FF&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;No “Chrome”, clique no “Personalizar e Controlar o Google Chrome” e acesse “Configurações” e “Mostrar configurações avançadas… “Alterar Configurações de Proxy e “Conteúdo” e Certificados:&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-gc-1.jpg&quot; alt=&quot;Instalar GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;3o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;No Internet Explorer, em “Certificados”, clique em “Importar”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-2.jpg&quot; alt=&quot;Instalar IE&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;No Firefox clique em “Ver Certificados”, clique em “Importar”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ff-2.jpg&quot; alt=&quot;Instalar FF&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;No Chrome clique em “Gerenciar Certificados”, clique em “Importar”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-gc-2.jpg&quot; alt=&quot;Instalar GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;4o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;No Internet Explorer e Chrome “Assistente para Importação de Certificados”, clique em “Avançar”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-3.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-4.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;No Firefox “Aba Servidores ”, clique em “Importar”&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ff-3.jpg&quot; alt=&quot;Instalar FF&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;5o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;No Chrome e Internet Explorer “Assistente para Importação de Certificados”, clique em “Procurar”, procure a pasta onde estão os arquivos e selecione o arquivo “cieloecommerce.cielo.com.br.crt, clique em “Abrir” e em seguida “Avançar”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-5.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-6.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;6o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Selecionar a opção desejada: adicionar o Certificado em uma pasta padrão ou procurar a pasta de sua escolha.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-7.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;7o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Clique em “Concluir”.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-8.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;8o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Clique em “Ok” para concluir a importação.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-9.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;No Firefox não consta a mensagem de Importação com Êxito, apenas conclui a importação.&lt;/aside&gt;
-
-&lt;p&gt;O Certificado poderá ser visualizado na aba padrão “Outras Pessoas” ou na escolhida pelo cliente.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;https://docscielo.github.io/Pilots/images/certificado-instalar-ie-gc-10.jpg&quot; alt=&quot;Instalar IE e GC&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;9o Passo:&lt;/strong&gt;&lt;/p&gt;
-
-&lt;p&gt;Repita o mesmo procedimento para os 3 arquivos enviados.&lt;/p&gt;
 
 &lt;h1 id=&quot;sandbox-e-ferramentas&quot;&gt;Sandbox e Ferramentas&lt;/h1&gt;
 
