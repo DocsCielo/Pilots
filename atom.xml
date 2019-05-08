@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-08T17:57:11+00:00</updated>
+    <updated>2019-05-08T19:41:34+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -18,474 +18,7 @@
         <link href="https://docscielo.github.io/Pilots/manual/apiecommerce2"/>
         <updated>2019-05-08T00:00:00+00:00</updated>
         <id>https://docscielo.github.io/Pilots/manual/apiecommerce2</id>
-        <content type="html">&lt;h1 id=&quot;visão-geral---api-cielo-ecommerce&quot;&gt;Visão geral - API Cielo eCommerce&lt;/h1&gt;
-
-&lt;p&gt;O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a &lt;strong&gt;API Cielo eCommerce da Cielo&lt;/strong&gt;, descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.&lt;/p&gt;
-
-&lt;p&gt;O mecanismo de integração com o Cielo eCommerce é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Cielo eCommerce com sucesso.&lt;/p&gt;
-
-&lt;p&gt;Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API Cielo eCommerce. Estas operações devem ser executadas utilizando sua chave específica (Merchant ID e Merchant Key) nos respectivos endpoints dos ambientes:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt; &lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;SandBox&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Produção&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Requisições&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://apisandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://api.cieloecommerce.cielo.com.br/&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Consultas&lt;/strong&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://apiquerysandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://apiquery.cieloecommerce.cielo.com.br/&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Para executar uma operação, combine a URL base do ambiente com a URL da operação desejada e envie utilizando o verbo HTTP conforme descrito na operação.&lt;/p&gt;
-
-&lt;h2 id=&quot;características-da-solução&quot;&gt;Características da solução&lt;/h2&gt;
-
-&lt;p&gt;A solução &lt;strong&gt;API Cielo eCommerce&lt;/strong&gt; da plataforma Cielo eCommerce foi desenvolvida com a tecnologia REST, que é padrão de mercado e independe da tecnologia utilizada por nossos clientes. Dessa forma, é possível integrar-se utilizando as mais variadas linguagens de programação, tais como:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;ASP&lt;/li&gt;
-  &lt;li&gt;Net&lt;/li&gt;
-  &lt;li&gt;Java&lt;/li&gt;
-  &lt;li&gt;PHP&lt;/li&gt;
-  &lt;li&gt;Ruby&lt;/li&gt;
-  &lt;li&gt;Python&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Para Obter exemplos dessas linguagens, veja nosso tutorial de conversão via nosso &lt;a href=&quot;https://developercielo.github.io/tutorial/postman&quot;&gt;&lt;strong&gt;Tutorial Postman&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Entre outras características, os atributos que mais se destacam na plataforma Cielo eCommerce:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Ausência de aplicativos proprietários&lt;/strong&gt;: não é necessário instalar aplicativos no ambiente da loja virtual em nenhuma hipótese.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Simplicidade&lt;/strong&gt;: o protocolo utilizado é puramente o HTTPS.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Facilidade de testes&lt;/strong&gt;: a plataforma Cielo oferece um ambiente Sandbox publicamente acessível, que permite ao desenvolvedor a criação de uma conta de testes sem a necessidade de credenciamento, facilitando e agilizando o início da integração.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Credenciais&lt;/strong&gt;: o tratamento das credenciais do cliente (número de afiliação e chave de acesso) trafega no cabeçalho da requisição HTTP da mensagem.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Segurança&lt;/strong&gt;: a troca de informações se dá sempre entre o Servidor da Loja e da Cielo, ou seja, sem o browser do comprador.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Multiplataforma&lt;/strong&gt;: a integração é realizada através de Web Service REST.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;arquitetura&quot;&gt;Arquitetura&lt;/h2&gt;
-
-&lt;p&gt;A integração é realizada através de serviços disponibilizados como Web Services. O modelo empregado é bastante simples: Existem duas URLs (endpoint), uma específica operações que causam efeitos colaterais - como autorização, captura e cancelamento de transações, e uma URL específica para operações que não causam efeitos colaterais, como pesquisa de transações. Essas duas URLs receberão as mensagens HTTP através dos métodos POST, GET ou PUT. Cada tipo de mensagem deve ser enviada para um recurso identificado através do path.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Método&lt;/th&gt;
-      &lt;th&gt;Descrição&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;POST&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;O método HTTP &lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt; é utilizado na criação dos recursos ou no envio de informações que serão processadas. Por exemplo, criação de uma transação.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;PUT&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;O método HTTP &lt;code class=&quot;highlighter-rouge&quot;&gt;PUT&lt;/code&gt; é utilizado para atualização de um recurso já existente. Por exemplo, captura ou cancelamento de uma transação previamente autorizada.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;GET&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;O método HTTP &lt;code class=&quot;highlighter-rouge&quot;&gt;GET&lt;/code&gt; é utilizado para consultas de recursos já existentes. Por exemplo, consulta de transações.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt; &lt;/th&gt;
-      &lt;th&gt;Métodos&lt;/th&gt;
-      &lt;th&gt;SandBox&lt;/th&gt;
-      &lt;th&gt;Produção&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Requisição de transação&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;POST&lt;/strong&gt; / &lt;strong&gt;PUT&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;https://apisandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-      &lt;td&gt;https://api.cieloecommerce.cielo.com.br/&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Consultas&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;GET&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;https://apiquerysandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-      &lt;td&gt;https://apiquery.cieloecommerce.cielo.com.br/&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;glossário&quot;&gt;Glossário&lt;/h2&gt;
-
-&lt;p&gt;Para facilitar o entendimento, listamos abaixo um pequeno glossário com os principais termos relacionados ao eCommerce, ao mercado de cartões e adquirencia:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Termo&lt;/th&gt;
-      &lt;th&gt;Descrição&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Autenticação&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;processo para assegurar que o comprador é realmente aquele quem diz ser (portador legítimo), geralmente ocorre no banco emissor com uso de um token digital ou cartão com chaves de segurança.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Autorização&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;processo para verificar se uma compra pode ou não ser realizada com um cartão. Nesse momento, são feitas diversas verificações com o cartão e com o portador (ex.: adimplência, bloqueios, etc.) É também neste momento que o limite do cartão é sensibilizado com o valor da transação.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Cancelamento&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;processo para cancelar uma compra realizada com cartão.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Captura&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;processo que confirma uma autorização que foi realizada previamente. Somente após a captura, é que o portador do cartão poderá visualizá-la em seu extrato ou fatura.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Chave de acesso&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;é um código de segurança específico de cada loja, gerado pela Cielo, usada para realizar a autenticação e comunicação em todas as mensagens trocadas com a Cielo. Também conhecido como chave de produção e key data.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Comprador&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;é o aquele que efetua compra na loja virtual.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Emissor (ou banco emissor)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;É a instituição financeira que emite o cartão de crédito, débito ou voucher.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Estabelecimento comercial ou EC&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;Entidade que responde pela loja virtual.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Gateway de pagamentos&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;Empresa responsável pelo integração técnica e processamento das transações.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Número de credenciamento&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;é um número identificador que o lojista recebe após seu credenciamento junto à Cielo.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Portador&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;é a pessoa que tem o porte do cartão no momento da venda.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;SecureCode&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;programa internacional da Mastercard para possibilitar a autenticação do comprador no momento de uma compra em ambiente eCommerce.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;TID (Transaction Identifier)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;código composto por 20 caracteres que identificada unicamente uma transação Cielo eCommerce.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Transação&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;é o pedido de compra do portador do cartão na Cielo.&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;VBV (Verified by Visa)&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;Programa internacional da Visa que possibilita a autenticação do comprador no momento de uma compra em ambiente eCommerce.&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h2 id=&quot;produtos-e-bandeiras-suportadas&quot;&gt;Produtos e Bandeiras suportadas&lt;/h2&gt;
-
-&lt;p&gt;A versão atual do Webservice Cielo possui suporte às seguintes bandeiras e produtos:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Bandeira&lt;/th&gt;
-      &lt;th&gt;Crédito à vista&lt;/th&gt;
-      &lt;th&gt;Crédito parcelado Loja&lt;/th&gt;
-      &lt;th&gt;Débito&lt;/th&gt;
-      &lt;th&gt;Voucher&lt;/th&gt;
-      &lt;th&gt;Internacional&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Visa&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Master Card&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;American Express&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Elo&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Diners Club&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Discover&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Não&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;JCB&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Aura&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Hipercard&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;em&gt;Não&lt;/em&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Cartões emitidos no exterior não possuem permissão de parcelamento.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;h1 id=&quot;sandbox-e-ferramentas&quot;&gt;Sandbox e Ferramentas&lt;/h1&gt;
-
-&lt;h2 id=&quot;sobre-o-sandbox&quot;&gt;Sobre o Sandbox&lt;/h2&gt;
-
-&lt;p&gt;Para facilitar os testes durante a integração, a Cielo oferece um ambiente Sandbox que é composto por duas áreas:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Cadastro de conta de testes&lt;/li&gt;
-  &lt;li&gt;Endpoints transacionais&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;table&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Requisição&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;https://apisandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;strong&gt;Consulta&lt;/strong&gt;&lt;/td&gt;
-      &lt;td&gt;https://apiquerysandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;Vantagens de utilizar o Sandbox&lt;/strong&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Não é necessário uma afiliação para utilizar o Sandbox Cielo.&lt;/li&gt;
-  &lt;li&gt;Basta acessar o &lt;a href=&quot;https://cadastrosandbox.cieloecommerce.cielo.com.br/&quot;&gt;&lt;strong&gt;Cadastro do Sandbox&lt;/strong&gt;&lt;/a&gt; criar uma conta.&lt;/li&gt;
-  &lt;li&gt;com o cadastro você receberá um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantId&lt;/code&gt; e um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantKey&lt;/code&gt;,que são as credenciais necessarias para os métodos da API&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;ferramenta-para-integração-postman&quot;&gt;Ferramenta para Integração: POSTMAN&lt;/h2&gt;
-
-&lt;p&gt;O &lt;strong&gt;Postman&lt;/strong&gt; é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTPs simples e complexas, bem como ler suas respostas.&lt;/p&gt;
-
-&lt;p&gt;A Cielo oferece coleções completas de suas integrações via Postamn, o que facilita o processo de integração com a API Cielo.&lt;/p&gt;
-
-&lt;p&gt;Sugerimos que desenvolvedores acessem nosso &lt;a href=&quot;https://developercielo.github.io/tutorial/postman&quot;&gt;&lt;strong&gt;Tutorial&lt;/strong&gt;&lt;/a&gt; sobre a ferramenta para compreender melhor todas as vantagens que ela oferece.&lt;/p&gt;
-
-&lt;h2 id=&quot;cartão-de-crédito---sandbox&quot;&gt;Cartão de crédito - Sandbox&lt;/h2&gt;
-
-&lt;p&gt;No sandbox, é necessario utilizar o &lt;code class=&quot;highlighter-rouge&quot;&gt;Provider&lt;/code&gt; seja utilizado como &lt;code class=&quot;highlighter-rouge&quot;&gt;SIMULADO&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;O Simulado é uma configuração que emula a utilização de pagamentos com Cartão de Crédito. 
-Com esse meio de pagamento é possível simular os fluxos de:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Autorização&lt;/li&gt;
-  &lt;li&gt;Captura&lt;/li&gt;
-  &lt;li&gt;Cancelamento.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Para melhor utilização do Meio de Pagamento Simulado, estamos disponibilizando &lt;strong&gt;cartões de testes&lt;/strong&gt; na tabela abaixo.&lt;/p&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;Os status das transações são definidos pelos FINAIS de cada cartão, assim como o ReturnCode.&lt;/aside&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Status da Transação&lt;/th&gt;
-      &lt;th&gt;Final do Cartão&lt;/th&gt;
-      &lt;th&gt;Código de Retorno&lt;/th&gt;
-      &lt;th&gt;Mensagem de Retorno&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0001&lt;br /&gt;0000.0000.0000.0004&lt;/td&gt;
-      &lt;td&gt;4/6&lt;/td&gt;
-      &lt;td&gt;Operação realizada com sucesso&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0002&lt;/td&gt;
-      &lt;td&gt;05&lt;/td&gt;
-      &lt;td&gt;Não Autorizada&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0003&lt;/td&gt;
-      &lt;td&gt;57&lt;/td&gt;
-      &lt;td&gt;Cartão Expirado&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0005&lt;/td&gt;
-      &lt;td&gt;78&lt;/td&gt;
-      &lt;td&gt;Cartão Bloqueado&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0006&lt;/td&gt;
-      &lt;td&gt;99&lt;/td&gt;
-      &lt;td&gt;Time Out&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0007&lt;/td&gt;
-      &lt;td&gt;77&lt;/td&gt;
-      &lt;td&gt;Cartão Cancelado&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autorizado&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0008&lt;/td&gt;
-      &lt;td&gt;70&lt;/td&gt;
-      &lt;td&gt;Problemas com o Cartão de Crédito&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Autorização Aleatória&lt;/td&gt;
-      &lt;td&gt;0000.0000.0000.0009&lt;/td&gt;
-      &lt;td&gt;99&lt;/td&gt;
-      &lt;td&gt;Operation Successful / Time Out&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;Exemplo de um Cartão de teste - 4024.0071.5376.3191&lt;/p&gt;
-
-&lt;p&gt;As informações de &lt;strong&gt;Cód.Segurança (CVV)&lt;/strong&gt; e validade podem ser aleatórias, mantendo o formato - CVV (3 dígitos) Validade (MM/YYYY).&lt;/p&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;Atenção: O ambiente de **sandbox** avalia o formato e o final do cartão, caso um cartão real seja enviado, o resultado da operação será idêntico ao descrito na tabela de cartões de teste.&lt;/aside&gt;
-
-&lt;aside class=&quot;Warning&quot;&gt;Atenção: Os Códigos de retorno em Sandbox não são os mesmos disponiveis em produção&lt;/aside&gt;
-
-&lt;h2 id=&quot;cartão-de-débito---sandbox&quot;&gt;Cartão de débito - Sandbox&lt;/h2&gt;
-
-&lt;p&gt;Cartões de débito não possuem cartões ou dados específicos simulados, como no caso do cartão de crédito.&lt;/p&gt;
-
-&lt;p&gt;O fluxo transacional do cartão de Débito funciona com o Response da transação retornando uma &lt;strong&gt;URL DE AUTENTICAÇÃO&lt;/strong&gt; . Na tela de autenticação a opção escolhida define o status da transação.&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Opção&lt;/th&gt;
-      &lt;th&gt;Status&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Autenticado&lt;/td&gt;
-      &lt;td&gt;Autorizado&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não Autenticado&lt;/td&gt;
-      &lt;td&gt;Negado&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Não usar a URL&lt;/td&gt;
-      &lt;td&gt;Não Finalizado&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;Transferência Online: O mesmo comportamento do Cartão de débito em Sanbox é valido para cartão de débito&lt;/aside&gt;
-
-&lt;h2 id=&quot;outros-meios-de-pagamento---sandbox&quot;&gt;Outros meios de pagamento - Sandbox&lt;/h2&gt;
-
-&lt;p&gt;Outros meios de pagamento não possuem cartões ou dados específicos simulados, como no caso do cartão de crédito.
-Abaixo especificamos qualquer diferença existente:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Meio de pagamento&lt;/th&gt;
-      &lt;th&gt;Diferenças&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Boleto&lt;/td&gt;
-      &lt;td&gt;Não há validação bancaria. O boleto se comporta como um boleto sem registro&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Cartão de débito&lt;/td&gt;
-      &lt;td&gt;O &lt;code class=&quot;highlighter-rouge&quot;&gt;provider&lt;/code&gt; utilizado deve ser &lt;strong&gt;SIMULADO&lt;/strong&gt; &lt;br /&gt; A URL de redirecionamento para o ambiente do banco será na verdade uma tela para escolher o estado da autenticação&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Transferência online&lt;/td&gt;
-      &lt;td&gt;O &lt;code class=&quot;highlighter-rouge&quot;&gt;provider&lt;/code&gt; utilizado deve ser &lt;strong&gt;SIMULADO&lt;/strong&gt; &lt;br /&gt; A URL de redirecionamento para o ambiente do banco será na verdade uma tela para escolher o estado da autenticação&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;meios-de-pagamento&quot;&gt;Meios de Pagamento&lt;/h1&gt;
+        <content type="html">&lt;h1 id=&quot;meios-de-pagamento&quot;&gt;Meios de Pagamento&lt;/h1&gt;
 
 &lt;h2 id=&quot;cartão-de-crédito&quot;&gt;Cartão de Crédito&lt;/h2&gt;
 
@@ -3274,7 +2807,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
 
 &lt;p&gt;Para executar uma operação, combine a URL base do ambiente com a URL da operação desejada e envie utilizando o verbo HTTP conforme descrito na operação.&lt;/p&gt;
 
-&lt;h3 id=&quot;arquitetura-1&quot;&gt;Arquitetura&lt;/h3&gt;
+&lt;h3 id=&quot;arquitetura&quot;&gt;Arquitetura&lt;/h3&gt;
 
 &lt;p&gt;A integração é realizada através de serviços disponibilizados como Web Services. O modelo empregado é bastante simples: Existem duas URLs (endpoint), uma específica operações que causam efeitos colaterais - como autorização, captura e cancelamento de transações, e uma URL específica para operações que não causam efeitos colaterais, como pesquisa de transações. Essas duas URLs receberão as mensagens HTTP através dos métodos POST, GET ou PUT. Cada tipo de mensagem deve ser enviada para um recurso identificado através do path.&lt;/p&gt;
 
@@ -3301,7 +2834,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;produtos-e-bandeiras-suportadas-1&quot;&gt;Produtos e Bandeiras suportadas&lt;/h3&gt;
+&lt;h3 id=&quot;produtos-e-bandeiras-suportadas&quot;&gt;Produtos e Bandeiras suportadas&lt;/h3&gt;
 
 &lt;p&gt;QR Code de Pagamento possui suporte às seguintes bandeiras e produtos:&lt;/p&gt;
 
@@ -3372,9 +2905,9 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;sandbox-e-ferramentas-1&quot;&gt;Sandbox e Ferramentas&lt;/h3&gt;
+&lt;h3 id=&quot;sandbox-e-ferramentas&quot;&gt;Sandbox e Ferramentas&lt;/h3&gt;
 
-&lt;h4 id=&quot;sobre-o-sandbox-1&quot;&gt;Sobre o Sandbox&lt;/h4&gt;
+&lt;h4 id=&quot;sobre-o-sandbox&quot;&gt;Sobre o Sandbox&lt;/h4&gt;
 
 &lt;p&gt;Para facilitar os testes durante a integração, a Cielo oferece um ambiente Sandbox que é composto por duas áreas:&lt;/p&gt;
 
@@ -3404,7 +2937,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
   &lt;li&gt;com o cadastro você receberá um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantId&lt;/code&gt; e um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantKey&lt;/code&gt;,que são as credenciais necessarias para os métodos da API&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4 id=&quot;ferramenta-para-integração-postman-1&quot;&gt;Ferramenta para Integração: POSTMAN&lt;/h4&gt;
+&lt;h4 id=&quot;ferramenta-para-integração-postman&quot;&gt;Ferramenta para Integração: POSTMAN&lt;/h4&gt;
 
 &lt;p&gt;O &lt;strong&gt;Postman&lt;/strong&gt; é um API Client que facilita aos desenvolvedores criar, compartilhar, testar e documentar APIs. Isso é feito, permitindo aos usuários criar e salvar solicitações HTTPs simples e complexas, bem como ler suas respostas.&lt;/p&gt;
 
@@ -3412,7 +2945,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
 
 &lt;p&gt;Sugerimos que desenvolvedores acessem nosso &lt;a href=&quot;https://developercielo.github.io/tutorial/postman&quot;&gt;&lt;strong&gt;Tutorial&lt;/strong&gt;&lt;/a&gt; sobre a ferramenta para compreender melhor todas as vantagens que ela oferece.&lt;/p&gt;
 
-&lt;h4 id=&quot;cartão-de-crédito---sandbox-1&quot;&gt;Cartão de crédito - Sandbox&lt;/h4&gt;
+&lt;h4 id=&quot;cartão-de-crédito---sandbox&quot;&gt;Cartão de crédito - Sandbox&lt;/h4&gt;
 
 &lt;p&gt;Para testar o cenário de autorização com sucesso via QRCode, utilize o cartão 4551.8700.0000.0183&lt;/p&gt;
 
