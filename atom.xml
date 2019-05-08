@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-08T19:45:04+00:00</updated>
+    <updated>2019-05-08T21:36:07+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -18,7 +18,37 @@
         <link href="https://docscielo.github.io/Pilots/manual/apiecommerce2"/>
         <updated>2019-05-08T00:00:00+00:00</updated>
         <id>https://docscielo.github.io/Pilots/manual/apiecommerce2</id>
-        <content type="html">&lt;h1 id=&quot;meios-de-pagamento&quot;&gt;Meios de Pagamento&lt;/h1&gt;
+        <content type="html">&lt;h1 id=&quot;visão-geral---api-cielo-ecommerce&quot;&gt;Visão geral - API Cielo eCommerce&lt;/h1&gt;
+
+&lt;p&gt;O objetivo desta documentação é orientar o desenvolvedor sobre como integrar com a &lt;strong&gt;API Cielo eCommerce da Cielo&lt;/strong&gt;, descrevendo as funcionalidades, os métodos a serem utilizados, listando informações a serem enviadas e recebidas, e provendo exemplos.&lt;/p&gt;
+
+&lt;p&gt;O mecanismo de integração com o Cielo eCommerce é simples, de modo que apenas conhecimentos intermediários em linguagem de programação para Web, requisições HTTP/HTTPS e manipulação de arquivos JSON, são necessários para implantar a solução Cielo eCommerce com sucesso.&lt;/p&gt;
+
+&lt;p&gt;Nesse manual você encontrará a referência sobre todas as operações disponíveis na API REST da API Cielo eCommerce. Estas operações devem ser executadas utilizando sua chave específica (Merchant ID e Merchant Key) nos respectivos endpoints dos ambientes:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt; &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;SandBox&lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;Produção&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Requisições&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://apisandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://api.cieloecommerce.cielo.com.br/&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;strong&gt;Consultas&lt;/strong&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://apiquerysandbox.cieloecommerce.cielo.com.br&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://apiquery.cieloecommerce.cielo.com.br/&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h1 id=&quot;meios-de-pagamento&quot;&gt;Meios de Pagamento&lt;/h1&gt;
 
 &lt;h2 id=&quot;cartão-de-crédito&quot;&gt;Cartão de Crédito&lt;/h2&gt;
 
