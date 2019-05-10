@@ -23,7 +23,7 @@ Google Pay is a e-wallet. It allows shoppers to make payments in e-commerce stor
 4. Contrat the Cielo 3.0 as payment acquier
 5. Integrate Braspag's payment gateway Pagador API REST ([https://braspag.github.io/manual/braspag-pagador](https://braspag.github.io/manual/braspag-pagador))
 
-# Step 1: Integrating Google Pay into you Andoid app
+# Step 1: Integrating Google Pay into you Android app
 
 ## Action 1 - Configure your project
 
@@ -67,7 +67,7 @@ In the "_Step 3: Define supported payment card networks_", use these brands: "VI
 
 ### Definition of environment
 
-In the "_Step 5: Create a PaymentsClient instance_", use the vaue "ENVIRONMENT_TEST" for test purpose.
+In the "_Step 5: Create a PaymentsClient instance_", use the vaue "WalletConstants.ENVIRONMENT_TEST" for test purpose.
 
 ### Definition of shopping data
 
