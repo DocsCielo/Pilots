@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-10T22:03:24+00:00</updated>
+    <updated>2019-05-10T22:05:46+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -3001,7 +3001,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
 
 &lt;h3 id=&quot;definição-do-ambiente&quot;&gt;Definição do ambiente&lt;/h3&gt;
 
-&lt;p&gt;No passo “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, utilize o valor “ENVIRONMENT_TEST” para utilizar o ambiente de teste.&lt;/p&gt;
+&lt;p&gt;No passo “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, utilize o valor “WalletConstants.ENVIRONMENT_TEST” para utilizar o ambiente de teste.&lt;/p&gt;
 
 &lt;h3 id=&quot;definição-dos-dados-de-compra&quot;&gt;Definição dos dados de compra&lt;/h3&gt;
 
