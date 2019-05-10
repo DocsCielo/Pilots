@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/en/"/>
     <logo>https://docscielo.github.io/Pilots/en/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/en/assets/favicon.ico</icon>
-    <updated>2019-05-08T21:36:09+00:00</updated>
+    <updated>2019-05-10T22:03:26+00:00</updated>
     <id>https://docscielo.github.io/Pilots/en/</id>
     <author>
         <name>João Batista Neto</name>
@@ -544,7 +544,7 @@
   &lt;li&gt;Integrate Cielo 3.0 API REST (&lt;a href=&quot;https://developercielo.github.io/manual/cielo-ecommerce&quot;&gt;https://developercielo.github.io/manual/cielo-ecommerce&lt;/a&gt;)&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h1 id=&quot;step-1-integrating-google-pay-into-you-andoid-app&quot;&gt;Step 1: Integrating Google Pay into you Andoid app&lt;/h1&gt;
+&lt;h1 id=&quot;step-1-integrating-google-pay-into-you-android-app&quot;&gt;Step 1: Integrating Google Pay into you Android app&lt;/h1&gt;
 
 &lt;h2 id=&quot;action-1---configure-your-project&quot;&gt;Action 1 - Configure your project&lt;/h2&gt;
 
@@ -589,7 +589,7 @@
 
 &lt;h3 id=&quot;definition-of-environment&quot;&gt;Definition of environment&lt;/h3&gt;
 
-&lt;p&gt;In the “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, use the vaue “ENVIRONMENT_TEST” for test purpose.&lt;/p&gt;
+&lt;p&gt;In the “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, use the vaue “WalletConstants.ENVIRONMENT_TEST” for test purpose.&lt;/p&gt;
 
 &lt;h3 id=&quot;definition-of-shopping-data&quot;&gt;Definition of shopping data&lt;/h3&gt;
 
