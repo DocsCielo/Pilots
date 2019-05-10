@@ -68,7 +68,7 @@ No passo "_Step 3: Define supported payment card networks_", seguir com as bande
 
 ### Definição do ambiente
 
-No passo "_Step 5: Create a PaymentsClient instance_", utilize o valor "ENVIRONMENT_TEST" para utilizar o ambiente de teste.
+No passo "_Step 5: Create a PaymentsClient instance_", utilize o valor "WalletConstants.ENVIRONMENT_TEST" para utilizar o ambiente de teste.
 
 ### Definição dos dados de compra
 
