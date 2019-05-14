@@ -27,7 +27,7 @@ Nesse manual você encontrará a referência sobre todas as operações disponí
 | **Requisições** | https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 | **Consultas**   | https://apiquerysandbox.cieloecommerce.cielo.com.br | https://apiquery.cieloecommerce.cielo.com.br/ |
 
-# Meios de Pagamento
+# Formas de Pagamento
 
 ## Cartão de Crédito
 
