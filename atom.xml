@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-10T22:06:14+00:00</updated>
+    <updated>2019-05-14T21:42:58+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -48,7 +48,7 @@
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h1 id=&quot;meios-de-pagamento&quot;&gt;Meios de Pagamento&lt;/h1&gt;
+&lt;h1 id=&quot;formas-de-pagamento&quot;&gt;Formas de Pagamento&lt;/h1&gt;
 
 &lt;h2 id=&quot;cartão-de-crédito&quot;&gt;Cartão de Crédito&lt;/h2&gt;
 
@@ -3001,7 +3001,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
 
 &lt;h3 id=&quot;definição-do-ambiente&quot;&gt;Definição do ambiente&lt;/h3&gt;
 
-&lt;p&gt;No passo “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, utilize o valor “ENVIRONMENT_TEST” para utilizar o ambiente de teste.&lt;/p&gt;
+&lt;p&gt;No passo “&lt;em&gt;Step 5: Create a PaymentsClient instance&lt;/em&gt;”, utilize o valor “WalletConstants.ENVIRONMENT_TEST” para utilizar o ambiente de teste.&lt;/p&gt;
 
 &lt;h3 id=&quot;definição-dos-dados-de-compra&quot;&gt;Definição dos dados de compra&lt;/h3&gt;
 
