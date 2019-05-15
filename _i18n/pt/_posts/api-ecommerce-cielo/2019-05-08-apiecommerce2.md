@@ -2247,9 +2247,7 @@ curl
 
 # Consulta
 
-## Consulta de transações
-
-### Consulta - PaymentID
+## Consulta - PaymentID
 
 Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.
 
@@ -2400,7 +2398,7 @@ curl
 |`CreditCard.SecurityCode`|Texto|4|Não|Código de segurança impresso no verso do cartão - Ver Anexo.|
 |`CreditCard.Brand`|Texto|10|Sim|Bandeira do cartão (Visa / Master / Amex / Elo / Aura / JCB / Diners / Discover / Hipercard).|
 
-### Consulta - MerchandOrderID
+## Consulta - MerchandOrderID
 
 Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.
 
@@ -2467,7 +2465,7 @@ curls
 |---|---|---|---|---|
 |`PaymentId`|Campo Identificador do Pedido.|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 
-### Consulta Recorrencia
+## Consulta Recorrencia
 
 Para consultar uma Recorrência de cartão de crédito, é necessário fazer um `GET`  conforme o exemplo.
 
