@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-05-15T20:50:14+00:00</updated>
+    <updated>2019-05-15T20:56:46+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -4396,9 +4396,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
 
 &lt;h1 id=&quot;consulta&quot;&gt;Consulta&lt;/h1&gt;
 
-&lt;h2 id=&quot;consulta-de-transações&quot;&gt;Consulta de transações&lt;/h2&gt;
-
-&lt;h3 id=&quot;consulta---paymentid&quot;&gt;Consulta - PaymentID&lt;/h3&gt;
+&lt;h2 id=&quot;consulta---paymentid&quot;&gt;Consulta - PaymentID&lt;/h2&gt;
 
 &lt;p&gt;Para consultar uma venda de cartão de crédito, é necessário fazer um GET para o recurso Payment conforme o exemplo.&lt;/p&gt;
 
@@ -4682,7 +4680,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;consulta---merchandorderid&quot;&gt;Consulta - MerchandOrderID&lt;/h3&gt;
+&lt;h2 id=&quot;consulta---merchandorderid&quot;&gt;Consulta - MerchandOrderID&lt;/h2&gt;
 
 &lt;p&gt;Não é possível consultar diretamente uma pagamento pelo identificador enviado pela loja (MerchantOrderId), mas é possível obter todos os PaymentIds associados ao identificador.&lt;/p&gt;
 
@@ -4798,7 +4796,7 @@ Essa &lt;strong&gt;não é uma permissão concedida pela cielo&lt;/strong&gt;, o
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;consulta-recorrencia&quot;&gt;Consulta Recorrencia&lt;/h3&gt;
+&lt;h2 id=&quot;consulta-recorrencia&quot;&gt;Consulta Recorrencia&lt;/h2&gt;
 
 &lt;p&gt;Para consultar uma Recorrência de cartão de crédito, é necessário fazer um &lt;code class=&quot;highlighter-rouge&quot;&gt;GET&lt;/code&gt;  conforme o exemplo.&lt;/p&gt;
 
