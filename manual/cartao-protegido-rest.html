@@ -129,7 +129,7 @@
             </div>
 
             <div class="post">
-  <h1 id="introdução-ao-cartão-protegido">Introdução ao Cartão Protegido</h1>
+  <h1 id="o-que-é-cartão-protegido">O que é Cartão Protegido?</h1>
 
 <p>O <strong>Cartão Protegido</strong> é uma plataforma que permite o armazenamento seguro de cartões de crédito e débito. Contamos com ambiente totalmente certificado pelo respeitado conselho de padrão de segurança PCI Security Standards Council, que assegura que a Braspag segue plenamente os rígidos requisitos e normas determinadas pelo mesmo.</p>
 
@@ -164,9 +164,9 @@
   <li><strong>GET</strong> - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.</li>
 </ul>
 
-<h1 id="integração-com-cartão-protegido">Integração com Cartão Protegido</h1>
+<h1 id="como-se-integra">Como se integra?</h1>
 
-<h2 id="etapa-de-autenticação---solicitação-de-token-de-acesso">Etapa de Autenticação - Solicitação de Token de Acesso</h2>
+<h2 id="etapa-de-autenticação">Etapa de Autenticação</h2>
 
 <p>Para consumir os métodos da API, é necessário obter o AccessToken no padrão OAuth 2.0</p>
 
@@ -269,6 +269,125 @@
   </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+
+<h2 id="create-token">Create Token</h2>
+
+<p>Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.</p>
+
+<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
+
+<h3 id="requisição">Requisição</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="s2">"Alias"</span><span class="p">:</span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4929104362976003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Alias</code></td>
+      <td>Texto</td>
+      <td>64</td>
+      <td>Não</td>
+      <td>Alias do cartão. O valor desta informação deve ser único (não pode repetir).</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Number</code></td>
+      <td>Texto</td>
+      <td>16</td>
+      <td>Sim</td>
+      <td>Número do Cartão do comprador</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Holder</code></td>
+      <td>Texto</td>
+      <td>25</td>
+      <td>Sim</td>
+      <td>Nome do Comprador impresso no cartão</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.ExpirationDate</code></td>
+      <td>Texto</td>
+      <td>7</td>
+      <td>Sim</td>
+      <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.SecurityCode</code></td>
+      <td>Texto</td>
+      <td>4</td>
+      <td>Sim</td>
+      <td>Código de segurança impresso no verso do cartão</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-31"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"************6003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Alias</code>|Texto|64|Não |Alias (Apelido) do cartão de crédito|
+|<code class="highlighter-rouge">TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">ExpirationDate</code>|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
+|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
+|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
+
+<h2>=============</h2>
+
+<p>Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.</p>
+
+<p>Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro <code class="highlighter-rouge">Payment.SaveCard</code>. Com isso será retornado um parâmetro <code class="highlighter-rouge">Credicard.CreditCardToken</code>.</p>
+
+<p>Para mais detalhes consulte a seguinte seção do manual do Pagador:</p>
+
+<p><a href="https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o">Salvando e Reutilizando cartões</a></p>
+
+<p>Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:</p>
+
+<ol>
+  <li>Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o <code class="highlighter-rouge">Credicard.CreditCardToken</code> dentro do nó <code class="highlighter-rouge">CreditCard</code>.</li>
+  <li>Receber o resultado da autorização</li>
+</ol>
+
+<p>Você pode observar um exemplo dessa função no manual do PAGADOR também em <a href="https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token">Criando uma transação com Card Token</a></p>
 
 <h2 id="sobre-a-integração">Sobre a Integração</h2>
 
@@ -394,124 +513,6 @@ desde que esteja desvinculado de um determinado Token:</p>
 </ol>
 
 <aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
-
-<h1 id="salvando-o-cartÃo-durante-a-autorizaÇÃo-via-pagador">SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR</h1>
-
-<p>Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.</p>
-
-<p>Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro <code class="highlighter-rouge">Payment.SaveCard</code>. Com isso será retornado um parâmetro <code class="highlighter-rouge">Credicard.CreditCardToken</code>.</p>
-
-<p>Para mais detalhes consulte a seguinte seção do manual do Pagador:</p>
-
-<p><a href="https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o">Salvando e Reutilizando cartões</a></p>
-
-<p>Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:</p>
-
-<ol>
-  <li>Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o <code class="highlighter-rouge">Credicard.CreditCardToken</code> dentro do nó <code class="highlighter-rouge">CreditCard</code>.</li>
-  <li>Receber o resultado da autorização</li>
-</ol>
-
-<p>Você pode observar um exemplo dessa função no manual do PAGADOR também em <a href="https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token">Criando uma transação com Card Token</a></p>
-
-<h1 id="salvando-o-cartÃo-diretamente-no-cartÃo-protegido">SALVANDO O CARTÃO DIRETAMENTE NO CARTÃO PROTEGIDO</h1>
-
-<p>Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.</p>
-
-<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
-
-<h3 id="requisição">Requisição</h3>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-	</span><span class="s2">"Alias"</span><span class="p">:</span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4929104362976003"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Propriedade</th>
-      <th>Tipo</th>
-      <th>Tamanho</th>
-      <th>Obrigatório</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">Payment.Alias</code></td>
-      <td>Texto</td>
-      <td>64</td>
-      <td>Não</td>
-      <td>Alias (Apelido) do cartão de crédito</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">CreditCard.Number</code></td>
-      <td>Texto</td>
-      <td>16</td>
-      <td>Sim</td>
-      <td>Número do Cartão do comprador</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">CreditCard.Holder</code></td>
-      <td>Texto</td>
-      <td>25</td>
-      <td>Sim</td>
-      <td>Nome do Comprador impresso no cartão</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">CreditCard.ExpirationDate</code></td>
-      <td>Texto</td>
-      <td>7</td>
-      <td>Sim</td>
-      <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">CreditCard.SecurityCode</code></td>
-      <td>Texto</td>
-      <td>4</td>
-      <td>Sim</td>
-      <td>Código de segurança impresso no verso do cartão</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="resposta">Resposta</h3>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"Alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-31"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"************6003"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Payment.Alias</code>|Texto|64|Não |Alias (Apelido) do cartão de crédito|
-|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
-|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
 
 <h1 id="mÉtodos-do-cartÃo-protegido">MÉTODOS DO CARTÃO PROTEGIDO</h1>
 
