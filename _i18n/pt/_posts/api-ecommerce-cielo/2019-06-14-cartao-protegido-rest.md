@@ -38,9 +38,11 @@ A integração é realizada através de serviços disponibilizados como Web Serv
 * **DEL** - O método HTTP DEL é utilizado para remoção de token.
 * **GET** - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.
 
+# Integração com Cartão Protegido
+
 ## Etapa de Autenticação - Solicitação de Token de Acesso
 
-A solução é composta pelo passo de solicitação de token de acesso via API e solicitação de autenticação via Java Script.
+Para consumir os métodos da API, é necessário obter o AccessToken no padrão OAuth 2.0
 
 |Ambiente | Endpoint | Authorization |
 |---|---|---|
@@ -55,7 +57,7 @@ A solução é composta pelo passo de solicitação de token de acesso via API e
 **Parâmetros no cabeçalho (Header)**
 
 |Key|Value|
-|:-|:-|
+|---|---|
 |`Content-Type`|application/x-www-form-urlencoded|
 |`Authorization`|Basic _(Authorization)_|
 
@@ -67,14 +69,6 @@ A solução é composta pelo passo de solicitação de token de acesso via API e
 
 ### Response
 
-``` json
-{
-  "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
-  "token_type": "bearer",
-  "expires_in": 599
-}
-```
-
 **Parâmetros no corpo (Body)**
 
 |Parâmetro|Descrição|
@@ -82,6 +76,14 @@ A solução é composta pelo passo de solicitação de token de acesso via API e
 |`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
 |`token_type`|Indica o valor do tipo de token|
 |`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
+
+``` json
+{
+  "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
+  "token_type": "bearer",
+  "expires_in": 599
+}
+```
 
 ## Sobre a Integração
 
