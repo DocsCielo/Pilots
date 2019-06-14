@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="pt">
+    <head>
+    <link href="http://gmpg.org/xfn/11" rel="profile">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="theme-color" content="#00aeef">
+    <meta http-equiv="Content-Language" content="pt">
+
+    <!-- Enable responsiveness on mobile devices-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+    <title>
+        
+        Manual de integração Cartão Protegido &middot; Documentações e tutoriais
+        
+    </title>
+
+    <link rel="shortcut icon" href="https://docscielo.github.io/Pilots/assets/favicon.ico">
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Sans:300,400,500" rel="stylesheet" media="none" onload="if(media!='all')media='all'">
+    <script async src="https://use.fontawesome.com/3ae06f1030.js"></script>
+
+    <link rel="stylesheet" href="https://docscielo.github.io/Pilots/assets/bundles/css/bundle.min.css">
+
+    
+        
+            <link rel="alternate" hreflang="pt" href="/manual/cartao-protegido-rest" />
+        
+    
+        
+            <link rel="alternate" hreflang="en" href="en/manual/cartao-protegido-rest" />
+        
+    
+
+    <!-- RSS -->
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://docscielo.github.io/Pilots/atom.xml">
+</head>
+
+    <body>
+        
+        <div class="content-container">
+            <div class="language-tabs">
+                <a class='hide-btn' id="hide-button" title="Comutar"><i class="fa fa-bars" aria-hidden="true"></i></a>
+                <ul class="language-buttons">
+                    
+                    <li><a data-language-name='json'>JSON</a></li>
+                    
+                    <li><a data-language-name='shell'>cURL</a></li>
+                    
+                </ul>
+            </div>
+            <div class="dark-box"></div>
+            <div class="overlay"></div>
+        
+            <div id="submenu">
+                <div class="submenu-container">
+                    <div class="submenu-row sub-items">
+                        <div class="submenu-itens">
+                            <a href="https://desenvolvedores.cielo.com.br/api-portal/pt-br/contact" class="help">Ajuda</a>
+
+                            
+                            <div class="lang">
+                                <span>Idiomas</span>
+
+                                
+                                    
+                                    <a href="https://docscielo.github.io/Pilots/manual/cartao-protegido-rest">
+                                    
+
+                                        <img alt="Português" src="https://docscielo.github.io/Pilots/assets/images/pt.png"/>
+                                    </a>
+                                
+                                    
+                                    <a href="https://docscielo.github.io/Pilots/en/manual/cartao-protegido-rest">
+                                    
+
+                                        <img alt="English" src="https://docscielo.github.io/Pilots/assets/images/en.png"/>
+                                    </a>
+                                
+                            </div>
+                            
+                        </div>
+
+                        
+                        <div class="search">
+                            <input type="text" class="search" id="input-search">
+                        </div>
+                    </div>
+                    <div class="submenu-row results">
+                        <div class="search-results-container">
+                            <ul class="search-results"></ul>
+                        </div>
+                    </div>
+                        
+
+                    <div class="submenu-row breads">
+                        <ol class="breadcrumb">
+                            
+                            <li><a href="/">Início</a></li>
+                            
+                            
+                            
+                            
+                                
+                                    
+                                    
+                                    
+                                    
+                                    
+                                        
+                                    
+                                        
+                                    
+                                        
+                                    
+                                
+                            
+                                
+                                    
+                                    <li class="active">&gt; <a href="https://docscielo.github.io/Pilots/manual/cartao-protegido-rest">Manual de integração Cartão Protegido</a></li>
+                                    
+                                
+                            
+                        </ol>
+                    </div>
+                </div>
+            </div>
+
+            <div class="post">
+  <h1 id="introdução-ao-cartão-protegido">Introdução ao Cartão Protegido</h1>
+
+<p>A plataforma do <strong>CARTÃO PROTEGIDO</strong> é uma armazenadora segura de cartões de crédito. Os dados nela armazenados seguem as normas PCI, que garante a integridade das informações dos cartões armazenados.
+O gateway PAGADOR (BRASPAG) está integrado ao <strong>CARTÃO PROTEGIDO</strong>, facilitando o envio e processamento de transações de cartão de crédito via token.</p>
+
+<h2 id="sobre-o-produto">Sobre o Produto</h2>
+
+<p>Enquanto produto, o CARTÃO PROTEGIDO, por ser uma solução para resolver o problema de armazenamento seguro de dados de cartão de crédito, pode ser utilizado para diversos fins, como:</p>
+
+<ul>
+  <li><strong>Compra com 1 clique</strong>: A “compra com 1 clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.</li>
+  <li><strong>Cobrança Recorrente</strong>: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma apenas para a parte sensível: armazenar os dados de cartão de crédito e processar via PAGADOR, as cobranças nas Adquirentes utilizando apenas o token. (Não é obrigatório que a transação seja processada via Pagador)</li>
+  <li><strong>Re-tentativa de envio de transação (venda)</strong>: Para estabelecimentos que represam os dados da venda para passar num segundo momento, sendo para retentar o envio de uma transação de cartão de crédito para uma Adquirente ou para fazer algum procedimento interno antes de autorizar a venda (validação de estoque, análise de fraude), a plataforma atende perfeitamente esta finalidade. O estabelecimento precisa conhecer e manipular apenas um token, mantendo-se aderente com as regras de segurança da indústria de cartões de crédito.</li>
+  <li>Ou para qualquer outra finalidade, onde se faça necessário armazenar dados de um cartão de crédito de forma segura, mesmo que temporariamente</li>
+</ul>
+
+<h2 id="sobre-este-manual">Sobre este manual</h2>
+
+<p>Este manual tem como objetivo orientar o desenvolvedor da loja sobre a integração com a plataforma <strong>CARTÃO PROTEGIDO</strong>, descrevendo as funcionalidades existentes e os métodos a serem utilizados, listando informações a serem enviadas e recebidas e provendo exemplos.</p>
+
+<h2 id="ambientes">Ambientes</h2>
+
+<h3 id="ambiente-sandbox">Ambiente Sandbox</h3>
+
+<p>Experimente as nossas APIs sem compromisso!</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Informação</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Credenciais de Acesso à API</td>
+      <td>Acesse o <a href="https://cadastrosandbox.braspag.com.br/">Cadastro do Sandbox</a> e crie uma conta de testes.<br />Ao fim do cadastro você receberá um <code class="highlighter-rouge">MerchantId</code> e um <code class="highlighter-rouge">MerchantKey</code>,<br /> que deverão ser utilizados para autenticar todas as requisições feitas para os endpoints da API</td>
+    </tr>
+    <tr>
+      <td>Endpoint Transacional</td>
+      <td><strong>https://apisandbox.braspag.com.br/</strong></td>
+    </tr>
+    <tr>
+      <td>Endpoint Cartão Protegido</td>
+      <td><strong>https://cartaoprotegidoapisandbox.braspag.com.br/</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="warning">Para receber a MerchantID do Cartão Protegido, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
+<aside class="warning">Para receber a URL de Produção, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
+
+<h2 id="arquitetura">Arquitetura</h2>
+
+<p>A integração é realizada através de serviços disponibilizados como Web Services. O modelo empregado é bastante simples: Através do endpoint https://cartaoprotegidoapisandbox.braspag.com.br/v1/ serão enviadas todas as requisições relativas à esse serviço. Essa URL recebera as mensagens HTTP através dos métodos POST, GET ou Del. Cada tipo de mensagem deve ser enviada para um endereço identificado através do “path”.</p>
+
+<ul>
+  <li><strong>POST</strong> - O método HTTP POST é utilizado na criação do token.</li>
+  <li><strong>DEL</strong> - O método HTTP DEL é utilizado para remoção de token.</li>
+  <li><strong>GET</strong> - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.</li>
+</ul>
+
+<h2 id="sobre-a-integração">Sobre a Integração</h2>
+
+<p>Nas seções abaixo, estão graficamente representados, os fluxos do processo de venda. Existem 3 maneiras de integrar o produto:</p>
+
+<ul>
+  <li>Diretamente pela plataforma do CARTÃO PROTEGIDO;</li>
+  <li>Via plataforma PAGADOR, utilizando Webservice;</li>
+  <li>Via plataforma PAGADOR, utilizando Post de Dados.</li>
+</ul>
+
+<p>Os dados necessários para armazenar um cartão de crédito na plataforma são: CPF do Cliente, Nome do Cliente, Nome do Portador, Número do Cartão e Data de Validade. O código de segurança não é armazenado (vide seção Código de
+Segurança).</p>
+
+<aside class="notice">A plataforma do CARTÃO PROTEGIDO armazena de forma segura, 100% PCI Compliance, os dados dos cartões de crédito.</aside>
+
+<aside class="notice">Como a autorização de uma transação é via PAGADOR, todas as funcionalidades de confirmação da transação - Segundo Post (post de confirmação), e Terceiro Post (sonda) - permanecem funcionando da mesma forma. </aside>
+
+<h1 id="parÂmetro-alias"><strong>PARÂMETRO</strong> Alias</h1>
+
+<p>Este parâmetro tem por finalidade facilitar o armazenamento, por parte do cliente, de informações referentes a um Cartão Protegido. O cliente poderá, no momento do salvamento do cartão, criar um Alias (apelido) que identificará esse cartão na Plataforma CARTÃO PROTEGIDO. Outra vantagem, é o fato desse Alias poder ser associado a um novo token, o que facilitaria a troca de um cartão quando, por exemplo, a validade deste expirar. Para isso, o lojista deveria indicar que o token está desabilitado. Dessa forma, o Alias associado a ele ficaria liberado para ser utilizado com um novo token.</p>
+
+<h2 id="forma-correta-de-associação">Forma Correta de Associação</h2>
+
+<p>Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, conforme indicado no exemplo abaixo:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Merchant Id</th>
+      <th>Token</th>
+      <th>Alias</th>
+      <th>Enabled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 1</td>
+      <td>XPTO</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 2</td>
+      <td>XPTO</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 3</td>
+      <td>XPTO</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="notice">Obs.: A desassociação ocorrerá após a exclusão do token criado. </aside>
+
+<h2 id="forma-de-associação-não-aceita">Forma de Associação Não Aceita</h2>
+
+<p>Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, no exemplo abaixo está indicada uma forma que não permitiria essa associação, pois o Alias só estará liberado para uma nova associação
+desde que esteja desvinculado de um determinado Token:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Merchant Id</th>
+      <th>Token</th>
+      <th>Alias</th>
+      <th>Enabled</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 1</td>
+      <td>XPTO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 2</td>
+      <td>XPTO</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>LOJA A</td>
+      <td>Token 3</td>
+      <td>XPTO</td>
+      <td>1</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="autenticação">Autenticação</h1>
+
+<p>A solução é composta pelo passo de solicitação de token de acesso via API. As funções, aqui apresentadas, precisam apresentar em seu header um token de acesso do tipo “BEARER” que expira e precisa ser solicitado novamente.</p>
+
+<h2 id="tokens-de-acesso">Tokens de Acesso</h2>
+
+<p>O CARTÃO PROTEGIDO utiliza o protocolo padrão de mercado OAuth 2.0 para autorização de acesso a seus recursos específicos por ambientes, que são: <strong>Sandbox</strong> e <strong>Produção</strong>.</p>
+
+<p>Esta sessão descreve o fluxo necessário para que aplicações cliente obtenham tokens de acesso válidos para uso na API.</p>
+
+<h2 id="obtenção-do-token-de-acesso">Obtenção do token de acesso</h2>
+
+<p>O token de acesso é obtido através do fluxo oauth <strong>client_credentials</strong>. O diagrama abaixo, ilustra, em ordem cronológica, a comunicação que se dá entre a <strong>Aplicação Cliente</strong>, a <strong>API BraspagAuth</strong> e o <strong>CARTÃO PROTEGIDO</strong>.</p>
+
+<ol>
+  <li>
+    <p>A <strong>Aplicação Cliente</strong>, informa à API <strong>BraspagAuth</strong> sua credencial.</p>
+  </li>
+  <li>
+    <p>O <strong>BraspagAuth</strong> valida a credencial recebida. Se for válida, retorna o token de acesso para o <strong>CARTÃO PROTEGIDO</strong>.</p>
+  </li>
+  <li>
+    <p>A <strong>Aplicação Cliente</strong> informa o token de acesso no cabeçalho das requisições HTTP feitas ao <strong>CARTÃO PROTEGIDO</strong>.</p>
+  </li>
+  <li>
+    <p>Se o token de acesso for válido, a requisição é processada e os dados são retornados para a <strong>Aplicação Cliente</strong>.</p>
+  </li>
+</ol>
+
+<aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
+
+<h2 id="como-obter-o-token">Como obter o token</h2>
+
+<p>Uma vez em posse da credencial, será necessário “codificá-la” em Base64, utilizando a convenção <strong>client_id:client_secret</strong>, e enviar o resultado no cabeçalho através do campo <strong>Authorization</strong>.</p>
+
+<p>Exemplo:</p>
+<ul>
+  <li>client_id: <strong>bb147542-4cbc-3957-a559-c73107e1f7d0</strong></li>
+  <li>client_secret: <strong>1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p</strong></li>
+  <li>String a ser codificada em Base64: <strong>bb147542-4cbc-3957-a559-c73107e1f7d0:1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p</strong></li>
+  <li>Resultado após a codificação: <strong>YnJhc3BhZ3Rlc3RlczoxcTJ3M2U0cg==</strong></li>
+</ul>
+
+<aside class="warning">Para o ambiente de homologação você deve utilizar o seguinte resultado dessa codificação:
+
+"Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9"</aside>
+
+<h3 id="request">Request</h3>
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
+
+<p><strong>Parâmetros no cabeçalho (Header)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Key</th>
+      <th style="text-align: left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Content-Type</code></td>
+      <td style="text-align: left">application/x-www-form-urlencoded</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Authorization</code></td>
+      <td style="text-align: left">Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Parâmetros no corpo (Body)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Key</th>
+      <th style="text-align: left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">grant_type</code></td>
+      <td style="text-align: left">client_credentials</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="response">Response</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Parâmetros no corpo (Body)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Parâmetro</th>
+      <th style="text-align: left">Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">access_token</code></td>
+      <td style="text-align: left">O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">token_type</code></td>
+      <td style="text-align: left">Indica o valor do tipo de token</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">expires_in</code></td>
+      <td style="text-align: left">Expiração do o token de acesso, em segundos <br /> O token quando expirar, é necessário obter um novo</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="salvando-o-cartÃo-durante-a-autorizaÇÃo-via-pagador">SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR</h1>
+
+<p>Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.</p>
+
+<p>Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro <code class="highlighter-rouge">Payment.SaveCard</code>. Com isso será retornado um parâmetro <code class="highlighter-rouge">Credicard.CreditCardToken</code>.</p>
+
+<p>Para mais detalhes consulte a seguinte seção do manual do Pagador:</p>
+
+<p><a href="https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o">Salvando e Reutilizando cartões</a></p>
+
+<p>Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:</p>
+
+<ol>
+  <li>Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o <code class="highlighter-rouge">Credicard.CreditCardToken</code> dentro do nó <code class="highlighter-rouge">CreditCard</code>.</li>
+  <li>Receber o resultado da autorização</li>
+</ol>
+
+<p>Você pode observar um exemplo dessa função no manual do PAGADOR também em <a href="https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token">Criando uma transação com Card Token</a></p>
+
+<h1 id="salvando-o-cartÃo-diretamente-no-cartÃo-protegido">SALVANDO O CARTÃO DIRETAMENTE NO CARTÃO PROTEGIDO</h1>
+
+<p>Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.</p>
+
+<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
+
+<h3 id="requisição">Requisição</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+	</span><span class="s2">"Alias"</span><span class="p">:</span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4929104362976003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Alias</code></td>
+      <td>Texto</td>
+      <td>64</td>
+      <td>Não</td>
+      <td>Alias (Apelido) do cartão de crédito</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.Number</code></td>
+      <td>Texto</td>
+      <td>16</td>
+      <td>Sim</td>
+      <td>Número do Cartão do comprador</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.Holder</code></td>
+      <td>Texto</td>
+      <td>25</td>
+      <td>Sim</td>
+      <td>Nome do Comprador impresso no cartão</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.ExpirationDate</code></td>
+      <td>Texto</td>
+      <td>7</td>
+      <td>Sim</td>
+      <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">CreditCard.SecurityCode</code></td>
+      <td>Texto</td>
+      <td>4</td>
+      <td>Sim</td>
+      <td>Código de segurança impresso no verso do cartão</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-31"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"************6003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.Alias</code>|Texto|64|Não |Alias (Apelido) do cartão de crédito|
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
+|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
+
+<h1 id="mÉtodos-do-cartÃo-protegido">MÉTODOS DO CARTÃO PROTEGIDO</h1>
+
+<p>Abaixo estão representados os fluxos dos webmethods da plataforma do CARTÃO PROTEGIDO, para execução dos procedimentos via webservice.</p>
+
+<h2 id="recuperando-os-dados-do-cartão-de-crédito">RECUPERANDO os dados do Cartão de Crédito</h2>
+
+<p>O método a seguir deve ser chamado para consultar os dados de um cartão de crédito de forma PCI Compliance, ou seja, apenas o número mascarado do cartão é retornado, juntamente com as demais informações não sensíveis.</p>
+
+<aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+
+<h3 id="requisição-1">Requisição</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.TokenReference</code></td>
+      <td>Token no Cartão Protegido que representa os dados do cartão</td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta-1">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"Alias"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CartaoTesteBP"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-31"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Card"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"Number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"************6003"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ExpirationDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12/2021"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"Holder"</span><span class="p">:</span><span class="w"> </span><span class="s2">"José da Silva"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"***"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido. Valores possíveis: Active, Removed, Suspended
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
+|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
+
+<h2 id="recuperando-o-tokenreference-pelo-alias">RECUPERANDO o TokenReference pelo Alias</h2>
+
+<p>O método a seguir deve ser chamado para consultar o TokenReference quando se tem apenas o Alias salvo.</p>
+
+<aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Alias/{Alias}/TokenReference</span></aside>
+
+<h3 id="requisição-2">Requisição</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Alias</code></td>
+      <td>Texto</td>
+      <td>64</td>
+      <td>Não</td>
+      <td>Alias (Apelido) do cartão de crédito</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta-2">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bcad40d4-6991-4837-b90a-34a2bbf39c51"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|</p>
+
+<h2 id="invalidando-um-tokenreference">INVALIDANDO um TokenReference</h2>
+
+<p>O método a seguir deve ser chamado para remover um token gravado. Essa exclusão é definitiva e não há forma de reverte-la.</p>
+
+<aside class="request"><span class="method DELETE">DELETE</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+
+<h3 id="requisição-3">Requisição</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.RemovedBy</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Reason</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta-3">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Removed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
+
+<h2 id="suspendendo-um-tokenreference">SUSPENDENDO um TokenReference</h2>
+
+<p>O método a seguir deve ser chamado para suspender um token gravado.</p>
+
+<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
+
+<h3 id="requisição-4">Requisição</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.RemovedBy</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Reason</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta-4">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspended"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
+
+<h2 id="reativando-um-token-suspenso">REATIVANDO um token suspenso</h2>
+
+<p>O método a seguir deve ser chamado para suspender um token gravado.</p>
+
+<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
+
+<h3 id="requisição-5">Requisição</h3>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.RemovedBy</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Reason</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="resposta-5">Resposta</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
+
+<h1 id="cÓdigo-de-seguranÇa-cvv">CÓDIGO DE SEGURANÇA (CVV)</h1>
+
+<p>O código de segurança é obrigatório para que uma autorização, em compras não presenciais, seja aceita pelo banco emissor do cartão. Ele é mais um mecanismo de segurança no processo anti-fraude, onde busca-se validar que a pessoa que está utilizando o cartão seja de fato a dona dele. Por isso, as regras da indústria de cartões (PCI) permitem que se armazene o número do cartão e a validade, mas nunca o código de segurança. Este deve ser sempre solicitado no ato da compra para validação. Sendo a BRASPAG uma empresa PCI compliance, ela também não armazena o código de segurança, que deverá ser solicitado pelo estabelecimento no ato da confirmação da venda via CARTÃO PROTEGIDO, caso seja obrigatório o uso na Adquirente em questão.</p>
+
+<p>Estabelecimentos que possuem o modelo de negócio baseado em recorrência, como, por exemplo, assinaturas de serviços, já possuem afiliação liberada para uso sem CVV.</p>
+
+<aside class="notice">Esta condição de recorrência é concedida exclusivamente pelas Adquirentes, não dependendo da BRASPAG.</aside>
+
+<h1 id="dicas-de-implementaÇÃo">DICAS DE IMPLEMENTAÇÃO</h1>
+
+<h2 id="implementando-oneclick-compra-com-1-clique">IMPLEMENTANDO ONECLICK (COMPRA COM 1 CLIQUE)</h2>
+
+<p>Para fazer uma venda através de um clique, é necessário que o estabelecimento já possua uma autorização, fornecida pelo cliente, para poder armazenar os dados de seu cartão de crédito. Desta forma, nas próximas compras ele pode optar por fazer o pagamento com o cartão de crédito previamente salvo. Concedida a autorização para o armazenamento, basta que o estabelecimento envie os dados do cartão para a plataforma do CARTÃO PROTEGIDO, recebendo como resposta uma chave que representa a dupla “cartão de crédito-cliente”. Para cada cartão distinto que o cliente autorize o armazenamento, o CARTÃO PROTEGIDO fornecerá uma chave também distinta.</p>
+
+<p>Nas próximas vendas para este cliente, o estabelecimento poderá oferecer a “compra com 1 clique” como forma de pagamento. Isto pode ser feito através de um botão de “comprar com um clique” no produto/serviço selecionado, ou como mais um meio de pagamento no processo de finalização do carrinho de compras. Para processar uma venda via “compra com 1 clique”, basta que seja passado para a plataforma do CARTÃO PROTEGIDO a chave previamente fornecida que identifique o “cartão de crédito-cliente” e a plataforma irá autorizar direto a transação na Adquirente via PAGADOR.</p>
+
+<h3 id="boas-prÁticas">BOAS PRÁTICAS</h3>
+
+<p>Salvar o número do cartão mascarado para apresentar ao cliente qual cartão ele tem habilitado para “a compra com 1 clique” no site;</p>
+
+<ul>
+  <li>Opcionalmente, também salvar a data de validade, para ativamente comunicar ao cliente que o cartão que ele tem armazenado expirou e sugerir a troca;</li>
+  <li>Apenas salvar o cartão na plataforma do CARTÃO PROTEGIDO caso ele tenha sido autorizado com sucesso na última compra do cliente;</li>
+  <li>Segurança do login e senha dos usuarios do site – senhas muito fracas são facilmente descobertas e o fraudador consegue fazer uma compra mesmo sem ter o cartão (no caso de não solicitação do CVV pelo site);</li>
+  <li>Controlar variáveis de sessão para evitar que o usuário (login do cliente) permaneça logado no site e outra pessoa acesse depois fazendo “compras via 1 clique” com este login (ex: usuários conectados em lan houses).</li>
+</ul>
+
+<h2 id="implementando-cobranÇa-recorrente">IMPLEMENTANDO COBRANÇA RECORRENTE</h2>
+
+<p>Para cada pedido a ser cobrado com recorrência de cartão de crédito, o estabelecimento deve salvar os dados do cartão de crédito na plataforma do CARTÃO PROTEGIDO e receber a chave que representa aquele “pedido-cartão”. Chegado o dia da cobrança da recorrência, basta que o método de autorização de cartão seja chamado, passando os dados para pagamento e, ao invés dos dados do cartão (número + data de validade), a chave que o representa.</p>
+
+<p>Se houver necessidade de troca de cartão para determinado pedido, basta que este novo cartão seja salvo no CARTÃO PROTEGIDO, e a nova chave gerada seja associada ao pedido na plataforma do estabelecimento. Não há necessidade de cancelamento/ exclusão do cartão na plataforma.</p>
+
+<p>Se houver a necessidade de associar um Alias já existente a um novo token, basta desabilitar o token antigo para deixar o Alias associado a ele, liberado para uma nova associação.</p>
+
+<p>Se o estabelecimento optar por não processar a autorização da transação pela integração PAGADOR/CARTÃO PROTEGIDO, é fundamental que em nenhum momento o número do cartão seja gravado (persistido em banco ou em seção do browser) para que a segurança das informações seja mantida.</p>
+
+<h1 id="mapa-de-erros">MAPA DE ERROS</h1>
+
+<p>Abaixo segue a lista dos possíveis erros retornado pelos métodos no campo “ErrorReportCollection”</p>
+
+<p>{AGUARDANDO O MAPA DOS DEVS}</p>
+
+</div>
+
+
+            <div class="footer-conteudo">
+    <div id="footer-conteudo-img" class="col-lg-1 col-md-1">
+            <img src="https://docscielo.github.io/Pilots/assets/images/icon-doubt.svg" width="55px" height="53px" alt="Precisa de ajuda?">
+    </div>
+
+    <div id="footer-conteudo-texto" class="col-lg-11 col-md-11">
+        <h2>Precisa de ajuda?</h2>
+        <p>Se você não conseguiu encontrar sua resposta acima, <a href="https://desenvolvedores.cielo.com.br/api-portal/pt-br/content/suporte">entre em contato conosco</a>.</p>
+    </div>
+</div>
+
+        </div>
+
+        <div class="sidebar">
+  <div class="sidebar-sticky">
+    <div class="sidebar-about">
+      <a title="Comutar a coluna da esquerda" class="hamburger">
+        <i class="fa fa-bars hamb-menu" aria-hidden="true"></i>
+      </a>
+      <a href="https://docscielo.github.io/Pilots/">
+        <img src="https://docscielo.github.io/Pilots/assets/images/logo.png" alt="Documentações e tutoriais">
+      </a>
+      <div></div>
+    </div>
+
+    <div id="toc"></div>
+
+    <div class="fixed-footer">
+        
+
+    <div class="toc-contact">
+      <div class="contact">
+        <a title="Contato" href="#">
+          <i class="fa fa-envelope-o" aria-hidden="true"></i>
+          <span>Contato</span>
+        </a>
+      </div>
+      <div class="github">
+        <a title="GitHub" href="https://github.com/developercielo">
+          <i class="fa fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+        <script src="https://docscielo.github.io/Pilots/assets/bundles/js/bundle.min.js"></script>
+        <script>
+            
+            var selectors = 'h1,h2,h3,h4,h5,h6';
+            
+        </script>
+
+        
+        <script src="https://docscielo.github.io/Pilots/assets/bundles/js/search.min.js"></script>
+        
+
+        
+        <script>
+            let langs = '';
+            let langsArray = [];
+
+            
+            langs += "<a data-language-name='json'>JSON</a>";
+            langsArray.push('json');
+            
+            langs += "<a data-language-name='shell'>cURL</a>";
+            langsArray.push('shell');
+            
+
+            var toggleCode = 'Comutar';
+        </script>
+
+        <script src='https://docscielo.github.io/Pilots/assets/bundles/js/language_buttons.min.js'></script>
+        
+
+        <!-- Hotjar Tracking Code for https://developercielo.github.io/ -->
+<script>
+    (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:674586,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+</script>
+
+    </body>
+</html>
