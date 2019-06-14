@@ -12,7 +12,7 @@ language_tabs:
   shell: cURL
 ---
 
-# Introdução ao Cartão Protegido
+# O que é Cartão Protegido?
 
 O **Cartão Protegido** é uma plataforma que permite o armazenamento seguro de cartões de crédito e débito. Contamos com ambiente totalmente certificado pelo respeitado conselho de padrão de segurança PCI Security Standards Council, que assegura que a Braspag segue plenamente os rígidos requisitos e normas determinadas pelo mesmo.
 
@@ -38,9 +38,9 @@ A integração é realizada através de serviços disponibilizados como Web Serv
 * **DEL** - O método HTTP DEL é utilizado para remoção de token.
 * **GET** - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.
 
-# Integração com Cartão Protegido
+# Como se integra?
 
-## Etapa de Autenticação - Solicitação de Token de Acesso
+## Etapa de Autenticação
 
 Para consumir os métodos da API, é necessário obter o AccessToken no padrão OAuth 2.0
 
@@ -84,6 +84,84 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
   "expires_in": 599
 }
 ```
+
+## Create Token
+
+Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.
+
+<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
+
+### Requisição
+```json
+
+{
+	"Alias":"CartaoTesteBP",
+    "Card": {
+        "Number": "4929104362976003",
+        "Holder": "José da Silva",
+        "ExpirationDate": "12/2021",
+        "SecurityCode": "123"
+    }
+}
+
+```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|-----------|----|-------|-----------|---------|
+|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
+|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
+|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
+
+### Resposta
+
+```json
+{
+    "Alias": "CartaoTesteBP",
+    "TokenReference": "cb8ca955-ec1b-4965-98be-bd0a895a739e",
+    "ExpirationDate": "2021-12-31",
+    "Card": {
+        "Number": "************6003",
+        "ExpirationDate": "12/2021",
+        "Holder": "José da Silva",
+        "SecurityCode": "***"
+    },
+    "Links": [
+        {
+            "Method": "GET",
+            "Rel": "self",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"
+        }
+    ]
+}
+```
+|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|-----------|---------|----|-------|-------|
+|`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
+|`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`ExpirationDate`|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
+|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
+|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
+
+## =============
+
+Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.
+
+Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro `Payment.SaveCard`. Com isso será retornado um parâmetro `Credicard.CreditCardToken`.
+
+Para mais detalhes consulte a seguinte seção do manual do Pagador:
+
+[Salvando e Reutilizando cartões](https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o)
+
+Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:
+
+1. Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o `Credicard.CreditCardToken` dentro do nó `CreditCard`.
+2. Receber o resultado da autorização
+
+Você pode observar um exemplo dessa função no manual do PAGADOR também em [Criando uma transação com Card Token](https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token)
 
 ## Sobre a Integração
 
@@ -151,82 +229,7 @@ O token de acesso é obtido através do fluxo oauth **client_credentials**. O di
 
 <aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
 
-# SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR
 
-Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.
-
-Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro `Payment.SaveCard`. Com isso será retornado um parâmetro `Credicard.CreditCardToken`.
-
-Para mais detalhes consulte a seguinte seção do manual do Pagador:
-
-[Salvando e Reutilizando cartões](https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o)
-
-Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:
-
-1. Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o `Credicard.CreditCardToken` dentro do nó `CreditCard`.
-2. Receber o resultado da autorização
-
-Você pode observar um exemplo dessa função no manual do PAGADOR também em [Criando uma transação com Card Token](https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token)
-
-# SALVANDO O CARTÃO DIRETAMENTE NO CARTÃO PROTEGIDO
-
-Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.
-
-<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
-
-### Requisição
-```json
-
-{
-	"Alias":"CartaoTesteBP",
-    "Card": {
-        "Number": "4929104362976003",
-        "Holder": "José da Silva",
-        "ExpirationDate": "12/2021",
-        "SecurityCode": "123"
-    }
-}
-
-```
-
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Payment.Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
-|`CreditCard.Number`|Texto|16|Sim|Número do Cartão do comprador|
-|`CreditCard.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|`CreditCard.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`CreditCard.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
-
-### Resposta
-
-```json
-{
-    "Alias": "CartaoTesteBP",
-    "TokenReference": "cb8ca955-ec1b-4965-98be-bd0a895a739e",
-    "ExpirationDate": "2021-12-31",
-    "Card": {
-        "Number": "************6003",
-        "ExpirationDate": "12/2021",
-        "Holder": "José da Silva",
-        "SecurityCode": "***"
-    },
-    "Links": [
-        {
-            "Method": "GET",
-            "Rel": "self",
-            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"
-        }
-    ]
-}
-```
-|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|-----------|---------|----|-------|-------|
-|`Payment.Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
-|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
 
 # MÉTODOS DO CARTÃO PROTEGIDO
 
