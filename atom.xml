@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-14T20:06:38+00:00</updated>
+    <updated>2019-06-14T21:19:19+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -20,55 +20,28 @@
         <id>https://docscielo.github.io/Pilots/manual/cartao-protegido-rest</id>
         <content type="html">&lt;h1 id=&quot;introdução-ao-cartão-protegido&quot;&gt;Introdução ao Cartão Protegido&lt;/h1&gt;
 
-&lt;p&gt;A plataforma do &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt; é uma armazenadora segura de cartões de crédito. Os dados nela armazenados seguem as normas PCI, que garante a integridade das informações dos cartões armazenados.
-O gateway PAGADOR (BRASPAG) está integrado ao &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt;, facilitando o envio e processamento de transações de cartão de crédito via token.&lt;/p&gt;
+&lt;p&gt;O &lt;strong&gt;Cartão Protegido&lt;/strong&gt; é uma plataforma que permite o armazenamento seguro de cartões de crédito e débito. Contamos com ambiente totalmente certificado pelo respeitado conselho de padrão de segurança PCI Security Standards Council, que assegura que a Braspag segue plenamente os rígidos requisitos e normas determinadas pelo mesmo.&lt;/p&gt;
 
-&lt;h2 id=&quot;sobre-o-produto&quot;&gt;Sobre o Produto&lt;/h2&gt;
+&lt;p&gt;A plataforma é compatível com o gateway Pagador, também da Braspag, facilitando o processamento de transações de cartão de crédito e débito via token.&lt;/p&gt;
 
-&lt;p&gt;Enquanto produto, o CARTÃO PROTEGIDO, por ser uma solução para resolver o problema de armazenamento seguro de dados de cartão de crédito, pode ser utilizado para diversos fins, como:&lt;/p&gt;
+&lt;h2 id=&quot;casos-de-uso&quot;&gt;Casos de Uso&lt;/h2&gt;
+
+&lt;p&gt;A plataforma tem como propósito ajudar os estabelecimentos que possuem diversos casos de usos, entre eles:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;&lt;strong&gt;Compra com 1 clique&lt;/strong&gt;: A “compra com 1 clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Cobrança Recorrente&lt;/strong&gt;: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma apenas para a parte sensível: armazenar os dados de cartão de crédito e processar via PAGADOR, as cobranças nas Adquirentes utilizando apenas o token. (Não é obrigatório que a transação seja processada via Pagador)&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Re-tentativa de envio de transação (venda)&lt;/strong&gt;: Para estabelecimentos que represam os dados da venda para passar num segundo momento, sendo para retentar o envio de uma transação de cartão de crédito para uma Adquirente ou para fazer algum procedimento interno antes de autorizar a venda (validação de estoque, análise de fraude), a plataforma atende perfeitamente esta finalidade. O estabelecimento precisa conhecer e manipular apenas um token, mantendo-se aderente com as regras de segurança da indústria de cartões de crédito.&lt;/li&gt;
-  &lt;li&gt;Ou para qualquer outra finalidade, onde se faça necessário armazenar dados de um cartão de crédito de forma segura, mesmo que temporariamente&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cobrança Recorrente Agendada (Scheduled Recurring Payments)&lt;/strong&gt;: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma para armazenar os dados de cartão de crédito e processar através de tokens de pagamento. Exmeplo: assinatura de serviços.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Cobrança Recorrente não Agendada (Unscheduled Recurring Payments)&lt;/strong&gt;: Estabelecimentos que cobram seus clientes já cadastrados, mas sem uma periodicidade definida. Exemplo: aplicativos de transporte.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Compra com um clique (Just Click Payments)&lt;/strong&gt;: A “compra com um clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;&lt;strong&gt;Recuperação de vendas&lt;/strong&gt;: Estabelecimentos podem entrar novamente em contato com os clientes que eventualmente tiveram problemas na compra, oferecer uma nova tentativa de cobrança.&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
-
-&lt;h2 id=&quot;sobre-este-manual&quot;&gt;Sobre este manual&lt;/h2&gt;
-
-&lt;p&gt;Este manual tem como objetivo orientar o desenvolvedor da loja sobre a integração com a plataforma &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt;, descrevendo as funcionalidades existentes e os métodos a serem utilizados, listando informações a serem enviadas e recebidas e provendo exemplos.&lt;/p&gt;
-
-&lt;h2 id=&quot;ambientes&quot;&gt;Ambientes&lt;/h2&gt;
-
-&lt;h3 id=&quot;ambiente-sandbox&quot;&gt;Ambiente Sandbox&lt;/h3&gt;
-
-&lt;p&gt;Experimente as nossas APIs sem compromisso!&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Informação&lt;/th&gt;
-      &lt;th&gt;Descrição&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Credenciais de Acesso à API&lt;/td&gt;
-      &lt;td&gt;Acesse o &lt;a href=&quot;https://cadastrosandbox.braspag.com.br/&quot;&gt;Cadastro do Sandbox&lt;/a&gt; e crie uma conta de testes.&lt;br /&gt;Ao fim do cadastro você receberá um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantId&lt;/code&gt; e um &lt;code class=&quot;highlighter-rouge&quot;&gt;MerchantKey&lt;/code&gt;,&lt;br /&gt; que deverão ser utilizados para autenticar todas as requisições feitas para os endpoints da API&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Endpoint Transacional&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;https://apisandbox.braspag.com.br/&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;Endpoint Cartão Protegido&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;https://cartaoprotegidoapisandbox.braspag.com.br/&lt;/strong&gt;&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;aside class=&quot;warning&quot;&gt;Para receber a MerchantID do Cartão Protegido, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).&lt;/aside&gt;
-&lt;aside class=&quot;warning&quot;&gt;Para receber a URL de Produção, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).&lt;/aside&gt;
 
 &lt;h2 id=&quot;arquitetura&quot;&gt;Arquitetura&lt;/h2&gt;
 
@@ -79,6 +52,110 @@ O gateway PAGADOR (BRASPAG) está integrado ao &lt;strong&gt;CARTÃO PROTEGIDO&l
   &lt;li&gt;&lt;strong&gt;DEL&lt;/strong&gt; - O método HTTP DEL é utilizado para remoção de token.&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;GET&lt;/strong&gt; - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.&lt;/li&gt;
 &lt;/ul&gt;
+
+&lt;h2 id=&quot;etapa-de-autenticação---solicitação-de-token-de-acesso&quot;&gt;Etapa de Autenticação - Solicitação de Token de Acesso&lt;/h2&gt;
+
+&lt;p&gt;A solução é composta pelo passo de solicitação de token de acesso via API e solicitação de autenticação via Java Script.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Ambiente&lt;/th&gt;
+      &lt;th&gt;Endpoint&lt;/th&gt;
+      &lt;th&gt;Authorization&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;SANDBOX&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;https://authsandbox.braspag.com.br/oauth2/token&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Basic &lt;em&gt;(Authorization)&lt;/em&gt;&lt;/strong&gt;&lt;br /&gt;O valor do Authorization deve ser obtido concatenando-se o valor do “ClientID”, sinal de dois-pontos (“:”) e “ClientSecret”&lt;br /&gt;Ex. e1c54542-4cbc-4958-b449-b73107e1f6c0:kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=&lt;br /&gt;e na sequência, codificar o resultado na base 64. &lt;br /&gt;Com isso, será gerado um código alphanumérico que será utilizado na requisição de access token. Para efeitos de teste, utilize os dados abaixo:&lt;br /&gt;ClientID: &lt;strong&gt;e1c54542-4cbc-4958-b449-b73107e1f6c0&lt;/strong&gt;&lt;br /&gt;ClientSecret: &lt;strong&gt;kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=&lt;/strong&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;strong&gt;PRODUÇÃO&lt;/strong&gt;&lt;/td&gt;
+      &lt;td&gt;https://auth.braspag.com.br/oauth2/token&lt;/td&gt;
+      &lt;td&gt;Solicite os dados “ClientID” e “ClientSecret” à equipe de suporte após concluir o desenvolvimento em sandbox.&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;request&quot;&gt;Request&lt;/h3&gt;
+
+&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method post&quot;&gt;POST&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;oauth2/token&lt;/span&gt;&lt;/aside&gt;
+
+&lt;p&gt;&lt;strong&gt;Parâmetros no cabeçalho (Header)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Key&lt;/th&gt;
+      &lt;th style=&quot;text-align: left&quot;&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Content-Type&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;application/x-www-form-urlencoded&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt;&lt;/td&gt;
+      &lt;td style=&quot;text-align: left&quot;&gt;Basic &lt;em&gt;(Authorization)&lt;/em&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;strong&gt;Parâmetros no corpo (Body)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Key&lt;/th&gt;
+      &lt;th&gt;Value&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;grant_type&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;client_credentials&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;response&quot;&gt;Response&lt;/h3&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;599&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Parâmetros no corpo (Body)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Parâmetro&lt;/th&gt;
+      &lt;th&gt;Descrição&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;access_token&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;token_type&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Indica o valor do tipo de token&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;expires_in&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Expiração do o token de acesso, em segundos &lt;br /&gt; O token quando expirar, é necessário obter um novo&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2 id=&quot;sobre-a-integração&quot;&gt;Sobre a Integração&lt;/h2&gt;
 
@@ -204,98 +281,6 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 &lt;/ol&gt;
 
 &lt;aside class=&quot;warning&quot;&gt;Solicite à equipe de suporte o seu &quot;client_id&quot; e &quot;client_scret&quot; após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.&lt;/aside&gt;
-
-&lt;h2 id=&quot;como-obter-o-token&quot;&gt;Como obter o token&lt;/h2&gt;
-
-&lt;p&gt;Uma vez em posse da credencial, será necessário “codificá-la” em Base64, utilizando a convenção &lt;strong&gt;client_id:client_secret&lt;/strong&gt;, e enviar o resultado no cabeçalho através do campo &lt;strong&gt;Authorization&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Exemplo:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;client_id: &lt;strong&gt;bb147542-4cbc-3957-a559-c73107e1f7d0&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;client_secret: &lt;strong&gt;1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;String a ser codificada em Base64: &lt;strong&gt;bb147542-4cbc-3957-a559-c73107e1f7d0:1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p&lt;/strong&gt;&lt;/li&gt;
-  &lt;li&gt;Resultado após a codificação: &lt;strong&gt;YnJhc3BhZ3Rlc3RlczoxcTJ3M2U0cg==&lt;/strong&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;aside class=&quot;warning&quot;&gt;Para o ambiente de homologação você deve utilizar o seguinte resultado dessa codificação:
-
-&quot;Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9&quot;&lt;/aside&gt;
-
-&lt;h3 id=&quot;request&quot;&gt;Request&lt;/h3&gt;
-
-&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method post&quot;&gt;POST&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;oauth2/token&lt;/span&gt;&lt;/aside&gt;
-
-&lt;p&gt;&lt;strong&gt;Parâmetros no cabeçalho (Header)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Key&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Value&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Content-Type&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;application/x-www-form-urlencoded&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Authorization&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;&lt;strong&gt;Parâmetros no corpo (Body)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Key&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Value&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;grant_type&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;client_credentials&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;response&quot;&gt;Response&lt;/h3&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;599&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;strong&gt;Parâmetros no corpo (Body)&lt;/strong&gt;&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Parâmetro&lt;/th&gt;
-      &lt;th style=&quot;text-align: left&quot;&gt;Descrição&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;access_token&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;token_type&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Indica o valor do tipo de token&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;expires_in&lt;/code&gt;&lt;/td&gt;
-      &lt;td style=&quot;text-align: left&quot;&gt;Expiração do o token de acesso, em segundos &lt;br /&gt; O token quando expirar, é necessário obter um novo&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
 
 &lt;h1 id=&quot;salvando-o-cartÃo-durante-a-autorizaÇÃo-via-pagador&quot;&gt;SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR&lt;/h1&gt;
 

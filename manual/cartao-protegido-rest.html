@@ -131,55 +131,28 @@
             <div class="post">
   <h1 id="introdução-ao-cartão-protegido">Introdução ao Cartão Protegido</h1>
 
-<p>A plataforma do <strong>CARTÃO PROTEGIDO</strong> é uma armazenadora segura de cartões de crédito. Os dados nela armazenados seguem as normas PCI, que garante a integridade das informações dos cartões armazenados.
-O gateway PAGADOR (BRASPAG) está integrado ao <strong>CARTÃO PROTEGIDO</strong>, facilitando o envio e processamento de transações de cartão de crédito via token.</p>
+<p>O <strong>Cartão Protegido</strong> é uma plataforma que permite o armazenamento seguro de cartões de crédito e débito. Contamos com ambiente totalmente certificado pelo respeitado conselho de padrão de segurança PCI Security Standards Council, que assegura que a Braspag segue plenamente os rígidos requisitos e normas determinadas pelo mesmo.</p>
 
-<h2 id="sobre-o-produto">Sobre o Produto</h2>
+<p>A plataforma é compatível com o gateway Pagador, também da Braspag, facilitando o processamento de transações de cartão de crédito e débito via token.</p>
 
-<p>Enquanto produto, o CARTÃO PROTEGIDO, por ser uma solução para resolver o problema de armazenamento seguro de dados de cartão de crédito, pode ser utilizado para diversos fins, como:</p>
+<h2 id="casos-de-uso">Casos de Uso</h2>
+
+<p>A plataforma tem como propósito ajudar os estabelecimentos que possuem diversos casos de usos, entre eles:</p>
 
 <ul>
-  <li><strong>Compra com 1 clique</strong>: A “compra com 1 clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.</li>
-  <li><strong>Cobrança Recorrente</strong>: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma apenas para a parte sensível: armazenar os dados de cartão de crédito e processar via PAGADOR, as cobranças nas Adquirentes utilizando apenas o token. (Não é obrigatório que a transação seja processada via Pagador)</li>
-  <li><strong>Re-tentativa de envio de transação (venda)</strong>: Para estabelecimentos que represam os dados da venda para passar num segundo momento, sendo para retentar o envio de uma transação de cartão de crédito para uma Adquirente ou para fazer algum procedimento interno antes de autorizar a venda (validação de estoque, análise de fraude), a plataforma atende perfeitamente esta finalidade. O estabelecimento precisa conhecer e manipular apenas um token, mantendo-se aderente com as regras de segurança da indústria de cartões de crédito.</li>
-  <li>Ou para qualquer outra finalidade, onde se faça necessário armazenar dados de um cartão de crédito de forma segura, mesmo que temporariamente</li>
+  <li>
+    <p><strong>Cobrança Recorrente Agendada (Scheduled Recurring Payments)</strong>: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma para armazenar os dados de cartão de crédito e processar através de tokens de pagamento. Exmeplo: assinatura de serviços.</p>
+  </li>
+  <li>
+    <p><strong>Cobrança Recorrente não Agendada (Unscheduled Recurring Payments)</strong>: Estabelecimentos que cobram seus clientes já cadastrados, mas sem uma periodicidade definida. Exemplo: aplicativos de transporte.</p>
+  </li>
+  <li>
+    <p><strong>Compra com um clique (Just Click Payments)</strong>: A “compra com um clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.</p>
+  </li>
+  <li>
+    <p><strong>Recuperação de vendas</strong>: Estabelecimentos podem entrar novamente em contato com os clientes que eventualmente tiveram problemas na compra, oferecer uma nova tentativa de cobrança.</p>
+  </li>
 </ul>
-
-<h2 id="sobre-este-manual">Sobre este manual</h2>
-
-<p>Este manual tem como objetivo orientar o desenvolvedor da loja sobre a integração com a plataforma <strong>CARTÃO PROTEGIDO</strong>, descrevendo as funcionalidades existentes e os métodos a serem utilizados, listando informações a serem enviadas e recebidas e provendo exemplos.</p>
-
-<h2 id="ambientes">Ambientes</h2>
-
-<h3 id="ambiente-sandbox">Ambiente Sandbox</h3>
-
-<p>Experimente as nossas APIs sem compromisso!</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Informação</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Credenciais de Acesso à API</td>
-      <td>Acesse o <a href="https://cadastrosandbox.braspag.com.br/">Cadastro do Sandbox</a> e crie uma conta de testes.<br />Ao fim do cadastro você receberá um <code class="highlighter-rouge">MerchantId</code> e um <code class="highlighter-rouge">MerchantKey</code>,<br /> que deverão ser utilizados para autenticar todas as requisições feitas para os endpoints da API</td>
-    </tr>
-    <tr>
-      <td>Endpoint Transacional</td>
-      <td><strong>https://apisandbox.braspag.com.br/</strong></td>
-    </tr>
-    <tr>
-      <td>Endpoint Cartão Protegido</td>
-      <td><strong>https://cartaoprotegidoapisandbox.braspag.com.br/</strong></td>
-    </tr>
-  </tbody>
-</table>
-
-<aside class="warning">Para receber a MerchantID do Cartão Protegido, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
-<aside class="warning">Para receber a URL de Produção, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
 
 <h2 id="arquitetura">Arquitetura</h2>
 
@@ -190,6 +163,110 @@ O gateway PAGADOR (BRASPAG) está integrado ao <strong>CARTÃO PROTEGIDO</strong
   <li><strong>DEL</strong> - O método HTTP DEL é utilizado para remoção de token.</li>
   <li><strong>GET</strong> - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.</li>
 </ul>
+
+<h2 id="etapa-de-autenticação---solicitação-de-token-de-acesso">Etapa de Autenticação - Solicitação de Token de Acesso</h2>
+
+<p>A solução é composta pelo passo de solicitação de token de acesso via API e solicitação de autenticação via Java Script.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ambiente</th>
+      <th>Endpoint</th>
+      <th>Authorization</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>SANDBOX</strong></td>
+      <td>https://authsandbox.braspag.com.br/oauth2/token</td>
+      <td><strong>Basic <em>(Authorization)</em></strong><br />O valor do Authorization deve ser obtido concatenando-se o valor do “ClientID”, sinal de dois-pontos (“:”) e “ClientSecret”<br />Ex. e1c54542-4cbc-4958-b449-b73107e1f6c0:kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=<br />e na sequência, codificar o resultado na base 64. <br />Com isso, será gerado um código alphanumérico que será utilizado na requisição de access token. Para efeitos de teste, utilize os dados abaixo:<br />ClientID: <strong>e1c54542-4cbc-4958-b449-b73107e1f6c0</strong><br />ClientSecret: <strong>kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=</strong></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td><strong>PRODUÇÃO</strong></td>
+      <td>https://auth.braspag.com.br/oauth2/token</td>
+      <td>Solicite os dados “ClientID” e “ClientSecret” à equipe de suporte após concluir o desenvolvimento em sandbox.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="request">Request</h3>
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
+
+<p><strong>Parâmetros no cabeçalho (Header)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Key</th>
+      <th style="text-align: left">Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Content-Type</code></td>
+      <td style="text-align: left">application/x-www-form-urlencoded</td>
+    </tr>
+    <tr>
+      <td style="text-align: left"><code class="highlighter-rouge">Authorization</code></td>
+      <td style="text-align: left">Basic <em>(Authorization)</em></td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>Parâmetros no corpo (Body)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Key</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">grant_type</code></td>
+      <td>client_credentials</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="response">Response</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<p><strong>Parâmetros no corpo (Body)</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Parâmetro</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">access_token</code></td>
+      <td>O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">token_type</code></td>
+      <td>Indica o valor do tipo de token</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">expires_in</code></td>
+      <td>Expiração do o token de acesso, em segundos <br /> O token quando expirar, é necessário obter um novo</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="sobre-a-integração">Sobre a Integração</h2>
 
@@ -315,98 +392,6 @@ desde que esteja desvinculado de um determinado Token:</p>
 </ol>
 
 <aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
-
-<h2 id="como-obter-o-token">Como obter o token</h2>
-
-<p>Uma vez em posse da credencial, será necessário “codificá-la” em Base64, utilizando a convenção <strong>client_id:client_secret</strong>, e enviar o resultado no cabeçalho através do campo <strong>Authorization</strong>.</p>
-
-<p>Exemplo:</p>
-<ul>
-  <li>client_id: <strong>bb147542-4cbc-3957-a559-c73107e1f7d0</strong></li>
-  <li>client_secret: <strong>1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p</strong></li>
-  <li>String a ser codificada em Base64: <strong>bb147542-4cbc-3957-a559-c73107e1f7d0:1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p</strong></li>
-  <li>Resultado após a codificação: <strong>YnJhc3BhZ3Rlc3RlczoxcTJ3M2U0cg==</strong></li>
-</ul>
-
-<aside class="warning">Para o ambiente de homologação você deve utilizar o seguinte resultado dessa codificação:
-
-"Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9"</aside>
-
-<h3 id="request">Request</h3>
-
-<aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
-
-<p><strong>Parâmetros no cabeçalho (Header)</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Key</th>
-      <th style="text-align: left">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">Content-Type</code></td>
-      <td style="text-align: left">application/x-www-form-urlencoded</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">Authorization</code></td>
-      <td style="text-align: left">Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9</td>
-    </tr>
-  </tbody>
-</table>
-
-<p><strong>Parâmetros no corpo (Body)</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Key</th>
-      <th style="text-align: left">Value</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">grant_type</code></td>
-      <td style="text-align: left">client_credentials</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="response">Response</h3>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p><strong>Parâmetros no corpo (Body)</strong></p>
-
-<table>
-  <thead>
-    <tr>
-      <th style="text-align: left">Parâmetro</th>
-      <th style="text-align: left">Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">access_token</code></td>
-      <td style="text-align: left">O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">token_type</code></td>
-      <td style="text-align: left">Indica o valor do tipo de token</td>
-    </tr>
-    <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">expires_in</code></td>
-      <td style="text-align: left">Expiração do o token de acesso, em segundos <br /> O token quando expirar, é necessário obter um novo</td>
-    </tr>
-  </tbody>
-</table>
 
 <h1 id="salvando-o-cartÃo-durante-a-autorizaÇÃo-via-pagador">SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR</h1>
 
