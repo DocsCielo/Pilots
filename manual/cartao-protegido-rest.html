@@ -164,9 +164,11 @@
   <li><strong>GET</strong> - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.</li>
 </ul>
 
+<h1 id="integração-com-cartão-protegido">Integração com Cartão Protegido</h1>
+
 <h2 id="etapa-de-autenticação---solicitação-de-token-de-acesso">Etapa de Autenticação - Solicitação de Token de Acesso</h2>
 
-<p>A solução é composta pelo passo de solicitação de token de acesso via API e solicitação de autenticação via Java Script.</p>
+<p>Para consumir os métodos da API, é necessário obter o AccessToken no padrão OAuth 2.0</p>
 
 <table>
   <thead>
@@ -201,18 +203,18 @@
 <table>
   <thead>
     <tr>
-      <th style="text-align: left">Key</th>
-      <th style="text-align: left">Value</th>
+      <th>Key</th>
+      <th>Value</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">Content-Type</code></td>
-      <td style="text-align: left">application/x-www-form-urlencoded</td>
+      <td><code class="highlighter-rouge">Content-Type</code></td>
+      <td>application/x-www-form-urlencoded</td>
     </tr>
     <tr>
-      <td style="text-align: left"><code class="highlighter-rouge">Authorization</code></td>
-      <td style="text-align: left">Basic <em>(Authorization)</em></td>
+      <td><code class="highlighter-rouge">Authorization</code></td>
+      <td>Basic <em>(Authorization)</em></td>
     </tr>
   </tbody>
 </table>
@@ -235,13 +237,6 @@
 </table>
 
 <h3 id="response">Response</h3>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
 
 <p><strong>Parâmetros no corpo (Body)</strong></p>
 
@@ -267,6 +262,13 @@
     </tr>
   </tbody>
 </table>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"access_token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"token_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bearer"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <h2 id="sobre-a-integração">Sobre a Integração</h2>
 
