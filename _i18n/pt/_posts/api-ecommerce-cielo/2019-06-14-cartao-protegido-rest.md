@@ -14,37 +14,21 @@ language_tabs:
 
 # Introdução ao Cartão Protegido
 
-A plataforma do **CARTÃO PROTEGIDO** é uma armazenadora segura de cartões de crédito. Os dados nela armazenados seguem as normas PCI, que garante a integridade das informações dos cartões armazenados.
-<br><br>
-O gateway PAGADOR (BRASPAG) está integrado ao **CARTÃO PROTEGIDO**, facilitando o envio e processamento de transações de cartão de crédito via token.
+O **Cartão Protegido** é uma plataforma que permite o armazenamento seguro de cartões de crédito e débito. Contamos com ambiente totalmente certificado pelo respeitado conselho de padrão de segurança PCI Security Standards Council, que assegura que a Braspag segue plenamente os rígidos requisitos e normas determinadas pelo mesmo.
 
-## Sobre o Produto
+A plataforma é compatível com o gateway Pagador, também da Braspag, facilitando o processamento de transações de cartão de crédito e débito via token.
 
-Enquanto produto, o CARTÃO PROTEGIDO, por ser uma solução para resolver o problema de armazenamento seguro de dados de cartão de crédito, pode ser utilizado para diversos fins, como:
+## Casos de Uso
 
-* **Compra com 1 clique**: A “compra com 1 clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.
-* **Cobrança Recorrente**: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma apenas para a parte sensível: armazenar os dados de cartão de crédito e processar via PAGADOR, as cobranças nas Adquirentes utilizando apenas o token. (Não é obrigatório que a transação seja processada via Pagador)
-* **Re-tentativa de envio de transação (venda)**: Para estabelecimentos que represam os dados da venda para passar num segundo momento, sendo para retentar o envio de uma transação de cartão de crédito para uma Adquirente ou para fazer algum procedimento interno antes de autorizar a venda (validação de estoque, análise de fraude), a plataforma atende perfeitamente esta finalidade. O estabelecimento precisa conhecer e manipular apenas um token, mantendo-se aderente com as regras de segurança da indústria de cartões de crédito.
-* Ou para qualquer outra finalidade, onde se faça necessário armazenar dados de um cartão de crédito de forma segura, mesmo que temporariamente
+A plataforma tem como propósito ajudar os estabelecimentos que possuem diversos casos de usos, entre eles:
 
-## Sobre este manual
+* **Cobrança Recorrente Agendada (Scheduled Recurring Payments)**: Estabelecimentos que já possuam uma solução interna de gerenciamento de recorrências podem utilizar a plataforma para armazenar os dados de cartão de crédito e processar através de tokens de pagamento. Exmeplo: assinatura de serviços. 
 
-Este manual tem como objetivo orientar o desenvolvedor da loja sobre a integração com a plataforma **CARTÃO PROTEGIDO**, descrevendo as funcionalidades existentes e os métodos a serem utilizados, listando informações a serem enviadas e recebidas e provendo exemplos.
+* **Cobrança Recorrente não Agendada (Unscheduled Recurring Payments)**: Estabelecimentos que cobram seus clientes já cadastrados, mas sem uma periodicidade definida. Exemplo: aplicativos de transporte. 
 
-## Ambientes
+* **Compra com um clique (Just Click Payments)**: A “compra com um clique” permite que um pagamento online, via cartão de crédito, seja feito pulando a etapa de preenchimento dos dados para pagamento ou até mesmo de todo o processo do carrinho de compras, pois os dados do cartão já foram previamente informados pelo comprador em compras passadas e serão replicados em futuras compras mediante sua autorizaçãol.
 
-### Ambiente Sandbox
-
-Experimente as nossas APIs sem compromisso!
-
-|Informação|Descrição|
-|---|---|
-|Credenciais de Acesso à API|Acesse o [Cadastro do Sandbox](https://cadastrosandbox.braspag.com.br/) e crie uma conta de testes.<BR>Ao fim do cadastro você receberá um `MerchantId` e um `MerchantKey`,<BR> que deverão ser utilizados para autenticar todas as requisições feitas para os endpoints da API|
-|Endpoint Transacional|**https://apisandbox.braspag.com.br/**|
-|Endpoint Cartão Protegido|**https://cartaoprotegidoapisandbox.braspag.com.br/**|
-
-<aside class="warning">Para receber a MerchantID do Cartão Protegido, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
-<aside class="warning">Para receber a URL de Produção, solicite à nossa equipe de implantação através da ferramenta [Suporte](https://suporte.braspag.com.br).</aside>
+* **Recuperação de vendas**: Estabelecimentos podem entrar novamente em contato com os clientes que eventualmente tiveram problemas na compra, oferecer uma nova tentativa de cobrança. 
 
 ## Arquitetura
 
@@ -53,6 +37,51 @@ A integração é realizada através de serviços disponibilizados como Web Serv
 * **POST** - O método HTTP POST é utilizado na criação do token.
 * **DEL** - O método HTTP DEL é utilizado para remoção de token.
 * **GET** - O método HTTP GET é utilizado para consultas de recursos já existentes. Por exemplo, consulta de tokens já criados.
+
+## Etapa de Autenticação - Solicitação de Token de Acesso
+
+A solução é composta pelo passo de solicitação de token de acesso via API e solicitação de autenticação via Java Script.
+
+|Ambiente | Endpoint | Authorization |
+|---|---|---|
+| **SANDBOX** | https://authsandbox.braspag.com.br/oauth2/token | **Basic _(Authorization)_**<br><br>O valor do Authorization deve ser obtido concatenando-se o valor do "ClientID", sinal de dois-pontos (":") e "ClientSecret"<br><br>Ex. e1c54542-4cbc-4958-b449-b73107e1f6c0:kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=<br><br>e na sequência, codificar o resultado na base 64. <br>Com isso, será gerado um código alphanumérico que será utilizado na requisição de access token. Para efeitos de teste, utilize os dados abaixo:<br><br>ClientID: **e1c54542-4cbc-4958-b449-b73107e1f6c0**<br>ClientSecret: **kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=**|
+| --- | --- |
+| **PRODUÇÃO** | https://auth.braspag.com.br/oauth2/token | Solicite os dados "ClientID" e "ClientSecret" à equipe de suporte após concluir o desenvolvimento em sandbox. |
+
+### Request
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
+
+**Parâmetros no cabeçalho (Header)**
+
+|Key|Value|
+|:-|:-|
+|`Content-Type`|application/x-www-form-urlencoded|
+|`Authorization`|Basic _(Authorization)_|
+
+**Parâmetros no corpo (Body)**
+
+|Key|Value|
+|---|---|
+|`grant_type`|client_credentials|
+
+### Response
+
+``` json
+{
+  "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
+  "token_type": "bearer",
+  "expires_in": 599
+}
+```
+
+**Parâmetros no corpo (Body)**
+
+|Parâmetro|Descrição|
+|---|---|
+|`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
+|`token_type`|Indica o valor do tipo de token|
+|`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
 
 ## Sobre a Integração
 
@@ -119,56 +148,6 @@ O token de acesso é obtido através do fluxo oauth **client_credentials**. O di
 4. Se o token de acesso for válido, a requisição é processada e os dados são retornados para a **Aplicação Cliente**.
 
 <aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
-
-## Como obter o token
-
-Uma vez em posse da credencial, será necessário "codificá-la" em Base64, utilizando a convenção **client_id:client_secret**, e enviar o resultado no cabeçalho através do campo **Authorization**.
-
-Exemplo:
-* client_id: **bb147542-4cbc-3957-a559-c73107e1f7d0**
-* client_secret: **1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p**
-* String a ser codificada em Base64: **bb147542-4cbc-3957-a559-c73107e1f7d0:1q2w3e4r5t6y7u8i9o0p0q9w8e7r6t5y4u3i2o1p**
-* Resultado após a codificação: **YnJhc3BhZ3Rlc3RlczoxcTJ3M2U0cg==**
-
-<aside class="warning">Para o ambiente de homologação você deve utilizar o seguinte resultado dessa codificação:
-
-"Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9"</aside>
-
-### Request
-
-<aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
-
-**Parâmetros no cabeçalho (Header)**
-
-|Key|Value|
-|:-|:-|
-|`Content-Type`|application/x-www-form-urlencoded|
-|`Authorization`|Basic ZTFjNTQ1NDItNGNiYy00OTU4LWI0NDktYjczMTA3ZTFmNmMwOmtibS9VRnRnMGZiaDhPSkVaRGJPUG1LU3ZSTElxK3RqeTh2UzZzNnppWEU9|
-
-**Parâmetros no corpo (Body)**
-
-|Key|Value|
-|:-|:-|
-|`grant_type`|client_credentials|
-
-### Response
-
-``` json
-{
-  "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
-  "token_type": "bearer",
-  "expires_in": 599
-}
-```
-
-**Parâmetros no corpo (Body)**
-
-|Parâmetro|Descrição|
-|:-|:-|
-|`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
-|`token_type`|Indica o valor do tipo de token|
-|`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
-
 
 # SALVANDO O CARTÃO DURANTE A AUTORIZAÇÃO VIA PAGADOR
 
