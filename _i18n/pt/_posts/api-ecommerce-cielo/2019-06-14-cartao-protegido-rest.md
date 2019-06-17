@@ -262,7 +262,7 @@ O objetivo deste método é remover a referência do token da base. O Token Refe
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Status`|Texto|10|Não |Status atual do token no Cartão Protegido.
+|`Status`|Texto|10|Não |Status atual do token no Cartão Protegido|
 
 ## ==========================SUSPENDENDO um TokenReference
 
