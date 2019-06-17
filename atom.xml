@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T19:29:58+00:00</updated>
+    <updated>2019-06-17T19:33:25+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -620,7 +620,7 @@
 &lt;p&gt;|Propriedade|Descrição|Tipo|Tamanho|Formato|
 |———–|———|—-|——-|——-|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Status&lt;/code&gt;|Texto|10|Não |Status atual do token no Cartão Protegido.&lt;/p&gt;
+|&lt;code class=&quot;highlighter-rouge&quot;&gt;Status&lt;/code&gt;|Texto|10|Não |Status atual do token no Cartão Protegido|&lt;/p&gt;
 
 &lt;h2 id=&quot;suspendendo-um-tokenreference&quot;&gt;==========================SUSPENDENDO um TokenReference&lt;/h2&gt;
 
