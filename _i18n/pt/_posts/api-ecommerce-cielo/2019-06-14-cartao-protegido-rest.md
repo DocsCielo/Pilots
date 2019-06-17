@@ -108,10 +108,10 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
 |-----------|----|-------|-----------|---------|
 |`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
-|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
+|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
 |`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
+|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
 
 ### Response
 
@@ -179,6 +179,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
     ]
 }
 ```
+
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
 |`Payment.Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
