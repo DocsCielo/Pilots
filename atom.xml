@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T13:41:42+00:00</updated>
+    <updated>2019-06-17T13:49:54+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -127,6 +127,13 @@
 
 &lt;h3 id=&quot;response&quot;&gt;Response&lt;/h3&gt;
 
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;599&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;Parâmetros no corpo (Body)&lt;/strong&gt;&lt;/p&gt;
 
 &lt;table&gt;
@@ -151,13 +158,6 @@
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;access_token&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;token_type&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bearer&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-  &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;expires_in&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;599&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2 id=&quot;create-token&quot;&gt;Create Token&lt;/h2&gt;
 
