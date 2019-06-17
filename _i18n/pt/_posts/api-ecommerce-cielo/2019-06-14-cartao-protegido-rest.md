@@ -198,10 +198,9 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |`Provider`|Indica o provedor que armazenou o cartão.|-|Valores possíveis: Braspag ou Master|Texto|
-|`Account.Number`|Número do Cartão do comprador|Número|16|-|
+|`Account.Number`|Número do Cartão do comprador mascarado|Texto|16|-|
 |`Account.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
 |`Account.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
-|`Account.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
 
 ## Get Token Reference
 
