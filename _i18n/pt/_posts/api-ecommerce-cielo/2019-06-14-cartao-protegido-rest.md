@@ -160,7 +160,7 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 
 ### Request
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{{TokenReference}}</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
 
 **Parâmetros no cabeçalho (Header)**
 
@@ -190,6 +190,7 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 |-----------|---------|----|-------|-------|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
+|`Provider`|Indica o provedor que armazenou o cartão.|-|Valores possíveis: Braspag ou Master|Texto|
 |`Account.Number`|Número do Cartão do comprador|Número|16|-|
 |`Account.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
 |`Account.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
@@ -199,7 +200,7 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 
 O objetivo deste método é obter a referência de token a partir de um alias previamente informado.
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Alias/{{Alias}}/TokenReference</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Alias/_{Alias}_/TokenReference</span></aside>
 
 ### Request
 
@@ -224,11 +225,18 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 
 ## Delete Token Reference
 
-O objetivo deste método é remover a referência do token da base definitivamente. O Token Referente removido através deste método não permite que seja recuperado futuramente.
+O objetivo deste método é remover a referência do token da base definitivamente. O Token Reference removido através deste método não permite que seja recuperado futuramente.
 
-<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/{{TokenReference}}</span></aside>
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
 
 ### Request
+
+```json
+{
+	"RemovedBy":"Merchant",
+	"Reason":"Other"
+}
+```
 
 |Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
@@ -237,13 +245,6 @@ O objetivo deste método é remover a referência do token da base definitivamen
 |Header|`Content-Type`|Texto|-|Sim|application/json|
 |Body|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
 |Body|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
-
-```json
-{
-	"RemovedBy":"Merchant",
-	"Reason":"Other"
-}
-```
 
 ### Response
 
@@ -268,7 +269,7 @@ O objetivo deste método é remover a referência do token da base definitivamen
 
 ## Suspend Token Reference
 
-O objetivo deste método é suspender uma referência do token temporariamente. O Token Referente suspenso através deste método pode ser reativado via método Unsuspend Token Referente.
+O objetivo deste método é suspender uma referência do token temporariamente. O Token Reference suspenso através deste método pode ser reativado via método Unsuspend Token Reference.
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/{{TokenReference}}/suspend</span></aside>
 
@@ -316,13 +317,14 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Texto|10|Não |Status atual do token no Cartão Protegido|
 
-## =====================REATIVANDO um token suspenso
+## Unsuspend Token Reference
 
-O método a seguir deve ser chamado para suspender um token gravado.
+O objetivo deste método é reativar uma referência do token.
 
-<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/_{TokenReference}_/unsuspend</span></aside>
 
-### Requisição
+### Request
+
 ```json
 {
 	"RemovedBy":"Merchant",
@@ -330,31 +332,42 @@ O método a seguir deve ser chamado para suspender um token gravado.
 }
 ```
 
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Payment.RemovedBy`|Texto|10|Sim|Discriminação de quem removeu o token. Valores possíveis: 'Merchant' ou 'CardHolder'|
-|`Payment.Reason`|Texto|10|Sim|Razão da exclusão do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
+|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|
+|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`Content-Type`|Texto|-|Sim|application/json|
 
-
-### Resposta
+### Response
 
 ```json
 {
-    "TokenReference": "53d3e737-b10d-4198-9cb3-58e07a541d4e",
+    "TokenReference": "0a69a878-e50a-4252-bccc-24942a6225a9",
     "Status": "Active",
     "Links": [
         {
             "Method": "GET",
             "Rel": "self",
-            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        },
+        {
+            "Method": "DELETE",
+            "Rel": "remove",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        },
+        {
+            "Method": "PUT",
+            "Rel": "suspend",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9/suspend"
         }
     ]
 }
 ```
+
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Payment.Status`|Texto|10|Não |Status atual do token no Cartão Protegido.
+|`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`Status`|Texto|10|Não |Status atual do token no Cartão Protegido.|
 
 # CÓDIGO DE SEGURANÇA (CVV)
 
