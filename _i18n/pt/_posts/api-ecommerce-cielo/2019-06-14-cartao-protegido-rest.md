@@ -91,7 +91,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 ### Request
 
-<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
+<aside class="request"><span class="method post">POST</span><span class="endpoint">/v1/Token</span></aside>
 
 ```json
 {
@@ -103,7 +103,6 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
         "SecurityCode": "123"
     }
 }
-
 ```
 
 |Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
@@ -141,16 +140,16 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`ExpirationDate`|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
-|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
+|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
 |`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
+|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
 
 ## Get Token
 
 ### Request
 
-<aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
 **Parâmetros no cabeçalho (Header)**
 
