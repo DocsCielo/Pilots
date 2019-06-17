@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T12:16:03+00:00</updated>
+    <updated>2019-06-17T12:20:26+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -198,7 +198,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Number&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;Número&lt;/td&gt;
       &lt;td&gt;16&lt;/td&gt;
       &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;Número do Cartão do comprador&lt;/td&gt;
@@ -219,7 +219,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;Número&lt;/td&gt;
       &lt;td&gt;4&lt;/td&gt;
       &lt;td&gt;Sim&lt;/td&gt;
       &lt;td&gt;Código de segurança impresso no verso do cartão&lt;/td&gt;
@@ -308,14 +308,62 @@
     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Status&lt;/code&gt;|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Number&lt;/code&gt;|Número do Cartão do comprador|Número|16|Exemplo: 4551870000000183|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Holder&lt;/code&gt;|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.ExpirationDate&lt;/code&gt;|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Propriedade&lt;/th&gt;
+      &lt;th&gt;Descrição&lt;/th&gt;
+      &lt;th&gt;Tipo&lt;/th&gt;
+      &lt;th&gt;Tamanho&lt;/th&gt;
+      &lt;th&gt;Formato&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Status&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Status atual do token no Cartão Protegido.&lt;/td&gt;
+      &lt;td&gt;-&lt;/td&gt;
+      &lt;td&gt;Valores possíveis: Active, Removed, Suspended&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.TokenReference&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Token no Cartão Protegido que representa os dados do cartão&lt;/td&gt;
+      &lt;td&gt;Guid&lt;/td&gt;
+      &lt;td&gt;36&lt;/td&gt;
+      &lt;td&gt;xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Number&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Número do Cartão do comprador&lt;/td&gt;
+      &lt;td&gt;Número&lt;/td&gt;
+      &lt;td&gt;16&lt;/td&gt;
+      &lt;td&gt;Exemplo: 4551870000000183&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Holder&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Nome do Comprador impresso no cartão, sem caraceteres acentuados&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;25&lt;/td&gt;
+      &lt;td&gt;Exemplo: Jose da Silva&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.ExpirationDate&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Data de validade impresso no cartão, no formato MM/AAAA&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;7&lt;/td&gt;
+      &lt;td&gt;Exemplo: 12/2021&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Código de segurança impresso no verso do cartão&lt;/td&gt;
+      &lt;td&gt;Número&lt;/td&gt;
+      &lt;td&gt;4&lt;/td&gt;
+      &lt;td&gt;Exemplo: 999&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 
 &lt;h2&gt;========================&lt;/h2&gt;
 

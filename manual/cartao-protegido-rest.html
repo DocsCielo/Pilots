@@ -309,7 +309,7 @@
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Card.Number</code></td>
-      <td>Texto</td>
+      <td>Número</td>
       <td>16</td>
       <td>Sim</td>
       <td>Número do Cartão do comprador</td>
@@ -330,7 +330,7 @@
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Card.SecurityCode</code></td>
-      <td>Texto</td>
+      <td>Número</td>
       <td>4</td>
       <td>Sim</td>
       <td>Código de segurança impresso no verso do cartão</td>
@@ -419,14 +419,62 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Payment.Status</code>|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
-|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">Card.Number</code>|Número do Cartão do comprador|Número|16|Exemplo: 4551870000000183|
-|<code class="highlighter-rouge">Card.Holder</code>|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
-|<code class="highlighter-rouge">Card.ExpirationDate</code>|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
-|<code class="highlighter-rouge">Card.SecurityCode</code>|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Descrição</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Formato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.Status</code></td>
+      <td>Status atual do token no Cartão Protegido.</td>
+      <td>-</td>
+      <td>Valores possíveis: Active, Removed, Suspended</td>
+      <td>Texto</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Payment.TokenReference</code></td>
+      <td>Token no Cartão Protegido que representa os dados do cartão</td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Number</code></td>
+      <td>Número do Cartão do comprador</td>
+      <td>Número</td>
+      <td>16</td>
+      <td>Exemplo: 4551870000000183</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Holder</code></td>
+      <td>Nome do Comprador impresso no cartão, sem caraceteres acentuados</td>
+      <td>Texto</td>
+      <td>25</td>
+      <td>Exemplo: Jose da Silva</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.ExpirationDate</code></td>
+      <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
+      <td>Texto</td>
+      <td>7</td>
+      <td>Exemplo: 12/2021</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.SecurityCode</code></td>
+      <td>Código de segurança impresso no verso do cartão</td>
+      <td>Número</td>
+      <td>4</td>
+      <td>Exemplo: 999</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2>========================</h2>
 
