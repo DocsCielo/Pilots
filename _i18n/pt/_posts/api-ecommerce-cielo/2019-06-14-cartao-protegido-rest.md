@@ -95,10 +95,10 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 ```json
 {
-    "Alias":"CartaoDoJose",    
+    "Alias":"5R2O4042YP",
     "Card": {
         "Number": "4551870000000183",
-        "Holder": "José da Silva",
+        "Holder": "Joao da Silva",
         "ExpirationDate": "12/2021",
         "SecurityCode": "123"
     }
@@ -117,20 +117,30 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 ```json
 {
-    "Alias": "CartaoDoJose",
-    "TokenReference": "cb8ca955-ec1b-4965-98be-bd0a895a739e",
+    "Alias": "5R2O4042YP",
+    "TokenReference": "c2e0d46e-6a78-409b-9ad4-75bcb3985762",
     "ExpirationDate": "2021-12-31",
     "Card": {
         "Number": "************0183",
         "ExpirationDate": "12/2021",
-        "Holder": "José da Silva",
+        "Holder": "Joao da Silva",
         "SecurityCode": "***"
     },
     "Links": [
         {
             "Method": "GET",
             "Rel": "self",
-            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"
+        },
+        {
+            "Method": "DELETE",
+            "Rel": "remove",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"
+        },
+        {
+            "Method": "PUT",
+            "Rel": "suspend",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762/suspend"
         }
     ]
 }
@@ -138,13 +148,13 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
+|`Alias`|Texto|Alias do cartão de crédito|Texto|64|Qualquer texto, que seja único na base de tokens do estabelecimento|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`ExpirationDate`|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
-|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
-|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|`Card.Number`|Número|16|Sim|Número do cartão mascarado|
+|`Card.Holder`|Texto|25|Sim|Nome do portador impresso no cartão|
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
+|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão mascarado|
 
 ## Get Token
 
@@ -183,8 +193,8 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Payment.Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
+|`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Card.Number`|Número do Cartão do comprador|Número|16|-|
 |`Card.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
 |`Card.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
