@@ -18,6 +18,14 @@ O **Cartão Protegido** é uma plataforma que permite o armazenamento seguro de 
 
 A plataforma é compatível com o gateway Pagador, também da Braspag, facilitando o processamento de transações de cartão de crédito e débito via token.
 
+## Principais benefícios
+
+* **Braspag Atualiza**: a plataforma conta com _Braspag Atualiza_, que é uma funcionalidade bastante interessante principalmente para quem trabalha no modelo de recorrência. Através da tecnologia das bandeiras, qualquer atualização do número de cartões por motivo de bloqueio ou cancelamento é automaticamente informado à Braspag que por sua vez atualiza o token de forma totalmente transparente para os estabelecimentos e portadores. Esta feature está disponível para para cartões Mastercard e deve solicitar a habilitação da mesma através do canal de suporte da Braspsag.
+
+* **Maior taxa de conversão**: as transações tokenizadas e processadas na Braspag via Pagador podem resultar em uma taxa de conversão maior que a média do mercado. Isso é porque os cartões tokenizados nas bandeiras são autorizadas junto com o criptograma, que provê maior segurança no processo, com isso, os emissores tendem a aprovar mais facilmente. Esta feature está disponível para para cartões Mastercard e deve solicitar a habilitação da mesma através do canal de suporte da Braspsag.
+
+* **Ambiente Seguro PCI DSS**: a Braspag conta com ambiente certificado PCI DSS, que assegura a integridade e segurança de dados sensíveis como os de cartão de crédito.
+
 ## Casos de Uso
 
 A plataforma tem como propósito ajudar os estabelecimentos que possuem diversos casos de usos, entre eles:
