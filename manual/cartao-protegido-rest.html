@@ -459,7 +459,7 @@
 
 <h3 id="request-2">Request</h3>
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
 
 <p><strong>Parâmetros no cabeçalho (Header)</strong></p>
 
@@ -550,6 +550,13 @@
       <td>Texto</td>
     </tr>
     <tr>
+      <td><code class="highlighter-rouge">Provider</code></td>
+      <td>Indica o provedor que armazenou o cartão.</td>
+      <td>-</td>
+      <td>Valores possíveis: Braspag ou Master</td>
+      <td>Texto</td>
+    </tr>
+    <tr>
       <td><code class="highlighter-rouge">Account.Number</code></td>
       <td>Número do Cartão do comprador</td>
       <td>Número</td>
@@ -584,7 +591,7 @@
 
 <p>O objetivo deste método é obter a referência de token a partir de um alias previamente informado.</p>
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Alias//TokenReference</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Alias/_{Alias}_/TokenReference</span></aside>
 
 <h3 id="request-3">Request</h3>
 
@@ -665,11 +672,17 @@
 
 <h2 id="delete-token-reference">Delete Token Reference</h2>
 
-<p>O objetivo deste método é remover a referência do token da base definitivamente. O Token Referente removido através deste método não permite que seja recuperado futuramente.</p>
+<p>O objetivo deste método é remover a referência do token da base definitivamente. O Token Reference removido através deste método não permite que seja recuperado futuramente.</p>
 
-<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/</span></aside>
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
 
 <h3 id="request-4">Request</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"Other"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
 
 <table>
   <thead>
@@ -726,12 +739,6 @@
   </tbody>
 </table>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
-	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"Other"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
 <h3 id="response-4">Response</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
@@ -777,7 +784,7 @@
 
 <h2 id="suspend-token-reference">Suspend Token Reference</h2>
 
-<p>O objetivo deste método é suspender uma referência do token temporariamente. O Token Referente suspenso através deste método pode ser reativado via método Unsuspend Token Referente.</p>
+<p>O objetivo deste método é suspender uma referência do token temporariamente. O Token Reference suspenso através deste método pode ser reativado via método Unsuspend Token Reference.</p>
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token//suspend</span></aside>
 
@@ -892,13 +899,14 @@
   </tbody>
 </table>
 
-<h2 id="reativando-um-token-suspenso">=====================REATIVANDO um token suspenso</h2>
+<h2 id="unsuspend-token-reference">Unsuspend Token Reference</h2>
 
-<p>O método a seguir deve ser chamado para suspender um token gravado.</p>
+<p>O objetivo deste método é reativar uma referência do token.</p>
 
-<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/_{TokenReference}_/unsuspend</span></aside>
 
-<h3 id="requisição">Requisição</h3>
+<h3 id="request-6">Request</h3>
+
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
 	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
 	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
@@ -908,7 +916,8 @@
 <table>
   <thead>
     <tr>
-      <th>Propriedade</th>
+      <th>Local</th>
+      <th>Parâmetros</th>
       <th>Tipo</th>
       <th>Tamanho</th>
       <th>Obrigatório</th>
@@ -917,40 +926,84 @@
   </thead>
   <tbody>
     <tr>
-      <td><code class="highlighter-rouge">Payment.RemovedBy</code></td>
-      <td>Texto</td>
-      <td>10</td>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">MerchantID</code></td>
+      <td>GUID</td>
+      <td>-</td>
       <td>Sim</td>
-      <td>Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
+      <td>Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Payment.Reason</code></td>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">Authorization</code></td>
       <td>Texto</td>
-      <td>10</td>
+      <td>-</td>
       <td>Sim</td>
-      <td>Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
+      <td><strong>Barear</strong> <em>(Authorization)</em><br />(é o token de acesso gerado no passo anterior)</td>
+    </tr>
+    <tr>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">Content-Type</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>application/json</td>
     </tr>
   </tbody>
 </table>
 
-<h3 id="resposta">Resposta</h3>
+<h3 id="response-6">Response</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0a69a878-e50a-4252-bccc-24942a6225a9"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELETE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"remove"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"suspend"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9/suspend"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Descrição</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Formato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">TokenReference</code></td>
+      <td>Token no Cartão Protegido que representa os dados do cartão</td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Status</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Não</td>
+      <td>Status atual do token no Cartão Protegido.</td>
+    </tr>
+  </tbody>
+</table>
 
 <h1 id="cÓdigo-de-seguranÇa-cvv">CÓDIGO DE SEGURANÇA (CVV)</h1>
 
