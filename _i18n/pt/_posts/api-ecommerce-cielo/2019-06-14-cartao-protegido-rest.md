@@ -46,7 +46,7 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 |Ambiente | Endpoint | Authorization |
 |---|---|---|
-| **SANDBOX** | https://authsandbox.braspag.com.br/oauth2/token | **Basic _(Authorization)_**<br><br>O valor do Authorization deve ser obtido concatenando-se o valor do "ClientID", sinal de dois-pontos (":") e "ClientSecret"<br><br>Ex. e1c54542-4cbc-4958-b449-b73107e1f6c0:kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=<br><br>e na sequência, codificar o resultado na base 64. <br>Com isso, será gerado um código alphanumérico que será utilizado na requisição de access token. Para efeitos de teste, utilize os dados abaixo:<br><br>ClientID: **e1c54542-4cbc-4958-b449-b73107e1f6c0**<br>ClientSecret: **kbm/UFtg0fbh8OJEZDbOPmKSvRLIq+tjy8vS6s6ziXE=**|
+| **SANDBOX** | https://authsandbox.braspag.com.br/oauth2/token | **Basic _(Authorization)_**<br><br>O valor do Authorization deve ser obtido concatenando-se o valor do "ClientID", sinal de dois-pontos (":") e "ClientSecret"<br><br>Ex. b4c14ad4-5184-4ca0-8d1a-d3a7276cead9:qYmZNOSo/5Tcjq7Nl2wTfw8wuC6Z8gqFAzc/utxYjfs=<br><br>e na sequência, codificar o resultado na base 64. <br>Com isso, será gerado um código alphanumérico que será utilizado na requisição de access token. Para efeitos de teste, utilize os dados abaixo:<br><br>ClientID: **b4c14ad4-5184-4ca0-8d1a-d3a7276cead9**<br>ClientSecret: **qYmZNOSo/5Tcjq7Nl2wTfw8wuC6Z8gqFAzc/utxYjfs=**|
 | --- | --- |
 | **PRODUÇÃO** | https://auth.braspag.com.br/oauth2/token | Solicite os dados "ClientID" e "ClientSecret" à equipe de suporte após concluir o desenvolvimento em sandbox. |
 
@@ -60,8 +60,8 @@ grant_type=client_credentials
 
 |Local|Parâmetros|Descrição|
 |---|---|---|
-|Header|`Content-Type`|application/x-www-form-urlencoded|
 |Header|`Authorization`|Basic _(Authorization)_|
+|Header|`Content-Type`|application/x-www-form-urlencoded|
 |Body|`grant_type`|client_credentials|
 
 ### Response
@@ -80,9 +80,9 @@ grant_type=client_credentials
 |`token_type`|Indica o valor do tipo de token|
 |`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
 
-## Create Token
+## Create Token Reference
 
-Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.
+O objetivo deste método é salvar um cartão e obter como resposta a referência do token (Token Reference).
 
 ### Request
 
@@ -103,8 +103,8 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
 |Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Content-Type`|Texto|-|Sim|application/x-www-form-urlencoded|
 |Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`Content-Type`|Texto|-|Sim|application/json|
 |Body|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
 |Body|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
 |Body|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
@@ -146,7 +146,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 |Propriedades|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Alias`|Texto|Alias do cartão de crédito|Texto|64|Qualquer texto, que seja único na base de tokens do estabelecimento|
+|`Alias`|Alias do cartão de crédito|Texto|64|Qualquer texto, que seja único na base de tokens do estabelecimento|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`ExpirationDate`|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
 |`Card.Number`|Número|16|Sim|Número do cartão mascarado|
@@ -154,74 +154,74 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão mascarado|
 
-## Get Token
+## Get Token Reference Info
+
+O objetivo deste método é obter as informações relacionadas a uma referência de token, tais como Status, Cartão Mascarado, Data de Validade e Nome do Portador.
 
 ### Request
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{{TokenReference}}</span></aside>
 
 **Parâmetros no cabeçalho (Header)**
 
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Payment.TokenReference`|GUID|36|Sim|Token no Cartão Protegido que representa os dados do cartão|
+|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|
+|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`Content-Type`|Texto|-|Sim|application/json|
+|Endpoint|`TokenReference`|GUID|36|Sim|Token no Cartão Protegido que representa os dados do cartão|
 
 ### Response
 
 ```json
 {
-    "Alias": "CartaoTesteBP",
-    "TokenReference": "cb8ca955-ec1b-4965-98be-bd0a895a739e",
-    "ExpirationDate": "2021-12-31",
-    "Card": {
-        "Number": "************6003",
+    "TokenReference": "1fdb4ef8-17f3-4f26-87e9-3a5f34bca8a0",
+    "Status": "Active",
+    "Provider": "Braspag",
+    "Account": {
+        "Number": "************0183",
         "ExpirationDate": "12/2021",
-        "Holder": "José da Silva",
-        "SecurityCode": "***"
-    },
-    "Links": [
-        {
-            "Method": "GET",
-            "Rel": "self",
-            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/cb8ca955-ec1b-4965-98be-bd0a895a739e"
-        }
-    ]
+        "Holder": "Runscope Teste"
+    }
 }
 ```
 
 |Propriedades|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |`Card.Number`|Número do Cartão do comprador|Número|16|-|
 |`Card.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
 |`Card.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
 |`Card.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
 
-## ========================
+## Get Token Reference
 
-O método a seguir deve ser chamado para consultar o TokenReference quando se tem apenas o Alias salvo.
+O objetivo deste método é obter a referência de token a partir de um alias previamente informado.
 
-<aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Alias/{Alias}/TokenReference</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Alias/{{Alias}}/TokenReference</span></aside>
 
-### Requisição
+### Request
 
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Payment.Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
+|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|
+|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`Content-Type`|Texto|-|Sim|application/json|
+|Endpoint|`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito utilizado anteriormente no método Create Token|
 
-### Resposta
+### Response
 
 ```json
 {
-    "TokenReference": "bcad40d4-6991-4837-b90a-34a2bbf39c51"
+    "TokenReference": "a36ffc37-e472-4d85-af2a-6f64c52bcccf"
 }
 ```
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|GUID|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 
-## INVALIDANDO um TokenReference
+## =========================INVALIDANDO um TokenReference
 
 O método a seguir deve ser chamado para remover um token gravado. Essa exclusão é definitiva e não há forma de reverte-la.
 
