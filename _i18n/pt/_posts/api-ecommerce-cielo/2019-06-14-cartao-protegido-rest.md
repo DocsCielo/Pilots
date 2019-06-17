@@ -160,7 +160,7 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 
 ### Request
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
 **Parâmetros no cabeçalho (Header)**
 
@@ -227,7 +227,7 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 
 O objetivo deste método é remover a referência do token da base definitivamente. O Token Reference removido através deste método não permite que seja recuperado futuramente.
 
-<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/_{TokenReference}_</span></aside>
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
 ### Request
 
@@ -271,7 +271,7 @@ O objetivo deste método é remover a referência do token da base definitivamen
 
 O objetivo deste método é suspender uma referência do token temporariamente. O Token Reference suspenso através deste método pode ser reativado via método Unsuspend Token Reference.
 
-<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/{{TokenReference}}/suspend</span></aside>
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
 
 ### Request
 
@@ -289,7 +289,6 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
 |Header|`Content-Type`|Texto|-|Sim|application/json|
 |Body|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
 |Body|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
-
 
 ### Response
 
@@ -321,16 +320,9 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
 
 O objetivo deste método é reativar uma referência do token.
 
-<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/_{TokenReference}_/unsuspend</span></aside>
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/unsuspend</span></aside>
 
 ### Request
-
-```json
-{
-	"RemovedBy":"Merchant",
-	"Reason":"FraudSuspicion"
-}
-```
 
 |Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
@@ -369,43 +361,43 @@ O objetivo deste método é reativar uma referência do token.
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Texto|10|Não |Status atual do token no Cartão Protegido.|
 
-# CÓDIGO DE SEGURANÇA (CVV)
+# Códigos de erro
 
-O código de segurança é obrigatório para que uma autorização, em compras não presenciais, seja aceita pelo banco emissor do cartão. Ele é mais um mecanismo de segurança no processo anti-fraude, onde busca-se validar que a pessoa que está utilizando o cartão seja de fato a dona dele. Por isso, as regras da indústria de cartões (PCI) permitem que se armazene o número do cartão e a validade, mas nunca o código de segurança. Este deve ser sempre solicitado no ato da compra para validação. Sendo a BRASPAG uma empresa PCI compliance, ela também não armazena o código de segurança, que deverá ser solicitado pelo estabelecimento no ato da confirmação da venda via CARTÃO PROTEGIDO, caso seja obrigatório o uso na Adquirente em questão.
+Em casos de erro na requisição, serão informados os códos de erro e sua descrição, conforme o exemplo.
 
-Estabelecimentos que possuem o modelo de negócio baseado em recorrência, como, por exemplo, assinaturas de serviços, já possuem afiliação liberada para uso sem CVV.
+### Response
 
-<aside class="notice">Esta condição de recorrência é concedida exclusivamente pelas Adquirentes, não dependendo da BRASPAG.</aside>
+```json
+{
+    "Errors": [
+        {
+            "Code": "CP903",
+            "Message": "Token alias already exists"
+        }
+    ]
+}
+```
 
-# DICAS DE IMPLEMENTAÇÃO
+|Code|Message|Descrição|
+|------|--------|---------|
+|CP903|Token alias already exists|Acontece quando o Alias já foi utilizado anteriormente.|
+|CP990|'XXXXX' must not be empty.|Acontece quando algum campo está inválido.|
 
-## IMPLEMENTANDO ONECLICK (COMPRA COM 1 CLIQUE)
+# Dicas de implementação
 
-Para fazer uma venda através de um clique, é necessário que o estabelecimento já possua uma autorização, fornecida pelo cliente, para poder armazenar os dados de seu cartão de crédito. Desta forma, nas próximas compras ele pode optar por fazer o pagamento com o cartão de crédito previamente salvo. Concedida a autorização para o armazenamento, basta que o estabelecimento envie os dados do cartão para a plataforma do CARTÃO PROTEGIDO, recebendo como resposta uma chave que representa a dupla “cartão de crédito-cliente”. Para cada cartão distinto que o cliente autorize o armazenamento, o CARTÃO PROTEGIDO fornecerá uma chave também distinta.
+## Código de segurança do cartão
 
-Nas próximas vendas para este cliente, o estabelecimento poderá oferecer a “compra com 1 clique” como forma de pagamento. Isto pode ser feito através de um botão de “comprar com um clique” no produto/serviço selecionado, ou como mais um meio de pagamento no processo de finalização do carrinho de compras. Para processar uma venda via “compra com 1 clique”, basta que seja passado para a plataforma do CARTÃO PROTEGIDO a chave previamente fornecida que identifique o “cartão de crédito-cliente” e a plataforma irá autorizar direto a transação na Adquirente via PAGADOR.
+O código de segurança é obrigatório para que uma autorização seja aceita pelo banco emissor do cartão. Ele é mais um mecanismo de segurança no processo anti-fraude, onde busca-se validar que a pessoa que está utilizando o cartão seja de fato a dona dele. 
+Por esta razão, as regras do PCI permitem que se armazene o número do cartão e a validade, mas nunca o código de segurança, nem mesmo a Braspag, certificada PCI.
+A recomendação é que o CVV seja sempre solicitado no ato da compra. 
 
-### BOAS PRÁTICAS
+<aside class="notice">Estabelecimentos que possuem o modelo de negócio baseado em recorrência, como, por exemplo, assinaturas de serviços, devem solicitar junto à adquirência contratada a liberação de transações sem CVV.</aside>
 
-Salvar o número do cartão mascarado para apresentar ao cliente qual cartão ele tem habilitado para “a compra com 1 clique” no site;
+## Compra com um clique
+
+Uma dica para melhorar sua conversão é salvar o número do cartão mascarado para apresentar ao cliente qual cartão ele tem habilitado para “a compra com 1 clique” no site;
 
 * Opcionalmente, também salvar a data de validade, para ativamente comunicar ao cliente que o cartão que ele tem armazenado expirou e sugerir a troca;
-* Apenas salvar o cartão na plataforma do CARTÃO PROTEGIDO caso ele tenha sido autorizado com sucesso na última compra do cliente;
+* Sempre perguntar se o comprador deseja armazenar os dados do cartão para próxima compra;
 * Segurança do login e senha dos usuarios do site – senhas muito fracas são facilmente descobertas e o fraudador consegue fazer uma compra mesmo sem ter o cartão (no caso de não solicitação do CVV pelo site);
 * Controlar variáveis de sessão para evitar que o usuário (login do cliente) permaneça logado no site e outra pessoa acesse depois fazendo “compras via 1 clique” com este login (ex: usuários conectados em lan houses).
-
-## IMPLEMENTANDO COBRANÇA RECORRENTE
-
-Para cada pedido a ser cobrado com recorrência de cartão de crédito, o estabelecimento deve salvar os dados do cartão de crédito na plataforma do CARTÃO PROTEGIDO e receber a chave que representa aquele “pedido-cartão”. Chegado o dia da cobrança da recorrência, basta que o método de autorização de cartão seja chamado, passando os dados para pagamento e, ao invés dos dados do cartão (número + data de validade), a chave que o representa.
-
-Se houver necessidade de troca de cartão para determinado pedido, basta que este novo cartão seja salvo no CARTÃO PROTEGIDO, e a nova chave gerada seja associada ao pedido na plataforma do estabelecimento. Não há necessidade de cancelamento/ exclusão do cartão na plataforma.
-
-Se houver a necessidade de associar um Alias já existente a um novo token, basta desabilitar o token antigo para deixar o Alias associado a ele, liberado para uma nova associação.
-
-Se o estabelecimento optar por não processar a autorização da transação pela integração PAGADOR/CARTÃO PROTEGIDO, é fundamental que em nenhum momento o número do cartão seja gravado (persistido em banco ou em seção do browser) para que a segurança das informações seja mantida.
-
-# MAPA DE ERROS
-
-Abaixo segue a lista dos possíveis erros retornado pelos métodos no campo “ErrorReportCollection”
-
-{AGUARDANDO O MAPA DOS DEVS}
