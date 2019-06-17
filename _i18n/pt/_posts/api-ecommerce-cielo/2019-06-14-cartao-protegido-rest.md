@@ -54,14 +54,14 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
 
-**Parâmetros no cabeçalho (Header)**
+**Parâmetros no Header**
 
 |Key|Value|
 |---|---|
 |`Content-Type`|application/x-www-form-urlencoded|
 |`Authorization`|Basic _(Authorization)_|
 
-**Parâmetros no corpo (Body)**
+**Parâmetros no Body**
 
 |Key|Value|
 |---|---|
@@ -104,6 +104,15 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
     }
 }
 ```
+
+**Parâmetros no Header**
+
+|Key|Value|
+|---|---|
+|`Content-Type`|application/x-www-form-urlencoded|
+|`Authorization`|Barear _(Authorization)_ (é o token de acesso gerado no passo anterior|
+
+**Parâmetros no Body**
 
 |Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
 |-----------|----|-------|-----------|---------|
