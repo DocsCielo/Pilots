@@ -54,16 +54,12 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
 
-**Parâmetros no Header**
-
-|Key|Value|
+|Parâmetro no Header|Descrição|
 |---|---|
 |`Content-Type`|application/x-www-form-urlencoded|
 |`Authorization`|Basic _(Authorization)_|
 
-**Parâmetros no Body**
-
-|Key|Value|
+|Parâmetro no Body|Descrição|
 |---|---|
 |`grant_type`|client_credentials|
 
@@ -77,9 +73,7 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 }
 ```
 
-**Parâmetros no corpo (Body)**
-
-|Parâmetro|Descrição|
+|Parâmetro no Body|Descrição|
 |---|---|
 |`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
 |`token_type`|Indica o valor do tipo de token|
@@ -105,16 +99,12 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 }
 ```
 
-**Parâmetros no Header**
-
-|Key|Value|
+|Parâmetro no Header|Descrição|
 |---|---|
 |`Content-Type`|application/x-www-form-urlencoded|
 |`Authorization`|Barear _(Authorization)_ (é o token de acesso gerado no passo anterior|
 
-**Parâmetros no Body**
-
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|Parâmetros no Body|Tipo|Tamanho|Obrigatório|Descrição|
 |-----------|----|-------|-----------|---------|
 |`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
 |`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
@@ -155,7 +145,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 }
 ```
 
-|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|Propriedades do Response|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
 |`Alias`|Texto|Alias do cartão de crédito|Texto|64|Qualquer texto, que seja único na base de tokens do estabelecimento|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
