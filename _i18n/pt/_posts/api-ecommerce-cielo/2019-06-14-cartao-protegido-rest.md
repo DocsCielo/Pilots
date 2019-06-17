@@ -69,14 +69,6 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 ### Response
 
-**Parâmetros no corpo (Body)**
-
-|Parâmetro|Descrição|
-|---|---|
-|`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
-|`token_type`|Indica o valor do tipo de token|
-|`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
-
 ``` json
 {
   "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
@@ -84,6 +76,14 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
   "expires_in": 599
 }
 ```
+
+**Parâmetros no corpo (Body)**
+
+|Parâmetro|Descrição|
+|---|---|
+|`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
+|`token_type`|Indica o valor do tipo de token|
+|`expires_in`|Expiração do o token de acesso, em segundos <br/> O token quando expirar, é necessário obter um novo|
 
 ## Create Token
 
