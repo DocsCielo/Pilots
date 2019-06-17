@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T21:07:56+00:00</updated>
+    <updated>2019-06-17T21:47:46+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -443,8 +443,8 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Account.Number&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Número do Cartão do comprador&lt;/td&gt;
-      &lt;td&gt;Número&lt;/td&gt;
+      &lt;td&gt;Número do Cartão do comprador mascarado&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
       &lt;td&gt;16&lt;/td&gt;
       &lt;td&gt;-&lt;/td&gt;
     &lt;/tr&gt;
@@ -461,13 +461,6 @@
       &lt;td&gt;Texto&lt;/td&gt;
       &lt;td&gt;7&lt;/td&gt;
       &lt;td&gt;Exemplo: 12/2021&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Account.SecurityCode&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Código de segurança impresso no verso do cartão&lt;/td&gt;
-      &lt;td&gt;Número&lt;/td&gt;
-      &lt;td&gt;4&lt;/td&gt;
-      &lt;td&gt;Exemplo: 999&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
