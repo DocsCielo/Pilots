@@ -95,9 +95,9 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 ```json
 
 {
-	"Alias":"CartaoTesteBP",
+    "Alias":"CartaoDoJose",    
     "Card": {
-        "Number": "4929104362976003",
+        "Number": "4551870000000183",
         "Holder": "José da Silva",
         "ExpirationDate": "12/2021",
         "SecurityCode": "123"
@@ -118,11 +118,11 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 ```json
 {
-    "Alias": "CartaoTesteBP",
+    "Alias": "CartaoDoJose",
     "TokenReference": "cb8ca955-ec1b-4965-98be-bd0a895a739e",
     "ExpirationDate": "2021-12-31",
     "Card": {
-        "Number": "************6003",
+        "Number": "************0183",
         "ExpirationDate": "12/2021",
         "Holder": "José da Silva",
         "SecurityCode": "***"
