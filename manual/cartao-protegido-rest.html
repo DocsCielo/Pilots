@@ -453,7 +453,7 @@
   </tbody>
 </table>
 
-<h2 id="get-token-reference-info">Get Token Reference Info</h2>
+<h2 id="get-token-reference-information">Get Token Reference Information</h2>
 
 <p>O objetivo deste método é obter as informações relacionadas a uma referência de token, tais como Status, Cartão Mascarado, Data de Validade e Nome do Portador.</p>
 
@@ -550,28 +550,28 @@
       <td>Texto</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Card.Number</code></td>
+      <td><code class="highlighter-rouge">Account.Number</code></td>
       <td>Número do Cartão do comprador</td>
       <td>Número</td>
       <td>16</td>
       <td>-</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Card.Holder</code></td>
+      <td><code class="highlighter-rouge">Account.Holder</code></td>
       <td>Nome do Comprador impresso no cartão, sem caraceteres acentuados</td>
       <td>Texto</td>
       <td>25</td>
       <td>Exemplo: Jose da Silva</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Card.ExpirationDate</code></td>
+      <td><code class="highlighter-rouge">Account.ExpirationDate</code></td>
       <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
       <td>Texto</td>
       <td>7</td>
       <td>Exemplo: 12/2021</td>
     </tr>
     <tr>
-      <td><code class="highlighter-rouge">Card.SecurityCode</code></td>
+      <td><code class="highlighter-rouge">Account.SecurityCode</code></td>
       <td>Código de segurança impresso no verso do cartão</td>
       <td>Número</td>
       <td>4</td>
@@ -645,11 +645,99 @@
 |———–|———|—-|——-|——-|
 |<code class="highlighter-rouge">TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|GUID|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|</p>
 
-<h2 id="invalidando-um-tokenreference">=========================INVALIDANDO um TokenReference</h2>
+<h2 id="delete-token-reference">Delete Token Reference</h2>
 
-<p>O método a seguir deve ser chamado para remover um token gravado. Essa exclusão é definitiva e não há forma de reverte-la.</p>
+<p>O objetivo deste método é remover a referência do token da base. O Token Referente removido através deste método não permite que seja recuperado futuramente.</p>
 
-<aside class="request"><span class="method DELETE">DELETE</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/</span></aside>
+
+<h3 id="request-4">Request</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>Local</th>
+      <th>Parâmetros</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Obrigatório</th>
+      <th>Descrição</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">MerchantID</code></td>
+      <td>GUID</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)</td>
+    </tr>
+    <tr>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">Authorization</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td><strong>Barear</strong> <em>(Authorization)</em><br />(é o token de acesso gerado no passo anterior)</td>
+    </tr>
+    <tr>
+      <td>Header</td>
+      <td><code class="highlighter-rouge">Content-Type</code></td>
+      <td>Texto</td>
+      <td>-</td>
+      <td>Sim</td>
+      <td>application/json</td>
+    </tr>
+    <tr>
+      <td>Body</td>
+      <td><code class="highlighter-rouge">RemovedBy</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Quem solicitou a remoção. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
+    </tr>
+    <tr>
+      <td>Body</td>
+      <td><code class="highlighter-rouge">Reason</code></td>
+      <td>Texto</td>
+      <td>10</td>
+      <td>Sim</td>
+      <td>Motivo da remoção do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
+	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"Other"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+
+<h3 id="response-4">Response</h3>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"26eb7cb4-c2b4-4409-8d2e-810215c42eee"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Removed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/26eb7cb4-c2b4-4409-8d2e-810215c42eee"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|<code class="highlighter-rouge">TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|<code class="highlighter-rouge">Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
+
+<h2 id="suspendendo-um-tokenreference">==========================SUSPENDENDO um TokenReference</h2>
+
+<p>O método a seguir deve ser chamado para suspender um token gravado.</p>
+
+<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
 
 <h3 id="requisição">Requisição</h3>
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
@@ -690,7 +778,7 @@
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Removed"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspended"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
@@ -705,7 +793,7 @@
 |<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
 
-<h2 id="suspendendo-um-tokenreference">SUSPENDENDO um TokenReference</h2>
+<h2 id="reativando-um-token-suspenso">REATIVANDO um token suspenso</h2>
 
 <p>O método a seguir deve ser chamado para suspender um token gravado.</p>
 
@@ -747,66 +835,6 @@
 </table>
 
 <h3 id="resposta-1">Resposta</h3>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Suspended"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"Links"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"Method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GET"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"Rel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"self"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"HRef"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido.</p>
-
-<h2 id="reativando-um-token-suspenso">REATIVANDO um token suspenso</h2>
-
-<p>O método a seguir deve ser chamado para suspender um token gravado.</p>
-
-<aside class="request"><span class="method PUT">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/suspend</span></aside>
-
-<h3 id="requisição-2">Requisição</h3>
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-	</span><span class="s2">"RemovedBy"</span><span class="p">:</span><span class="s2">"Merchant"</span><span class="p">,</span><span class="w">
-	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<table>
-  <thead>
-    <tr>
-      <th>Propriedade</th>
-      <th>Tipo</th>
-      <th>Tamanho</th>
-      <th>Obrigatório</th>
-      <th>Descrição</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="highlighter-rouge">Payment.RemovedBy</code></td>
-      <td>Texto</td>
-      <td>10</td>
-      <td>Sim</td>
-      <td>Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’</td>
-    </tr>
-    <tr>
-      <td><code class="highlighter-rouge">Payment.Reason</code></td>
-      <td>Texto</td>
-      <td>10</td>
-      <td>Sim</td>
-      <td>Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’</td>
-    </tr>
-  </tbody>
-</table>
-
-<h3 id="resposta-2">Resposta</h3>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"53d3e737-b10d-4198-9cb3-58e07a541d4e"</span><span class="p">,</span><span class="w">
