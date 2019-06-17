@@ -47,6 +47,8 @@
                     
                     <li><a data-language-name='json'>JSON</a></li>
                     
+                    <li><a data-language-name='shell'>cURL</a></li>
+                    
                 </ul>
             </div>
             <div class="dark-box"></div>
@@ -292,18 +294,18 @@
     <tr>
       <td>Header</td>
       <td><code class="highlighter-rouge">Content-Type</code></td>
+      <td>-</td>
       <td>Texto</td>
       <td>Sim</td>
       <td>application/x-www-form-urlencoded</td>
-      <td> </td>
     </tr>
     <tr>
       <td>Header</td>
       <td><code class="highlighter-rouge">Authorization</code></td>
+      <td>-</td>
       <td>Texto</td>
       <td>Sim</td>
       <td><strong>Barear</strong> <em>(Authorization)</em><br />(é o token de acesso gerado no passo anterior)</td>
-      <td> </td>
     </tr>
     <tr>
       <td>Body</td>
@@ -383,7 +385,7 @@
 <table>
   <thead>
     <tr>
-      <th>Propriedades do Response</th>
+      <th>Propriedades</th>
       <th>Descrição</th>
       <th>Tipo</th>
       <th>Tamanho</th>
@@ -505,7 +507,7 @@
 <table>
   <thead>
     <tr>
-      <th>Propriedade</th>
+      <th>Propriedades</th>
       <th>Descrição</th>
       <th>Tipo</th>
       <th>Tamanho</th>
@@ -891,6 +893,9 @@
             
             langs += "<a data-language-name='json'>JSON</a>";
             langsArray.push('json');
+            
+            langs += "<a data-language-name='shell'>cURL</a>";
+            langsArray.push('shell');
             
 
             var toggleCode = 'Comutar';
