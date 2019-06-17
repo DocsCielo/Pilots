@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T11:57:38+00:00</updated>
+    <updated>2019-06-17T12:03:01+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -259,161 +259,11 @@
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.ExpirationDate&lt;/code&gt;|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;|Texto|4|Sim|Código de segurança impresso no verso do cartão|&lt;/p&gt;
 
-&lt;h2&gt;=============&lt;/h2&gt;
+&lt;h2 id=&quot;get-token&quot;&gt;Get Token&lt;/h2&gt;
 
-&lt;p&gt;Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.&lt;/p&gt;
-
-&lt;p&gt;Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro &lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.SaveCard&lt;/code&gt;. Com isso será retornado um parâmetro &lt;code class=&quot;highlighter-rouge&quot;&gt;Credicard.CreditCardToken&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Para mais detalhes consulte a seguinte seção do manual do Pagador:&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o&quot;&gt;Salvando e Reutilizando cartões&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o &lt;code class=&quot;highlighter-rouge&quot;&gt;Credicard.CreditCardToken&lt;/code&gt; dentro do nó &lt;code class=&quot;highlighter-rouge&quot;&gt;CreditCard&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Receber o resultado da autorização&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;p&gt;Você pode observar um exemplo dessa função no manual do PAGADOR também em &lt;a href=&quot;https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token&quot;&gt;Criando uma transação com Card Token&lt;/a&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;sobre-a-integração&quot;&gt;Sobre a Integração&lt;/h2&gt;
-
-&lt;p&gt;Nas seções abaixo, estão graficamente representados, os fluxos do processo de venda. Existem 3 maneiras de integrar o produto:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Diretamente pela plataforma do CARTÃO PROTEGIDO;&lt;/li&gt;
-  &lt;li&gt;Via plataforma PAGADOR, utilizando Webservice;&lt;/li&gt;
-  &lt;li&gt;Via plataforma PAGADOR, utilizando Post de Dados.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Os dados necessários para armazenar um cartão de crédito na plataforma são: CPF do Cliente, Nome do Cliente, Nome do Portador, Número do Cartão e Data de Validade. O código de segurança não é armazenado (vide seção Código de
-Segurança).&lt;/p&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;A plataforma do CARTÃO PROTEGIDO armazena de forma segura, 100% PCI Compliance, os dados dos cartões de crédito.&lt;/aside&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;Como a autorização de uma transação é via PAGADOR, todas as funcionalidades de confirmação da transação - Segundo Post (post de confirmação), e Terceiro Post (sonda) - permanecem funcionando da mesma forma. &lt;/aside&gt;
-
-&lt;h1 id=&quot;parÂmetro-alias&quot;&gt;&lt;strong&gt;PARÂMETRO&lt;/strong&gt; Alias&lt;/h1&gt;
-
-&lt;p&gt;Este parâmetro tem por finalidade facilitar o armazenamento, por parte do cliente, de informações referentes a um Cartão Protegido. O cliente poderá, no momento do salvamento do cartão, criar um Alias (apelido) que identificará esse cartão na Plataforma CARTÃO PROTEGIDO. Outra vantagem, é o fato desse Alias poder ser associado a um novo token, o que facilitaria a troca de um cartão quando, por exemplo, a validade deste expirar. Para isso, o lojista deveria indicar que o token está desabilitado. Dessa forma, o Alias associado a ele ficaria liberado para ser utilizado com um novo token.&lt;/p&gt;
-
-&lt;h2 id=&quot;forma-correta-de-associação&quot;&gt;Forma Correta de Associação&lt;/h2&gt;
-
-&lt;p&gt;Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, conforme indicado no exemplo abaixo:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Merchant Id&lt;/th&gt;
-      &lt;th&gt;Token&lt;/th&gt;
-      &lt;th&gt;Alias&lt;/th&gt;
-      &lt;th&gt;Enabled&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 1&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 2&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;0&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 3&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;aside class=&quot;notice&quot;&gt;Obs.: A desassociação ocorrerá após a exclusão do token criado. &lt;/aside&gt;
-
-&lt;h2 id=&quot;forma-de-associação-não-aceita&quot;&gt;Forma de Associação Não Aceita&lt;/h2&gt;
-
-&lt;p&gt;Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, no exemplo abaixo está indicada uma forma que não permitiria essa associação, pois o Alias só estará liberado para uma nova associação
-desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Merchant Id&lt;/th&gt;
-      &lt;th&gt;Token&lt;/th&gt;
-      &lt;th&gt;Alias&lt;/th&gt;
-      &lt;th&gt;Enabled&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 1&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 2&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;LOJA A&lt;/td&gt;
-      &lt;td&gt;Token 3&lt;/td&gt;
-      &lt;td&gt;XPTO&lt;/td&gt;
-      &lt;td&gt;1&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h1 id=&quot;autenticação&quot;&gt;Autenticação&lt;/h1&gt;
-
-&lt;p&gt;A solução é composta pelo passo de solicitação de token de acesso via API. As funções, aqui apresentadas, precisam apresentar em seu header um token de acesso do tipo “BEARER” que expira e precisa ser solicitado novamente.&lt;/p&gt;
-
-&lt;h2 id=&quot;tokens-de-acesso&quot;&gt;Tokens de Acesso&lt;/h2&gt;
-
-&lt;p&gt;O CARTÃO PROTEGIDO utiliza o protocolo padrão de mercado OAuth 2.0 para autorização de acesso a seus recursos específicos por ambientes, que são: &lt;strong&gt;Sandbox&lt;/strong&gt; e &lt;strong&gt;Produção&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;p&gt;Esta sessão descreve o fluxo necessário para que aplicações cliente obtenham tokens de acesso válidos para uso na API.&lt;/p&gt;
-
-&lt;h2 id=&quot;obtenção-do-token-de-acesso&quot;&gt;Obtenção do token de acesso&lt;/h2&gt;
-
-&lt;p&gt;O token de acesso é obtido através do fluxo oauth &lt;strong&gt;client_credentials&lt;/strong&gt;. O diagrama abaixo, ilustra, em ordem cronológica, a comunicação que se dá entre a &lt;strong&gt;Aplicação Cliente&lt;/strong&gt;, a &lt;strong&gt;API BraspagAuth&lt;/strong&gt; e o &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt;.&lt;/p&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;A &lt;strong&gt;Aplicação Cliente&lt;/strong&gt;, informa à API &lt;strong&gt;BraspagAuth&lt;/strong&gt; sua credencial.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;O &lt;strong&gt;BraspagAuth&lt;/strong&gt; valida a credencial recebida. Se for válida, retorna o token de acesso para o &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;A &lt;strong&gt;Aplicação Cliente&lt;/strong&gt; informa o token de acesso no cabeçalho das requisições HTTP feitas ao &lt;strong&gt;CARTÃO PROTEGIDO&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;Se o token de acesso for válido, a requisição é processada e os dados são retornados para a &lt;strong&gt;Aplicação Cliente&lt;/strong&gt;.&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;aside class=&quot;warning&quot;&gt;Solicite à equipe de suporte o seu &quot;client_id&quot; e &quot;client_scret&quot; após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.&lt;/aside&gt;
-
-&lt;h1 id=&quot;mÉtodos-do-cartÃo-protegido&quot;&gt;MÉTODOS DO CARTÃO PROTEGIDO&lt;/h1&gt;
-
-&lt;p&gt;Abaixo estão representados os fluxos dos webmethods da plataforma do CARTÃO PROTEGIDO, para execução dos procedimentos via webservice.&lt;/p&gt;
-
-&lt;h2 id=&quot;recuperando-os-dados-do-cartão-de-crédito&quot;&gt;RECUPERANDO os dados do Cartão de Crédito&lt;/h2&gt;
-
-&lt;p&gt;O método a seguir deve ser chamado para consultar os dados de um cartão de crédito de forma PCI Compliance, ou seja, apenas o número mascarado do cartão é retornado, juntamente com as demais informações não sensíveis.&lt;/p&gt;
+&lt;h3 id=&quot;request-2&quot;&gt;Request&lt;/h3&gt;
 
 &lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method GET&quot;&gt;GET&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}&lt;/span&gt;&lt;/aside&gt;
-
-&lt;h3 id=&quot;requisição&quot;&gt;Requisição&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -436,7 +286,7 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;resposta&quot;&gt;Resposta&lt;/h3&gt;
+&lt;h3 id=&quot;response-2&quot;&gt;Response&lt;/h3&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Alias&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CartaoTesteBP&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -466,13 +316,13 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.ExpirationDate&lt;/code&gt;|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;|Texto|4|Sim|Código de segurança impresso no verso do cartão|&lt;/p&gt;
 
-&lt;h2 id=&quot;recuperando-o-tokenreference-pelo-alias&quot;&gt;RECUPERANDO o TokenReference pelo Alias&lt;/h2&gt;
+&lt;h2&gt;========================&lt;/h2&gt;
 
 &lt;p&gt;O método a seguir deve ser chamado para consultar o TokenReference quando se tem apenas o Alias salvo.&lt;/p&gt;
 
 &lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method GET&quot;&gt;GET&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Alias/{Alias}/TokenReference&lt;/span&gt;&lt;/aside&gt;
 
-&lt;h3 id=&quot;requisição-1&quot;&gt;Requisição&lt;/h3&gt;
+&lt;h3 id=&quot;requisição&quot;&gt;Requisição&lt;/h3&gt;
 
 &lt;table&gt;
   &lt;thead&gt;
@@ -495,7 +345,7 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
 
-&lt;h3 id=&quot;resposta-1&quot;&gt;Resposta&lt;/h3&gt;
+&lt;h3 id=&quot;resposta&quot;&gt;Resposta&lt;/h3&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TokenReference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;bcad40d4-6991-4837-b90a-34a2bbf39c51&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -510,6 +360,66 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 &lt;p&gt;O método a seguir deve ser chamado para remover um token gravado. Essa exclusão é definitiva e não há forma de reverte-la.&lt;/p&gt;
 
 &lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method DELETE&quot;&gt;DELETE&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}&lt;/span&gt;&lt;/aside&gt;
+
+&lt;h3 id=&quot;requisição-1&quot;&gt;Requisição&lt;/h3&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RemovedBy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Merchant&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+	&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Reason&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;FraudSuspicion&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Propriedade&lt;/th&gt;
+      &lt;th&gt;Tipo&lt;/th&gt;
+      &lt;th&gt;Tamanho&lt;/th&gt;
+      &lt;th&gt;Obrigatório&lt;/th&gt;
+      &lt;th&gt;Descrição&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.RemovedBy&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
+      &lt;td&gt;Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Reason&lt;/code&gt;&lt;/td&gt;
+      &lt;td&gt;Texto&lt;/td&gt;
+      &lt;td&gt;10&lt;/td&gt;
+      &lt;td&gt;Sim&lt;/td&gt;
+      &lt;td&gt;Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;h3 id=&quot;resposta-1&quot;&gt;Resposta&lt;/h3&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TokenReference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Removed&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Links&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Rel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;self&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HRef&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;|Propriedade|Descrição|Tipo|Tamanho|Formato|
+|———–|———|—-|——-|——-|
+|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Status&lt;/code&gt;|Texto|10|Não |Status atual do token no Cartão Protegido.&lt;/p&gt;
+
+&lt;h2 id=&quot;suspendendo-um-tokenreference&quot;&gt;SUSPENDENDO um TokenReference&lt;/h2&gt;
+
+&lt;p&gt;O método a seguir deve ser chamado para suspender um token gravado.&lt;/p&gt;
+
+&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method PUT&quot;&gt;PUT&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}/suspend&lt;/span&gt;&lt;/aside&gt;
 
 &lt;h3 id=&quot;requisição-2&quot;&gt;Requisição&lt;/h3&gt;
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -550,7 +460,7 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TokenReference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Removed&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Suspended&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Links&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
         &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
             &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
@@ -565,7 +475,7 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Status&lt;/code&gt;|Texto|10|Não |Status atual do token no Cartão Protegido.&lt;/p&gt;
 
-&lt;h2 id=&quot;suspendendo-um-tokenreference&quot;&gt;SUSPENDENDO um TokenReference&lt;/h2&gt;
+&lt;h2 id=&quot;reativando-um-token-suspenso&quot;&gt;REATIVANDO um token suspenso&lt;/h2&gt;
 
 &lt;p&gt;O método a seguir deve ser chamado para suspender um token gravado.&lt;/p&gt;
 
@@ -607,66 +517,6 @@ desde que esteja desvinculado de um determinado Token:&lt;/p&gt;
 &lt;/table&gt;
 
 &lt;h3 id=&quot;resposta-3&quot;&gt;Resposta&lt;/h3&gt;
-
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TokenReference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Status&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Suspended&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Links&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Method&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;GET&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Rel&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;self&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-            &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;HRef&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-        &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-    &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Status&lt;/code&gt;|Texto|10|Não |Status atual do token no Cartão Protegido.&lt;/p&gt;
-
-&lt;h2 id=&quot;reativando-um-token-suspenso&quot;&gt;REATIVANDO um token suspenso&lt;/h2&gt;
-
-&lt;p&gt;O método a seguir deve ser chamado para suspender um token gravado.&lt;/p&gt;
-
-&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method PUT&quot;&gt;PUT&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}/suspend&lt;/span&gt;&lt;/aside&gt;
-
-&lt;h3 id=&quot;requisição-4&quot;&gt;Requisição&lt;/h3&gt;
-&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-	&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;RemovedBy&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Merchant&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-	&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Reason&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;FraudSuspicion&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Propriedade&lt;/th&gt;
-      &lt;th&gt;Tipo&lt;/th&gt;
-      &lt;th&gt;Tamanho&lt;/th&gt;
-      &lt;th&gt;Obrigatório&lt;/th&gt;
-      &lt;th&gt;Descrição&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.RemovedBy&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Texto&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Discriminação de quem removeu o token. Valores possíveis: ‘Merchant’ ou ‘CardHolder’&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Payment.Reason&lt;/code&gt;&lt;/td&gt;
-      &lt;td&gt;Texto&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-      &lt;td&gt;Sim&lt;/td&gt;
-      &lt;td&gt;Razão da exclusão do token. Valores possíveis: ‘FraudSuspicion’ ou ‘Other’&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;h3 id=&quot;resposta-4&quot;&gt;Resposta&lt;/h3&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;TokenReference&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;53d3e737-b10d-4198-9cb3-58e07a541d4e&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
