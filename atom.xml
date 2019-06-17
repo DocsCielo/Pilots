@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-06-17T12:11:02+00:00</updated>
+    <updated>2019-06-17T12:16:03+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -165,7 +165,7 @@
 
 &lt;h3 id=&quot;request-1&quot;&gt;Request&lt;/h3&gt;
 
-&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method POST&quot;&gt;POST&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token&lt;/span&gt;&lt;/aside&gt;
+&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method post&quot;&gt;POST&lt;/span&gt;&lt;span class=&quot;endpoint&quot;&gt;/v1/Token&lt;/span&gt;&lt;/aside&gt;
 
 &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Alias&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;CartaoDoJose&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;    
@@ -176,7 +176,6 @@
         &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;SecurityCode&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;123&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
     &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
-
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;table&gt;
@@ -254,16 +253,16 @@
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Alias&lt;/code&gt;|Texto|64|Não |Alias (Apelido) do cartão de crédito|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;TokenReference&lt;/code&gt;|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;ExpirationDate&lt;/code&gt;|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Number&lt;/code&gt;|Texto|16|Sim|Número do Cartão do comprador|
+|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Number&lt;/code&gt;|Número|16|Sim|Número do Cartão do comprador|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.Holder&lt;/code&gt;|Texto|25|Sim|Nome do Comprador impresso no cartão|
 |&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.ExpirationDate&lt;/code&gt;|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;|Texto|4|Sim|Código de segurança impresso no verso do cartão|&lt;/p&gt;
+|&lt;code class=&quot;highlighter-rouge&quot;&gt;Card.SecurityCode&lt;/code&gt;|Número|4|Sim|Código de segurança impresso no verso do cartão|&lt;/p&gt;
 
 &lt;h2 id=&quot;get-token&quot;&gt;Get Token&lt;/h2&gt;
 
 &lt;h3 id=&quot;request-2&quot;&gt;Request&lt;/h3&gt;
 
-&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method GET&quot;&gt;GET&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}&lt;/span&gt;&lt;/aside&gt;
+&lt;aside class=&quot;request&quot;&gt;&lt;span class=&quot;method get&quot;&gt;GET&lt;/span&gt; &lt;span class=&quot;endpoint&quot;&gt;/v1/Token/{TokenReference}&lt;/span&gt;&lt;/aside&gt;
 
 &lt;p&gt;&lt;strong&gt;Parâmetros no cabeçalho (Header)&lt;/strong&gt;&lt;/p&gt;
 

@@ -276,7 +276,7 @@
 
 <h3 id="request-1">Request</h3>
 
-<aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
+<aside class="request"><span class="method post">POST</span><span class="endpoint">/v1/Token</span></aside>
 
 <div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"Alias"</span><span class="p">:</span><span class="s2">"CartaoDoJose"</span><span class="p">,</span><span class="w">    
@@ -287,7 +287,6 @@
         </span><span class="s2">"SecurityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre></div></div>
 
 <table>
@@ -365,16 +364,16 @@
 |<code class="highlighter-rouge">Alias</code>|Texto|64|Não |Alias (Apelido) do cartão de crédito|
 |<code class="highlighter-rouge">TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |<code class="highlighter-rouge">ExpirationDate</code>|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
-|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
+|<code class="highlighter-rouge">Card.Number</code>|Número|16|Sim|Número do Cartão do comprador|
 |<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
 |<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
+|<code class="highlighter-rouge">Card.SecurityCode</code>|Número|4|Sim|Código de segurança impresso no verso do cartão|</p>
 
 <h2 id="get-token">Get Token</h2>
 
 <h3 id="request-2">Request</h3>
 
-<aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
 <p><strong>Parâmetros no cabeçalho (Header)</strong></p>
 
