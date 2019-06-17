@@ -54,14 +54,11 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
 
-|Parâmetro no Header|Descrição|
-|---|---|
-|`Content-Type`|application/x-www-form-urlencoded|
-|`Authorization`|Basic _(Authorization)_|
-
-|Parâmetro no Body|Descrição|
-|---|---|
-|`grant_type`|client_credentials|
+|Local|Parâmetros|Descrição|
+|---|---|---|
+|Header|`Content-Type`|application/x-www-form-urlencoded|
+|Header|`Authorization`|Basic _(Authorization)_|
+|Body|`grant_type`|client_credentials|
 
 ### Response
 
@@ -73,7 +70,7 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 }
 ```
 
-|Parâmetro no Body|Descrição|
+|Propriedades do Response|Descrição|
 |---|---|
 |`access_token`|O token de acesso solicitado. O aplicativo pode usar esse token para se autenticar no recurso protegido|
 |`token_type`|Indica o valor do tipo de token|
@@ -99,18 +96,15 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 }
 ```
 
-|Parâmetro no Header|Descrição|
-|---|---|
-|`Content-Type`|application/x-www-form-urlencoded|
-|`Authorization`|Barear _(Authorization)_ (é o token de acesso gerado no passo anterior|
-
-|Parâmetros no Body|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
-|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
-|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
+|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|
+|Header|`Content-Type`|Texto|Sim|application/x-www-form-urlencoded|
+|Header|`Authorization`|Texto|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Body|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
+|Body|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
+|Body|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|Body|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|Body|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
 
 ### Response
 
