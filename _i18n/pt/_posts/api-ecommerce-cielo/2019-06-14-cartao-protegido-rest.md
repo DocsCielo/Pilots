@@ -102,9 +102,9 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 |Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
-|Header|`MerchantID`|-|GUID|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Content-Type`|-|Texto|Sim|application/x-www-form-urlencoded|
-|Header|`Authorization`|-|Texto|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|Header|`Content-Type`|Texto|-|Sim|application/x-www-form-urlencoded|
+|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
 |Body|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
 |Body|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
 |Body|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
