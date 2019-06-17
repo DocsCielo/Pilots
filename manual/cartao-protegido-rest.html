@@ -376,6 +376,8 @@
 
 <aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
+<p><strong>Parâmetros no cabeçalho (Header)</strong></p>
+
 <table>
   <thead>
     <tr>
@@ -389,10 +391,10 @@
   <tbody>
     <tr>
       <td><code class="highlighter-rouge">Payment.TokenReference</code></td>
-      <td>Token no Cartão Protegido que representa os dados do cartão</td>
-      <td>Guid</td>
+      <td>GUID</td>
       <td>36</td>
-      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+      <td>Sim</td>
+      <td>Token no Cartão Protegido que representa os dados do cartão</td>
     </tr>
   </tbody>
 </table>
@@ -420,12 +422,12 @@
 </span></code></pre></div></div>
 <p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
 |———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Payment.Status</code>|Texto|10|Não |Status atual do token no Cartão Protegido. Valores possíveis: Active, Removed, Suspended
+|<code class="highlighter-rouge">Payment.Status</code>|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |<code class="highlighter-rouge">Payment.TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">Card.Number</code>|Texto|16|Sim|Número do Cartão do comprador|
-|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|<code class="highlighter-rouge">Card.SecurityCode</code>|Texto|4|Sim|Código de segurança impresso no verso do cartão|</p>
+|<code class="highlighter-rouge">Card.Number</code>|Número do Cartão do comprador|Número|16|Exemplo: 4551870000000183|
+|<code class="highlighter-rouge">Card.Holder</code>|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
+|<code class="highlighter-rouge">Card.ExpirationDate</code>|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
+|<code class="highlighter-rouge">Card.SecurityCode</code>|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|</p>
 
 <h2>========================</h2>
 
