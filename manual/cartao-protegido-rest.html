@@ -47,8 +47,6 @@
                     
                     <li><a data-language-name='json'>JSON</a></li>
                     
-                    <li><a data-language-name='shell'>cURL</a></li>
-                    
                 </ul>
             </div>
             <div class="dark-box"></div>
@@ -197,6 +195,9 @@
 <h3 id="request">Request</h3>
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">grant_type=client_credentials</span><span class="w">
+</span></code></pre></div></div>
 
 <table>
   <thead>
@@ -890,9 +891,6 @@
             
             langs += "<a data-language-name='json'>JSON</a>";
             langsArray.push('json');
-            
-            langs += "<a data-language-name='shell'>cURL</a>";
-            langsArray.push('shell');
             
 
             var toggleCode = 'Comutar';
