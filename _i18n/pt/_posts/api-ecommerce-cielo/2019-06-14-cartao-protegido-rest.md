@@ -89,11 +89,11 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 Abaixo estão representados os fluxos de uma requisição para salvar um cartão de um cliente via CARTÃO PROTEGIDO, porém sem a necessidade de realizar uma autorização junto ao adquirente.
 
+### Request
+
 <aside class="request"><span class="method POST">POST</span> <span class="endpoint">/v1/Token</span></aside>
 
-### Requisição
 ```json
-
 {
     "Alias":"CartaoDoJose",    
     "Card": {
@@ -114,7 +114,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
 
-### Resposta
+### Response
 
 ```json
 {
