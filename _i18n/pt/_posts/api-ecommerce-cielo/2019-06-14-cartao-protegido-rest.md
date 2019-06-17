@@ -146,109 +146,17 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
 
-## =============
+## Get Token
 
-Abaixo está representado o fluxo de uma requisição para salvar um cartão de um cliente durante uma venda, seguido de outro fluxo onde o mesmo cliente realiza uma compra via CARTÃO PROTEGIDO.
-
-Com a permissão do cliente para salvar seu cartão, o estabelecimento deve enviar o parâmetro `Payment.SaveCard`. Com isso será retornado um parâmetro `Credicard.CreditCardToken`.
-
-Para mais detalhes consulte a seguinte seção do manual do Pagador:
-
-[Salvando e Reutilizando cartões](https://braspag.github.io//manual/braspag-pagador#salvando-um-cart%C3%A3o-durante-uma-autoriza%C3%A7%C3%A3o)
-
-Quando o cliente voltar ao site para fazer uma nova compra e se logar, o site pode apresentar a opção de “compra com 1 clique”, e o fluxo será:
-
-1. Chamar a autorização da transação direto pela plataforma do PAGADOR, passando o `Credicard.CreditCardToken` dentro do nó `CreditCard`.
-2. Receber o resultado da autorização
-
-Você pode observar um exemplo dessa função no manual do PAGADOR também em [Criando uma transação com Card Token](https://braspag.github.io//manual/braspag-pagador#criando-uma-transa%C3%A7%C3%A3o-com-card-token)
-
-## Sobre a Integração
-
-Nas seções abaixo, estão graficamente representados, os fluxos do processo de venda. Existem 3 maneiras de integrar o produto:
-
-* Diretamente pela plataforma do CARTÃO PROTEGIDO;
-* Via plataforma PAGADOR, utilizando Webservice;
-* Via plataforma PAGADOR, utilizando Post de Dados.
-
-Os dados necessários para armazenar um cartão de crédito na plataforma são: CPF do Cliente, Nome do Cliente, Nome do Portador, Número do Cartão e Data de Validade. O código de segurança não é armazenado (vide seção Código de
-Segurança).
-
-<aside class="notice">A plataforma do CARTÃO PROTEGIDO armazena de forma segura, 100% PCI Compliance, os dados dos cartões de crédito.</aside>
-
-<aside class="notice">Como a autorização de uma transação é via PAGADOR, todas as funcionalidades de confirmação da transação - Segundo Post (post de confirmação), e Terceiro Post (sonda) - permanecem funcionando da mesma forma. </aside>
-
-# **PARÂMETRO** Alias
-
-Este parâmetro tem por finalidade facilitar o armazenamento, por parte do cliente, de informações referentes a um Cartão Protegido. O cliente poderá, no momento do salvamento do cartão, criar um Alias (apelido) que identificará esse cartão na Plataforma CARTÃO PROTEGIDO. Outra vantagem, é o fato desse Alias poder ser associado a um novo token, o que facilitaria a troca de um cartão quando, por exemplo, a validade deste expirar. Para isso, o lojista deveria indicar que o token está desabilitado. Dessa forma, o Alias associado a ele ficaria liberado para ser utilizado com um novo token.
-
-## Forma Correta de Associação
-
-Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, conforme indicado no exemplo abaixo:
-
-|Merchant Id|Token|Alias|Enabled|
-|-----------|--------------------|-----|-------|
-|LOJA A|Token 1|XPTO|0|
-|LOJA A|Token 2|XPTO|0|
-|LOJA A|Token 3|XPTO|1|
-
-<aside class="notice">Obs.: A desassociação ocorrerá após a exclusão do token criado. </aside>
-
-## Forma de Associação Não Aceita
-
-Um Alias pode ser associado a um novo Token, desde que antes seja desassociado do Token antigo, no exemplo abaixo está indicada uma forma que não permitiria essa associação, pois o Alias só estará liberado para uma nova associação
-desde que esteja desvinculado de um determinado Token:
-
-|Merchant Id|Token|Alias|Enabled|
-|-----------|--------------------|-----|-------|
-|LOJA A|Token 1|XPTO|1|
-|LOJA A|Token 2|XPTO|1|
-|LOJA A|Token 3|XPTO|1|
-
-# Autenticação
-
-A solução é composta pelo passo de solicitação de token de acesso via API. As funções, aqui apresentadas, precisam apresentar em seu header um token de acesso do tipo "BEARER" que expira e precisa ser solicitado novamente.
-
-## Tokens de Acesso
-
-O CARTÃO PROTEGIDO utiliza o protocolo padrão de mercado OAuth 2.0 para autorização de acesso a seus recursos específicos por ambientes, que são: **Sandbox** e **Produção**.
-
-Esta sessão descreve o fluxo necessário para que aplicações cliente obtenham tokens de acesso válidos para uso na API.
-
-## Obtenção do token de acesso  
-
-O token de acesso é obtido através do fluxo oauth **client_credentials**. O diagrama abaixo, ilustra, em ordem cronológica, a comunicação que se dá entre a **Aplicação Cliente**, a **API BraspagAuth** e o **CARTÃO PROTEGIDO**.
-
-1. A **Aplicação Cliente**, informa à API **BraspagAuth** sua credencial.
-
-2. O **BraspagAuth** valida a credencial recebida. Se for válida, retorna o token de acesso para o **CARTÃO PROTEGIDO**.
-
-3. A **Aplicação Cliente** informa o token de acesso no cabeçalho das requisições HTTP feitas ao **CARTÃO PROTEGIDO**.
-
-4. Se o token de acesso for válido, a requisição é processada e os dados são retornados para a **Aplicação Cliente**.
-
-<aside class="warning">Solicite à equipe de suporte o seu "client_id" e "client_scret" após concluir o desenvolvimento em sandbox. Os dados apresentados abaixo são apenas exemplos.</aside>
-
-
-
-# MÉTODOS DO CARTÃO PROTEGIDO
-
-Abaixo estão representados os fluxos dos webmethods da plataforma do CARTÃO PROTEGIDO, para execução dos procedimentos via webservice.
-
-## RECUPERANDO os dados do Cartão de Crédito
-
-O método a seguir deve ser chamado para consultar os dados de um cartão de crédito de forma PCI Compliance, ou seja, apenas o número mascarado do cartão é retornado, juntamente com as demais informações não sensíveis.
+### Request
 
 <aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
-
-### Requisição
 
 |Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
 |-----------|----|-------|-----------|---------|
 |`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 
-
-### Resposta
+### Response
 
 ```json
 {
@@ -279,7 +187,7 @@ O método a seguir deve ser chamado para consultar os dados de um cartão de cr�
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
 
-## RECUPERANDO o TokenReference pelo Alias
+## ========================
 
 O método a seguir deve ser chamado para consultar o TokenReference quando se tem apenas o Alias salvo.
 
