@@ -9,7 +9,6 @@ tags:
   - Cartão Protegido
 language_tabs:
   json: JSON
-  shell: cURL
 ---
 
 # O que é Cartão Protegido?
@@ -53,6 +52,10 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 ### Request
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
+
+``` json
+grant_type=client_credentials
+```
 
 |Local|Parâmetros|Descrição|
 |---|---|---|
