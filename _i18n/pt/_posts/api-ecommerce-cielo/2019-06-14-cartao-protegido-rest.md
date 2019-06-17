@@ -135,6 +135,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
     ]
 }
 ```
+
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
 |`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito|
@@ -184,7 +185,7 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 |-----------|---------|----|-------|-------|
 |`Payment.Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Card.Number`|Número do Cartão do comprador|Número|16|Exemplo: 4551870000000183|
+|`Card.Number`|Número do Cartão do comprador|Número|16|-|
 |`Card.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
 |`Card.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
 |`Card.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
