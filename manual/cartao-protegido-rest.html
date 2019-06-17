@@ -359,15 +359,69 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
-<p>|Propriedade|Descrição|Tipo|Tamanho|Formato|
-|———–|———|—-|——-|——-|
-|<code class="highlighter-rouge">Alias</code>|Texto|64|Não |Alias (Apelido) do cartão de crédito|
-|<code class="highlighter-rouge">TokenReference</code>|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|<code class="highlighter-rouge">ExpirationDate</code>|Data de expiração do token, no formato MM/AAAA|Texto|7|MM/AAAA|
-|<code class="highlighter-rouge">Card.Number</code>|Número|16|Sim|Número do Cartão do comprador|
-|<code class="highlighter-rouge">Card.Holder</code>|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|<code class="highlighter-rouge">Card.ExpirationDate</code>|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|<code class="highlighter-rouge">Card.SecurityCode</code>|Número|4|Sim|Código de segurança impresso no verso do cartão|</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Propriedade</th>
+      <th>Descrição</th>
+      <th>Tipo</th>
+      <th>Tamanho</th>
+      <th>Formato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="highlighter-rouge">Alias</code></td>
+      <td>Texto</td>
+      <td>64</td>
+      <td>Não</td>
+      <td>Alias (Apelido) do cartão de crédito</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">TokenReference</code></td>
+      <td>Token no Cartão Protegido que representa os dados do cartão</td>
+      <td>Guid</td>
+      <td>36</td>
+      <td>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">ExpirationDate</code></td>
+      <td>Data de expiração do token, no formato MM/AAAA</td>
+      <td>Texto</td>
+      <td>7</td>
+      <td>MM/AAAA</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Number</code></td>
+      <td>Número</td>
+      <td>16</td>
+      <td>Sim</td>
+      <td>Número do Cartão do comprador</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.Holder</code></td>
+      <td>Texto</td>
+      <td>25</td>
+      <td>Sim</td>
+      <td>Nome do Comprador impresso no cartão</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.ExpirationDate</code></td>
+      <td>Texto</td>
+      <td>7</td>
+      <td>Sim</td>
+      <td>Data de validade impresso no cartão, no formato MM/AAAA</td>
+    </tr>
+    <tr>
+      <td><code class="highlighter-rouge">Card.SecurityCode</code></td>
+      <td>Número</td>
+      <td>4</td>
+      <td>Sim</td>
+      <td>Código de segurança impresso no verso do cartão</td>
+    </tr>
+  </tbody>
+</table>
 
 <h2 id="get-token">Get Token</h2>
 
@@ -450,7 +504,7 @@
       <td>Número do Cartão do comprador</td>
       <td>Número</td>
       <td>16</td>
-      <td>Exemplo: 4551870000000183</td>
+      <td>-</td>
     </tr>
     <tr>
       <td><code class="highlighter-rouge">Card.Holder</code></td>
