@@ -152,9 +152,11 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 
 <aside class="request"><span class="method GET">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
+**Parâmetros no cabeçalho (Header)**
+
 |Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
 |-----------|----|-------|-----------|---------|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`Payment.TokenReference`|GUID|36|Sim|Token no Cartão Protegido que representa os dados do cartão|
 
 ### Response
 
@@ -180,12 +182,12 @@ Abaixo estão representados os fluxos de uma requisição para salvar um cartão
 ```
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Payment.Status`|Texto|10|Não |Status atual do token no Cartão Protegido. Valores possíveis: Active, Removed, Suspended
+|`Payment.Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
 |`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Card.Number`|Texto|16|Sim|Número do Cartão do comprador|
-|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|`Card.SecurityCode`|Texto|4|Sim|Código de segurança impresso no verso do cartão|
+|`Card.Number`|Número do Cartão do comprador|Número|16|Exemplo: 4551870000000183|
+|`Card.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
+|`Card.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
+|`Card.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
 
 ## ========================
 
