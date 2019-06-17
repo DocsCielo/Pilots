@@ -65,11 +65,11 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 grant_type=client_credentials
 ```
 
-|Local|Parâmetros|Descrição|
-|---|---|---|
-|Header|`Authorization`|Basic _(Authorization)_|
-|Header|`Content-Type`|application/x-www-form-urlencoded|
-|Body|`grant_type`|client_credentials|
+|Parâmetros|Descrição|
+|---|---|
+|`Authorization`|Basic _(Authorization)_|
+|`Content-Type`|application/x-www-form-urlencoded|
+|`grant_type`|client_credentials|
 
 ### Response
 
@@ -107,16 +107,16 @@ O objetivo deste método é salvar um cartão e obter como resposta a referênci
 }
 ```
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
-|---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
-|Body|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
-|Body|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
-|Body|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
-|Body|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
-|Body|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
+|`Alias`|Texto|64|Não |Alias do cartão. O valor desta informação deve ser único (não pode repetir).|
+|`Card.Number`|Número|16|Sim|Número do Cartão do comprador|
+|`Card.Holder`|Texto|25|Sim|Nome do Comprador impresso no cartão|
+|`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
+|`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão|
 
 ### Response
 
@@ -171,12 +171,12 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 
 **Parâmetros no cabeçalho (Header)**
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
-|---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
-|Endpoint|`TokenReference`|GUID|36|Sim|Token no Cartão Protegido que representa os dados do cartão|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
+|`TokenReference`|GUID|36|Sim|Token no Cartão Protegido que representa os dados do cartão|
 
 ### Response
 
@@ -211,12 +211,12 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 
 ### Request
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
-|---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
-|Endpoint|`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito utilizado anteriormente no método Create Token|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
+|`Alias`|Texto|64|Não |Alias (Apelido) do cartão de crédito utilizado anteriormente no método Create Token|
 
 ### Response
 
@@ -245,13 +245,13 @@ O objetivo deste método é remover a referência do token da base definitivamen
 }
 ```
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
-|---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
-|Body|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
-|Body|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
+|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
+|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
 
 ### Response
 
@@ -289,13 +289,13 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
 }
 ```
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
-|---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
-|Body|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
-|Body|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
+|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
+|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
 
 ### Response
 
@@ -331,11 +331,11 @@ O objetivo deste método é reativar uma referência do token.
 
 ### Request
 
-|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
-|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
-|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
-|Header|`Content-Type`|Texto|-|Sim|application/json|
+|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|`Content-Type`|Texto|-|Sim|application/json|
 
 ### Response
 
