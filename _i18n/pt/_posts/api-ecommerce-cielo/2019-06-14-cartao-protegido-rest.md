@@ -154,7 +154,7 @@ O objetivo deste método é salvar um cartão e obter como resposta a referênci
 |`Card.ExpirationDate`|Texto|7|Sim|Data de validade impresso no cartão, no formato MM/AAAA|
 |`Card.SecurityCode`|Número|4|Sim|Código de segurança impresso no verso do cartão mascarado|
 
-## Get Token Reference Info
+## Get Token Reference Information
 
 O objetivo deste método é obter as informações relacionadas a uma referência de token, tais como Status, Cartão Mascarado, Data de Validade e Nome do Portador.
 
@@ -190,10 +190,10 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 |-----------|---------|----|-------|-------|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 |`Status`|Status atual do token no Cartão Protegido.|-|Valores possíveis: Active, Removed, Suspended|Texto|
-|`Card.Number`|Número do Cartão do comprador|Número|16|-|
-|`Card.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
-|`Card.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
-|`Card.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
+|`Account.Number`|Número do Cartão do comprador|Número|16|-|
+|`Account.Holder`|Nome do Comprador impresso no cartão, sem caraceteres acentuados|Texto|25|Exemplo: Jose da Silva|
+|`Account.ExpirationDate`|Data de validade impresso no cartão, no formato MM/AAAA|Texto|7|Exemplo: 12/2021|
+|`Account.SecurityCode`|Código de segurança impresso no verso do cartão|Número|4|Exemplo: 999|
 
 ## Get Token Reference
 
@@ -221,47 +221,50 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 |-----------|---------|----|-------|-------|
 |`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|GUID|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
 
-## =========================INVALIDANDO um TokenReference
+## Delete Token Reference
 
-O método a seguir deve ser chamado para remover um token gravado. Essa exclusão é definitiva e não há forma de reverte-la.
+O objetivo deste método é remover a referência do token da base. O Token Referente removido através deste método não permite que seja recuperado futuramente.
 
-<aside class="request"><span class="method DELETE">DELETE</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/v1/Token/{{TokenReference}}</span></aside>
 
-### Requisição
+### Request
+
+|Local|Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|
+|Header|`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
+|Header|`Authorization`|Texto|-|Sim|**Barear** _(Authorization)_<BR>(é o token de acesso gerado no passo anterior)|
+|Header|`Content-Type`|Texto|-|Sim|application/json|
+|Body|`RemovedBy`|Texto|10|Sim|Quem solicitou a remoção. Valores possíveis: 'Merchant' ou 'CardHolder'|
+|Body|`Reason`|Texto|10|Sim|Motivo da remoção do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
+
 ```json
 {
 	"RemovedBy":"Merchant",
-	"Reason":"FraudSuspicion"
+	"Reason":"Other"
 }
 ```
 
-|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
-|-----------|----|-------|-----------|---------|
-|`Payment.RemovedBy`|Texto|10|Sim|Discriminação de quem removeu o token. Valores possíveis: 'Merchant' ou 'CardHolder'|
-|`Payment.Reason`|Texto|10|Sim|Razão da exclusão do token. Valores possíveis: 'FraudSuspicion' ou 'Other'|
-
-
-### Resposta
+### Response
 
 ```json
 {
-    "TokenReference": "53d3e737-b10d-4198-9cb3-58e07a541d4e",
+    "TokenReference": "26eb7cb4-c2b4-4409-8d2e-810215c42eee",
     "Status": "Removed",
     "Links": [
         {
             "Method": "GET",
             "Rel": "self",
-            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/53d3e737-b10d-4198-9cb3-58e07a541d4e"
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/26eb7cb4-c2b4-4409-8d2e-810215c42eee"
         }
     ]
 }
 ```
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
-|`Payment.TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
-|`Payment.Status`|Texto|10|Não |Status atual do token no Cartão Protegido.
+|`TokenReference`|Token no Cartão Protegido que representa os dados do cartão|Guid|36|xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx|
+|`Status`|Texto|10|Não |Status atual do token no Cartão Protegido.
 
-## SUSPENDENDO um TokenReference
+## ==========================SUSPENDENDO um TokenReference
 
 O método a seguir deve ser chamado para suspender um token gravado.
 
