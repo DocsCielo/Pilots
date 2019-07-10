@@ -6,7 +6,7 @@ search: true
 translated: true
 toc_footers: true
 categories: manual
-sort_order: 1
+sort_order: 2
 tags:
   - API Pagamento
 language_tabs:
