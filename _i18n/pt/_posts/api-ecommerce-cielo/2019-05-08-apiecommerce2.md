@@ -1,6 +1,6 @@
 ---
 layout: manual
-title: Manual de Integração eCommerce
+title: Manual de Integração eCommerce Cielo
 description: Manual integração técnica via API
 search: true
 translated: true
