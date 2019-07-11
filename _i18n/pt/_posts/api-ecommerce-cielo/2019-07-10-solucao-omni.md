@@ -1024,3 +1024,199 @@ Para solicitar o desfazimento é necessário informar o MerchantOrderId enviado 
   ]
 }
 ```
+
+# Baixa de parâmetros
+
+Essa operação é necessária para que o parceiro de negócio / Subadquirente receba todas as tabelas de parâmetros necessários para que a solução de captura possa efetuar as transações via chamada de API. Essa informação será recebida através de API e deverá ser instalada na BC
+
+## Inicialização de um terminal
+
+Solicita as tabelas e parametros para operação do terminal
+
+### Requisição
+
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/initialization/{TerminalId}</span></aside>
+
+```json
+{
+  "MerchantId": "string",
+  "TerminalId": "string",
+  "Acquirer": {
+    "EnableContaclessCardReader": true,
+    "LockAppFunctionsExceptInitialization": true,
+    "HasChipReader": true,
+    "HasMagneticTrackReader": true,
+    "HasKeyboard": true
+  },
+  "Merchant": {
+    "MerchantId": "string",
+    "NetworkName": "string",
+    "MerchantName": "string",
+    "MerchantAddress": "string",
+    "NationalId": "string"
+  },
+  "Bins": [
+    {
+      "InitialBin": "string",
+      "FinalBin": "string",
+      "ProductId": 0,
+      "Type": 0,
+      "AllowFallbackWhenChipReadingFails": true,
+      "AllowChargingMoedeiroFromCash": true,
+      "AllowPurchaseWithCompreESaque": true,
+      "AllowOfflineFunctionExceptForEMVCard": true,
+      "AllowTypingCardNumber": true,
+      "MaskCardNumberUsingLast4Digits": true,
+      "MaskCardNumberUsingFirst6AndLas4Digits": true,
+      "AllowPrintCardHolderBalance": true,
+      "AllowDisplayCardHolderBalance": true,
+      "AllowPrintingPartialCardNumberInReceipt": true,
+      "RestrictSaleWithDuplicateValueWhenPostdated": true,
+      "RestrictSaleWithDuplicateValue": true,
+      "RequiresPassword": true,
+      "InterpretsLastDigitOfSecurityCode": true,
+      "RequiresPasswordExceptForEMVCard": true,
+      "EnableAdditionalSecurityCodeOptions_Unreadable_NoCode": true,
+      "RequiresSecurityCodeWhenMagneticTrackIsRead": true,
+      "RequiresSecurityCodeWhenCardNumberIsTyped": true,
+      "RequiresTypingLast4Digits": true,
+      "AllowCaptureOfFirstInstallmentValue": true,
+      "AllowCaptureOfDownpaymentValue": true,
+      "AllowGuaranteeHandling": true,
+      "AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery": true,
+      "AllowPostdating": true,
+      "AllowCDCSale": true,
+      "AllowFinancingByStore": true,
+      "AllowFinancingByCreditCardCompany": true,
+      "ValidateCardTrack1": true,
+      "DoNotValidateCardModule10": true,
+      "CheckExpiryDateWhenCardNumberIsTyped": true,
+      "CheckExpiryDateWhenMagneticTrackIsRead": true,
+      "IssuerId": 0
+    }
+  ],
+  "Products": [
+    {
+      "ProductId": 0,
+      "ProductName": "string",
+      "ProductType": 0,
+      "BrandId": "string",
+      "AllowTransactionWithContactlessCard": true,
+      "IsFinancialProduct": true,
+      "AllowOfflineAuthorizationForEMVCard": true,
+      "AllowReprintReceipt": true,
+      "AllowPrintReceipt": true,
+      "AllowOfflineAuthorizationForContactlessCard": true,
+      "AllowCancel": true,
+      "AllowUndo": true,
+      "AllowCaptureOfFirstInstallmentValue": true,
+      "AllowCaptureOfDownpaymentValue": true,
+      "AllowGuaranteeHandling": true,
+      "AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery": true,
+      "AllowPostdating": true,
+      "AllowCDCSale": true,
+      "AllowFinancingByStore": true,
+      "AllowFinancingByCreditCardCompany": true,
+      "MaximumNumberOfInstallmentsWhenFinancingByCreditCardCompany": 0,
+      "MaximumNumberOfInstallmentsWhenFinancingByStore": 0,
+      "MaximumNumberOfinstallmentsForSaleAndCDCQuery": 0,
+      "MinimumNumberOfInstallmentsWhenFinancingByStore": 0,
+      "SaleGuaranteeType": "string",
+      "PostdatedDayCountLimit": 0,
+      "FirstInstallmentDayCountLimit": 0
+    }
+  ],
+  "Emv": [
+    {
+      "Aid": "string",
+      "TagsFirst": "string",
+      "TagsSecond": "string",
+      "IdxRecord": 0,
+      "Type": 0,
+      "RCodeFirst": "string",
+      "RCodeSecond": "string",
+      "InvalidateFunctionIfCardIsOnBlacklist": true,
+      "RequireBINToBeInCardRangeTable": true,
+      "StoreTransactionsRejectedByTerminalAppAndSendToHost": true,
+      "NatEmvConctactRiskFloorLimit": 0,
+      "NatEmvConctactRiskMinValue": 0,
+      "NatEmvConctactRiskMinPercent": 0,
+      "NatEmvConctactRiskMaxPercent": 0,
+      "IntEmvConctactRiskFloorLimit": 0,
+      "IntEmvConctactRiskMinValue": 0,
+      "IntEmvConctactRiskMinPercent": 0,
+      "IntEmvConctactRiskMaxPercent": 0
+    }
+  ],
+  "Parameters": [
+    {
+      "Currency": "string",
+      "AllowFallbackWhenChipReadingFails": true,
+      "AllowChargingMoedeiroFromCash": true,
+      "AllowPurchaseWithCompreESaque": true,
+      "AllowOfflineFunctionExceptForEMVCard": true,
+      "AllowTypingCardNumber": true,
+      "MaskCardNumberUsingLast4Digits": true,
+      "MaskCardNumberUsingFirst6AndLas4Digits": true,
+      "AllowPrintCardHolderBalance": true,
+      "AllowDisplayCardHolderBalance": true,
+      "AllowPrintingPartialCardNumberInReceipt": true,
+      "RestrictSaleWithDuplicateValueWhenPostdated": true,
+      "RestrictSaleWithDuplicateValue": true,
+      "RequiresPassword": true,
+      "InterpretsLastDigitOfSecurityCode": true,
+      "RequiresPasswordExceptForEMVCard": true,
+      "EnableAdditionalSecurityCodeOptions_Unreadable_NoCode": true,
+      "RequiresSecurityCodeWhenMagneticTrackIsRead": true,
+      "RequiresSecurityCodeWhenCardNumberIsTyped": true,
+      "RequiresTypingLast4Digits": true,
+      "CapturesServiceFee": true,
+      "AllowCancellationWithValueGreaterThanTheValueOfTheSale": true,
+      "CaptureBoardingFee": true
+    }
+  ],
+  "Issuers": [
+    {
+      "IssuerId": 0,
+      "IssuerName": "string",
+      "AllowFallbackWhenChipReadingFails": true,
+      "AllowChargingMoedeiroFromCash": true,
+      "AllowPurchaseWithCompreESaque": true,
+      "AllowOfflineFunctionExceptForEMVCard": true,
+      "AllowTypingCardNumber": true,
+      "MaskCardNumberUsingLast4Digits": true,
+      "MaskCardNumberUsingFirst6AndLas4Digits": true,
+      "AllowPrintCardHolderBalance": true,
+      "AllowDisplayCardHolderBalance": true,
+      "Option03BiAllowPrintingPartialCardNumberInReceipt07": true,
+      "RestrictSaleWithDuplicateValueWhenPostdated": true,
+      "RestrictSaleWithDuplicateValue": true,
+      "RequiresPassword": true,
+      "InterpretsLastDigitOfSecurityCode": true,
+      "RequiresPasswordExceptForEMVCard": true,
+      "EnableAdditionalSecurityCodeOptions_Unreadable_NoCode": true,
+      "RequiresSecurityCodeWhenMagneticTrackIsRead": true,
+      "RequiresSecurityCodeWhenCardNumberIsTyped": true,
+      "RequiresTypingLast4Digits": true,
+      "AllowCaptureOfFirstInstallmentValue": true,
+      "AllowCaptureOfDownpaymentValue": true,
+      "AllowGuaranteeHandling": true,
+      "AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery": true,
+      "AllowPostdating": true,
+      "AllowCDCSale": true,
+      "AllowFinancingByStore": true,
+      "AllowFinancingByCreditCardCompany": true,
+      "RequiresChipReader": true,
+      "RequiresPinpad": true,
+      "LimitDayforReversal": 0,
+      "LimitValueforReversal": "string",
+      "LimitPercentforReversal": 0,
+      "IssuerNameForDisplay": "string",
+      "IssuerNameForPrint": "string"
+    }
+  ],
+  "AidParameters": "string",
+  "PublicKeys": "string",
+  "InitializationVersion": 1558708320029
+}
+```
