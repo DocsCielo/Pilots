@@ -61,17 +61,15 @@ A autenticação é uma operação necessária para obtenção do token que ser�
 
 # Pagamento
 
-## Cria um novo pagamento
-
 Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Payment.Status) na resposta para certificar-se que o pagamento foi gerado com sucesso ou se houve alguma falha.
 
 | SandBox                                             | Produção                                      |
 |:---------------------------------------------------:|:---------------------------------------------:|
 | https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
-### Venda com cartão de crédito digitado e sem senha
+## Venda com cartão de crédito digitado e sem senha
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -107,7 +105,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -188,9 +186,9 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-### Venda com cartão de crédito com leitura de tarja e senha
+## Venda com cartão de crédito com leitura de tarja e senha
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -230,7 +228,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -311,9 +309,9 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-### Venda com cartão de débito com leitura de tarja e senha
+## Venda com cartão de débito com leitura de tarja e senha
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -351,7 +349,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -432,9 +430,9 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-### Venda com cartão de crédito com EMV com senha online
+## Venda com cartão de crédito com EMV com senha online
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -472,7 +470,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -553,9 +551,9 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-### Venda com cartão de débito com EMV e senha online
+## Venda com cartão de débito com EMV e senha online
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -591,7 +589,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -672,9 +670,9 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-### Venda com vale alimentação (cartão de voucher) com EMV e senha online
+## Venda com vale alimentação (cartão de voucher) com EMV e senha online
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
 
@@ -710,7 +708,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -793,8 +791,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 
 # Confirmação
 
-## Confirma um pagamento
-
 Quando o pagamento retornar sucesso e pode ser confirmado.
 
 Esta operação requer o PaymentId recebido no retorno do pagamento, além dos dados EmvData se o pagamento foi realizado atráves de Chip.
@@ -805,9 +801,9 @@ A confirmação somente é necessária para pagamentos feitos através do POS.
 |:---------------------------------------------------:|:---------------------------------------------:|
 | https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
-### Confirmação de pagamento usando cartão digitado
+## Confirmação de pagamento usando cartão digitado
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/physicalSales/{PaymentId}/confirmation</span></aside>
 
@@ -815,7 +811,7 @@ A confirmação somente é necessária para pagamentos feitos através do POS.
 null
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -838,9 +834,9 @@ null
 }
 ```
 
-### Confirmação de pagamento usando cartão EMV
+## Confirmação de pagamento usando cartão EMV
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/physicalSales/{PaymentId}/confirmation</span></aside>
 
@@ -851,7 +847,7 @@ null
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -876,15 +872,13 @@ null
 
 # Cancelamento
 
-## Cancela um pagamento
-
 | SandBox                                             | Produção                                      |
 |:---------------------------------------------------:|:---------------------------------------------:|
 | https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
-### Cancelamento de pagamento com cartão digitado
+## Cancelamento de pagamento com cartão digitado
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/{PaymentId}/voids/</span></aside>
 
@@ -899,7 +893,7 @@ null
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
@@ -931,9 +925,9 @@ null
 }
 ```
 
-### Cancelamento de pagamento com cartão presente
+## Cancelamento de pagamento com cartão presente
 
-#### Requisição
+### Requisição
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/{PaymentId}/voids/</span></aside>
 
@@ -949,7 +943,7 @@ null
 }
 ```
 
-#### Resposta
+### Resposta
 
 ```json
 {
