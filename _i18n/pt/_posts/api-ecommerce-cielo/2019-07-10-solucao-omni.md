@@ -107,7 +107,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -186,17 +186,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
     ]
   }
 }
-```
-
-#### Resposta 400
-
-```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
 ```
 
 ### Venda com cartão de crédito com leitura de tarja e senha
@@ -241,7 +230,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -320,17 +309,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
     ]
   }
 }
-```
-
-#### Resposta 400
-
-```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
 ```
 
 ### Venda com cartão de débito com leitura de tarja e senha
@@ -373,7 +351,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -452,17 +430,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
     ]
   }
 }
-```
-
-#### Resposta 400
-
-```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
 ```
 
 ### Venda com cartão de crédito com EMV com senha online
@@ -505,7 +472,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -584,17 +551,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
     ]
   }
 }
-```
-
-#### Resposta 400
-
-```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
 ```
 
 ### Venda com cartão de débito com EMV e senha online
@@ -635,7 +591,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -714,17 +670,6 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
     ]
   }
 }
-```
-
-#### Resposta 400
-
-```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
 ```
 
 ### Venda com vale alimentação (cartão de voucher) com EMV e senha online
@@ -765,7 +710,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 201
+#### Resposta
 
 ```json
 {
@@ -846,13 +791,81 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
-#### Resposta 400
+# Confirmação
+
+## Confirma um pagamento
+
+Quando o pagamento retornar sucesso e pode ser confirmado.
+
+Esta operação requer o PaymentId recebido no retorno do pagamento, além dos dados EmvData se o pagamento foi realizado atráves de Chip.
+
+A confirmação somente é necessária para pagamentos feitos através do POS.
+
+### Confirmação de pagamento usando cartão digitado
+
+#### Requisição
+
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/physicalSales/{PaymentId}/confirmation</span></aside>
 
 ```json
-[
-  {
-    "Code": 126,
-    "Message": "The credit card expiration date is in an invalid format"
-  }
-]
+null
+```
+
+#### Resposta
+
+```json
+{
+  "ConfirmationStatus": 1,
+  "Status": 2,
+  "ReturnCode": 0,
+  "ReturnMessage": "Successful",
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    },
+    {
+      "Method": "POST",
+      "Rel": "void",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids"
+    }
+  ]
+}
+```
+
+### Confirmação de pagamento usando cartão EMV
+
+#### Requisição
+
+<aside class="request"><span class="method put">PUT</span> <span class="endpoint">/1/physicalSales/{PaymentId}/confirmation</span></aside>
+
+```json
+{
+  "EmvData": "112233445566778899011AABBC012D3456789E0123FF45678AB901234C5D112233445566778800",
+  "IssuerScriptResults": "0000"
+}
+```
+
+#### Resposta
+
+```json
+{
+  "ConfirmationStatus": 1,
+  "Status": 2,
+  "ReturnCode": 0,
+  "ReturnMessage": "Successful",
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    },
+    {
+      "Method": "POST",
+      "Rel": "void",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids"
+    }
+  ]
+}
 ```
