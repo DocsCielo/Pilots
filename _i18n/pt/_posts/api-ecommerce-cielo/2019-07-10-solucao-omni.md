@@ -864,7 +864,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 |`PinBlock.EncryptedPinBlock`|---|---|---|---|
 |`PinBlock.EncryptionType`|---|---|---|---|
 |`PinBlock.KsnIdentification`|---|---|---|---|
-|`PinPadInformation.TerminalId`|---|---|---|---|`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
 |`PinPadInformation.SerialNumber`|---|---|---|---|
 |`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
 |`PinPadInformation.ReturnDataInfo`|---|---|---|---|
@@ -1036,7 +1036,7 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 |`Payment.PaymentDateTime`|---|---|---|---|
 |`Payment.Amount`|---|---|---|---|
 |`Payment.ProductId`|---|---|---|---|
-|`VoucherCard.ExpirationDatev
+|`VoucherCard.ExpirationDatev`|---|---|---|---|
 |`VoucherCard.BrandId`|---|---|---|---|
 |`VoucherCard.IssuerId`|---|---|---|---|
 |`VoucherCard.InputMode`|---|---|---|---|
