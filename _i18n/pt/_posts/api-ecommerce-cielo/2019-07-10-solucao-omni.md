@@ -479,6 +479,30 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`DebitCard.ExpirationDate`|---|---|---|---|
+|`DebitCard.SecurityCodeStatus`|---|---|---|---|
+|`DebitCard.BrandId`|---|---|---|---|
+|`DebitCard.IssuerId`|---|---|---|---|
+|`DebitCard.InputMode`|---|---|---|---|
+|`DebitCard.AuthenticationMethod`|---|---|---|---|
+|`DebitCard.TrackOneData`|---|---|---|---|
+|`DebitCard.TrackTwoData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -559,6 +583,46 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Customer.Name`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.TruncateCardNumberWhenPrinting`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.ServiceTaxAmount`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ReceivedDate`|---|---|---|---|
+|`Payment.CapturedAmount`|---|---|---|---|
+|`Payment.Provider`|---|---|---|---|
+|`Payment.ConfirmationStatus`|---|---|---|---|
+|`Payment.InitializationVersion`|---|---|---|---|
+|`Payment.EmvResponseData`|---|---|---|---|
+|`Payment.Status`|---|---|---|---|
+|`Payment.IsSplitted`|---|---|---|---|
+|`Payment.ReturnCode`|---|---|---|---|
+|`Payment.ReturnMessage`|---|---|---|---|
+|`Payment.PaymentId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.Currency`|---|---|---|---|
+|`Payment.Country`|---|---|---|---|
 
 ## Venda com cartão de crédito com EMV com senha online
 
@@ -600,6 +664,30 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -680,6 +768,46 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Customer.Name`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.TruncateCardNumberWhenPrinting`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.ServiceTaxAmount`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ReceivedDate`|---|---|---|---|
+|`Payment.CapturedAmount`|---|---|---|---|
+|`Payment.Provider`|---|---|---|---|
+|`Payment.ConfirmationStatus`|---|---|---|---|
+|`Payment.InitializationVersion`|---|---|---|---|
+|`Payment.EmvResponseData`|---|---|---|---|
+|`Payment.Status`|---|---|---|---|
+|`Payment.IsSplitted`|---|---|---|---|
+|`Payment.ReturnCode`|---|---|---|---|
+|`Payment.ReturnMessage`|---|---|---|---|
+|`Payment.PaymentId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.Currency`|---|---|---|---|
+|`Payment.Country`|---|---|---|---|
 
 ## Venda com cartão de débito com EMV e senha online
 
@@ -719,6 +847,28 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`DebitCard.ExpirationDate`|---|---|---|---|
+|`DebitCard.BrandId`|---|---|---|---|
+|`DebitCard.IssuerId`|---|---|---|---|
+|`DebitCard.InputMode`|---|---|---|---|
+|`DebitCard.AuthenticationMethod`|---|---|---|---|
+|`DebitCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -799,6 +949,46 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Customer.Name`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.TruncateCardNumberWhenPrinting`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.ServiceTaxAmount`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ReceivedDate`|---|---|---|---|
+|`Payment.CapturedAmount`|---|---|---|---|
+|`Payment.Provider`|---|---|---|---|
+|`Payment.ConfirmationStatus`|---|---|---|---|
+|`Payment.InitializationVersion`|---|---|---|---|
+|`Payment.EmvResponseData`|---|---|---|---|
+|`Payment.Status`|---|---|---|---|
+|`Payment.IsSplitted`|---|---|---|---|
+|`Payment.ReturnCode`|---|---|---|---|
+|`Payment.ReturnMessage`|---|---|---|---|
+|`Payment.PaymentId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.Currency`|---|---|---|---|
+|`Payment.Country`|---|---|---|---|
 
 ## Venda com vale alimentação (cartão de voucher) com EMV e senha online
 
@@ -838,6 +1028,28 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`VoucherCard.ExpirationDatev
+|`VoucherCard.BrandId`|---|---|---|---|
+|`VoucherCard.IssuerId`|---|---|---|---|
+|`VoucherCard.InputMode`|---|---|---|---|
+|`VoucherCard.AuthenticationMethod`|---|---|---|---|
+|`VoucherCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -918,6 +1130,46 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Customer.Name`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.TruncateCardNumberWhenPrinting`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.ServiceTaxAmount`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ReceivedDate`|---|---|---|---|
+|`Payment.CapturedAmount`|---|---|---|---|
+|`Payment.Provider`|---|---|---|---|
+|`Payment.ConfirmationStatus`|---|---|---|---|
+|`Payment.InitializationVersion`|---|---|---|---|
+|`Payment.EmvResponseData`|---|---|---|---|
+|`Payment.Status`|---|---|---|---|
+|`Payment.IsSplitted`|---|---|---|---|
+|`Payment.ReturnCode`|---|---|---|---|
+|`Payment.ReturnMessage`|---|---|---|---|
+|`Payment.PaymentId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.Currency`|---|---|---|---|
+|`Payment.Country`|---|---|---|---|
 
 # Confirmação
 
