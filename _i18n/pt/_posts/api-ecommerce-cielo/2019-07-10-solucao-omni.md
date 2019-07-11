@@ -1216,6 +1216,13 @@ null
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`ConfirmationStatus`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
+|`ReturnMessage`|---|---|---|---|
+
 ## Confirmação de pagamento usando cartão EMV
 
 ### Requisição
@@ -1228,6 +1235,11 @@ null
   "IssuerScriptResults": "0000"
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`EmvData`|---|---|---|---|
+|`IssuerScriptResults`|---|---|---|---|
 
 ### Resposta
 
@@ -1252,6 +1264,13 @@ null
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`ConfirmationStatus`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
+|`ReturnMessage`|---|---|---|---|
+
 # Cancelamento
 
 | SandBox                                             | Produção                                      |
@@ -1275,6 +1294,13 @@ null
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantVoidId`|---|---|---|---|
+|`MerchantVoidDate`|---|---|---|---|
+|`Card.InputMode`|---|---|---|---|
+|`Card.CardNumber`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -1306,6 +1332,12 @@ null
   ]
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`VoidId`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
 
 ## Cancelamento de pagamento com cartão presente
 
@@ -1325,6 +1357,14 @@ null
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantVoidId`|---|---|---|---|
+|`MerchantVoidDate`|---|---|---|---|
+|`Card.InputMode`|---|---|---|---|
+|`Card.TrackOneData`|---|---|---|---|
+|`Card.TrackTwoData`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -1356,6 +1396,12 @@ null
   ]
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`VoidId`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
 
 # Desfazimento
 
@@ -1388,6 +1434,12 @@ Deve-se solicitar o desfazimento através do PaymentId recebido no retorno do pa
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`ConfirmationStatus`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
+
 ## Desfaz um pagamento
 
 Quando o pagamente não retornar, o mesmo deve ser desfeito.
@@ -1416,6 +1468,12 @@ Para solicitar o desfazimento é necessário informar o MerchantOrderId enviado 
   ]
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`ConfirmationStatus`|---|---|---|---|
+|`Status`|---|---|---|---|
+|`ReturnCode`|---|---|---|---|
 
 # Baixa de parâmetros
 
@@ -1616,3 +1674,161 @@ Solicita as tabelas e parametros para operação do terminal
   "InitializationVersion": 1558708320029
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantId`|---|---|---|---|
+|`TerminalId`|---|---|---|---|
+|`Acquirer.EnableContaclessCardReader`|---|---|---|---|
+|`Acquirer.LockAppFunctionsExceptInitialization`|---|---|---|---|
+|`Acquirer.HasChipReader`|---|---|---|---|
+|`Acquirer.HasMagneticTrackReader`|---|---|---|---|
+|`Acquirer.HasKeyboard`|---|---|---|---|
+|`Merchant.MerchantId`|---|---|---|---|
+|`Merchant.NetworkName`|---|---|---|---|
+|`Merchant.MerchantName`|---|---|---|---|
+|`Merchant.MerchantAddress`|---|---|---|---|
+|`Merchant.NationalId`|---|---|---|---|
+|`Bins.InitialBin`|---|---|---|---|
+|`Bins.FinalBin`|---|---|---|---|
+|`Bins.ProductId`|---|---|---|---|
+|`Bins.Type`|---|---|---|---|
+|`Bins.AllowFallbackWhenChipReadingFails`|---|---|---|---|
+|`Bins.AllowChargingMoedeiroFromCash`|---|---|---|---|
+|`Bins.AllowPurchaseWithCompreESaque`|---|---|---|---|
+|`Bins.AllowOfflineFunctionExceptForEMVCard`|---|---|---|---|
+|`Bins.AllowTypingCardNumber`|---|---|---|---|
+|`Bins.MaskCardNumberUsingLast4Digits`|---|---|---|---|
+|`Bins.MaskCardNumberUsingFirst6AndLas4Digits`|---|---|---|---|
+|`Bins.AllowPrintCardHolderBalance`|---|---|---|---|
+|`Bins.AllowDisplayCardHolderBalance`|---|---|---|---|
+|`Bins.AllowPrintingPartialCardNumberInReceipt`|---|---|---|---|
+|`Bins.RestrictSaleWithDuplicateValueWhenPostdated`|---|---|---|---|
+|`Bins.RestrictSaleWithDuplicateValueWhenPostdated`|---|---|---|---|
+|`Bins.RequiresPassword`|---|---|---|---|
+|`Bins.InterpretsLastDigitOfSecurityCode`|---|---|---|---|
+|`Bins.RequiresPasswordExceptForEMVCard`|---|---|---|---|
+|`Bins.EnableAdditionalSecurityCodeOptions_Unreadable_NoCode`|---|---|---|---|
+|`Bins.RequiresSecurityCodeWhenMagneticTrackIsRead`|---|---|---|---|
+|`Bins.RequiresSecurityCodeWhenCardNumberIsTyped`|---|---|---|---|
+|`Bins.RequiresTypingLast4Digits`|---|---|---|---|
+|`Bins.AllowCaptureOfFirstInstallmentValue`|---|---|---|---|
+|`Bins.AllowCaptureOfDownpaymentValue`|---|---|---|---|
+|`Bins.AllowGuaranteeHandling`|---|---|---|---|
+|`Bins.AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery`|---|---|---|---|
+|`Bins.AllowPostdating`|---|---|---|---|
+|`Bins.AllowCDCSale`|---|---|---|---|
+|`Bins.AllowFinancingByStore`|---|---|---|---|
+|`Bins.AllowFinancingByCreditCardCompany`|---|---|---|---|
+|`Bins.ValidateCardTrack1`|---|---|---|---|
+|`Bins.DoNotValidateCardModule10`|---|---|---|---|
+|`Bins.CheckExpiryDateWhenCardNumberIsTyped`|---|---|---|---|
+|`Bins.CheckExpiryDateWhenMagneticTrackIsRead`|---|---|---|---|
+|`Bins.IssuerId`|---|---|---|---|
+|`Products.ProductId`|---|---|---|---|
+|`Products.ProductName`|---|---|---|---|
+|`Products.ProductType`|---|---|---|---|
+|`Products.BrandId`|---|---|---|---|
+|`Products.AllowTransactionWithContactlessCard`|---|---|---|---|
+|`Products.IsFinancialProduct`|---|---|---|---|
+|`Products.AllowOfflineAuthorizationForEMVCard`|---|---|---|---|
+|`Products.AllowReprintReceipt`|---|---|---|---|
+|`Products.AllowPrintReceipt`|---|---|---|---|
+|`Products.AllowOfflineAuthorizationForContactlessCard`|---|---|---|---|
+|`Products.AllowCancel`|---|---|---|---|
+|`Products.AllowUndo`|---|---|---|---|
+|`Products.AllowCaptureOfFirstInstallmentValue`|---|---|---|---|
+|`Products.AllowCaptureOfDownpaymentValue`|---|---|---|---|
+|`Products.AllowGuaranteeHandling`|---|---|---|---|
+|`Products.AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery`|---|---|---|---|
+|`Products.AllowPostdating`|---|---|---|---|
+|`Products.AllowCDCSale`|---|---|---|---|
+|`Products.AllowFinancingByStore`|---|---|---|---|
+|`Products.AllowFinancingByCreditCardCompany`|---|---|---|---|
+|`Products.MaximumNumberOfInstallmentsWhenFinancingByCreditCardCompany`|---|---|---|---|
+|`Products.MaximumNumberOfInstallmentsWhenFinancingByStore`|---|---|---|---|
+|`Products.MaximumNumberOfinstallmentsForSaleAndCDCQuery`|---|---|---|---|
+|`Products.MinimumNumberOfInstallmentsWhenFinancingByStore`|---|---|---|---|
+|`Products.SaleGuaranteeType`|---|---|---|---|
+|`Products.PostdatedDayCountLimit`|---|---|---|---|
+|`Products.FirstInstallmentDayCountLimit`|---|---|---|---|
+|`Emv.Aid`|---|---|---|---|
+|`Emv.TagsFirst`|---|---|---|---|
+|`Emv.TagsSecond`|---|---|---|---|
+|`Emv.IdxRecord`|---|---|---|---|
+|`Emv.Type`|---|---|---|---|
+|`Emv.RCodeFirst`|---|---|---|---|
+|`Emv.RCodeSecond`|---|---|---|---|
+|`Emv.InvalidateFunctionIfCardIsOnBlacklist`|---|---|---|---|
+|`Emv.RequireBINToBeInCardRangeTable`|---|---|---|---|
+|`Emv.StoreTransactionsRejectedByTerminalAppAndSendToHost`|---|---|---|---|
+|`Emv.NatEmvConctactRiskFloorLimit`|---|---|---|---|
+|`Emv.NatEmvConctactRiskMinValue`|---|---|---|---|
+|`Emv.NatEmvConctactRiskMinPercent`|---|---|---|---|
+|`Emv.NatEmvConctactRiskMaxPercent`|---|---|---|---|
+|`Emv.IntEmvConctactRiskFloorLimit`|---|---|---|---|
+|`Emv.IntEmvConctactRiskMinValue`|---|---|---|---|
+|`Emv.IntEmvConctactRiskMinPercent`|---|---|---|---|
+|`Emv.IntEmvConctactRiskMaxPercent`|---|---|---|---|
+|`Parameters.Currency`|---|---|---|---|
+|`Parameters.AllowFallbackWhenChipReadingFails`|---|---|---|---|
+|`Parameters.AllowChargingMoedeiroFromCash`|---|---|---|---|
+|`Parameters.AllowPurchaseWithCompreESaque`|---|---|---|---|
+|`Parameters.AllowOfflineFunctionExceptForEMVCard`|---|---|---|---|
+|`Parameters.AllowTypingCardNumber`|---|---|---|---|
+|`Parameters.MaskCardNumberUsingLast4Digits`|---|---|---|---|
+|`Parameters.MaskCardNumberUsingFirst6AndLas4Digits`|---|---|---|---|
+|`Parameters.AllowPrintCardHolderBalance`|---|---|---|---|
+|`Parameters.AllowDisplayCardHolderBalance`|---|---|---|---|
+|`Parameters.AllowPrintingPartialCardNumberInReceipt`|---|---|---|---|
+|`Parameters.RestrictSaleWithDuplicateValueWhenPostdated`|---|---|---|---|
+|`Parameters.RestrictSaleWithDuplicateValue`|---|---|---|---|
+|`Parameters.RequiresPassword`|---|---|---|---|
+|`Parameters.InterpretsLastDigitOfSecurityCode`|---|---|---|---|
+|`Parameters.RequiresPasswordExceptForEMVCard`|---|---|---|---|
+|`Parameters.EnableAdditionalSecurityCodeOptions_Unreadable_NoCode`|---|---|---|---|
+|`Parameters.RequiresSecurityCodeWhenMagneticTrackIsRead`|---|---|---|---|
+|`Parameters.RequiresSecurityCodeWhenCardNumberIsTyped`|---|---|---|---|
+|`Parameters.RequiresTypingLast4Digits`|---|---|---|---|
+|`Parameters.CapturesServiceFee`|---|---|---|---|
+|`Parameters.AllowCancellationWithValueGreaterThanTheValueOfTheSale`|---|---|---|---|
+|`Parameters.CaptureBoardingFee`|---|---|---|---|
+|`Issuers.IssuerId`|---|---|---|---|
+|`Issuers.IssuerName`|---|---|---|---|
+|`Issuers.AllowFallbackWhenChipReadingFails`|---|---|---|---|
+|`Issuers.AllowChargingMoedeiroFromCash`|---|---|---|---|
+|`Issuers.AllowPurchaseWithCompreESaque`|---|---|---|---|
+|`Issuers.AllowOfflineFunctionExceptForEMVCard`|---|---|---|---|
+|`Issuers.AllowTypingCardNumber`|---|---|---|---|
+|`Issuers.MaskCardNumberUsingLast4Digits`|---|---|---|---|
+|`Issuers.MaskCardNumberUsingFirst6AndLas4Digits`|---|---|---|---|
+|`Issuers.AllowPrintCardHolderBalance`|---|---|---|---|
+|`Issuers.AllowDisplayCardHolderBalance`|---|---|---|---|
+|`Issuers.Option03BiAllowPrintingPartialCardNumberInReceipt07`|---|---|---|---|
+|`Issuers.RestrictSaleWithDuplicateValueWhenPostdated`|---|---|---|---|
+|`Issuers.RestrictSaleWithDuplicateValue`|---|---|---|---|
+|`Issuers.RequiresPassword`|---|---|---|---|
+|`Issuers.InterpretsLastDigitOfSecurityCode`|---|---|---|---|
+|`Issuers.RequiresPasswordExceptForEMVCard`|---|---|---|---|
+|`Issuers.EnableAdditionalSecurityCodeOptions_Unreadable_NoCode`|---|---|---|---|
+|`Issuers.RequiresSecurityCodeWhenMagneticTrackIsRead`|---|---|---|---|
+|`Issuers.RequiresSecurityCodeWhenCardNumberIsTyped`|---|---|---|---|
+|`Issuers.RequiresTypingLast4Digits`|---|---|---|---|
+|`Issuers.AllowCaptureOfFirstInstallmentValue`|---|---|---|---|
+|`Issuers.AllowCaptureOfDownpaymentValue`|---|---|---|---|
+|`Issuers.AllowGuaranteeHandling`|---|---|---|---|
+|`Issuers.AllowPostdatingTheFirstInstallmentForSaleAndCDCQuery`|---|---|---|---|
+|`Issuers.AllowPostdating`|---|---|---|---|
+|`Issuers.AllowCDCSale`|---|---|---|---|
+|`Issuers.AllowFinancingByStore`|---|---|---|---|
+|`Issuers.AllowFinancingByCreditCardCompany`|---|---|---|---|
+|`Issuers.RequiresChipReader`|---|---|---|---|
+|`Issuers.RequiresPinpad`|---|---|---|---|
+|`Issuers.LimitDayforReversal`|---|---|---|---|
+|`Issuers.LimitValueforReversal`|---|---|---|---|
+|`Issuers.LimitPercentforReversal`|---|---|---|---|
+|`Issuers.IssuerNameForDisplay`|---|---|---|---|
+|`Issuers.IssuerNameForPrint`|---|---|---|---|
+|`AidParameters`|---|---|---|---|
+|`PublicKeys`|---|---|---|---|
+|`InitializationVersion`|---|---|---|---|
