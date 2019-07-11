@@ -1051,7 +1051,7 @@ Solicita as tabelas e parametros para operação do terminal
 
 | SandBox                                             | Produção                                      |
 |:---------------------------------------------------:|:---------------------------------------------:|
-| https://parametersdownloadsandbox.cieloecommerce.cielo.com.br/api/v0.1/      | https://parametersdownload.cieloecommerce.cielo.com.br/api/v0.1/      |
+| https://parametersdownloadsandbox.cieloecommerce.cielo.com.br/api/v0.1      | https://parametersdownload.cieloecommerce.cielo.com.br/api/v0.1      |
 
 ### Requisição
 
