@@ -292,6 +292,32 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.SecurityCodeStatus`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.TrackOneData`|---|---|---|---|
+|`CreditCard.TrackTwoData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+
 ### Resposta
 
 ```json
@@ -372,6 +398,46 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 }
 ```
+
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|`MerchantOrderId`|---|---|---|---|
+|`Customer.Name`|---|---|---|---|
+|`Payment.Installments`|---|---|---|---|
+|`Payment.Interest`|---|---|---|---|
+|`CreditCard.ExpirationDate`|---|---|---|---|
+|`CreditCard.BrandId`|---|---|---|---|
+|`CreditCard.IssuerId`|---|---|---|---|
+|`CreditCard.TruncateCardNumberWhenPrinting`|---|---|---|---|
+|`CreditCard.InputMode`|---|---|---|---|
+|`CreditCard.AuthenticationMethod`|---|---|---|---|
+|`CreditCard.EmvData`|---|---|---|---|
+|`PinBlock.EncryptedPinBlock`|---|---|---|---|
+|`PinBlock.EncryptionType`|---|---|---|---|
+|`PinBlock.KsnIdentification`|---|---|---|---|
+|`Payment.PaymentDateTime`|---|---|---|---|
+|`Payment.ServiceTaxAmount`|---|---|---|---|
+|`Payment.SoftDescriptor`|---|---|---|---|
+|`Payment.ProductId`|---|---|---|---|
+|`PinPadInformation.TerminalId`|---|---|---|---|
+|`PinPadInformation.SerialNumber`|---|---|---|---|
+|`PinPadInformation.PhysicalCharacteristics`|---|---|---|---|
+|`PinPadInformation.ReturnDataInfo`|---|---|---|---|
+|`Payment.Amount`|---|---|---|---|
+|`Payment.ReceivedDate`|---|---|---|---|
+|`Payment.CapturedAmount`|---|---|---|---|
+|`Payment.Provider`|---|---|---|---|
+|`Payment.ConfirmationStatus`|---|---|---|---|
+|`Payment.InitializationVersion`|---|---|---|---|
+|`Payment.EmvResponseData`|---|---|---|---|
+|`Payment.Status`|---|---|---|---|
+|`Payment.IsSplitted`|---|---|---|---|
+|`Payment.ReturnCode`|---|---|---|---|
+|`Payment.ReturnMessage`|---|---|---|---|
+|`Payment.PaymentId`|---|---|---|---|
+|`Payment.Type`|---|---|---|---|
+|`Payment.Currency`|---|---|---|---|
+|`Payment.Country`|---|---|---|---|
 
 ## Venda com cartão de débito com leitura de tarja e senha
 
