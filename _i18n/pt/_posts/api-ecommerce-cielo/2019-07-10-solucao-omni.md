@@ -51,3 +51,14 @@ No cadastro da chave somente é inserido o KSI que possui 5 caracteres numérico
 **FFFFF**030331234500012
 
 <aside class="warning">Obs.: Os F’s devem ser preenchidos automaticamente pela Solução de Captura.</aside>
+
+# Autenticação
+
+A autenticação é uma operação necessária para obtenção do token que será utilizado nas demais chamadas de APIs.
+
+|Security scheme type:|OAuth2|
+|clientCredentials OAuth Flow|**Token URL:** https://authsandbox.braspag.com.br/oauth2/token
+**Scopes:**
+* Administrator - Admin everything
+* AnalyticsApiOverview - See the analytics
+* AdminBackoffice - Use the backoffice|
