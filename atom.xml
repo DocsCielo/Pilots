@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-07-11T02:28:50+00:00</updated>
+    <updated>2019-07-11T02:32:19+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -3579,8 +3579,8 @@
   &lt;/thead&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://parametersdownloadsandbox.cieloecommerce.cielo.com.br/api/v0.1/&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;https://parametersdownload.cieloecommerce.cielo.com.br/api/v0.1/&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://parametersdownloadsandbox.cieloecommerce.cielo.com.br/api/v0.1&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;https://parametersdownload.cieloecommerce.cielo.com.br/api/v0.1&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
