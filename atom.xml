@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-07-11T00:53:42+00:00</updated>
+    <updated>2019-07-11T01:00:13+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -2542,7 +2542,7 @@
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;clientCredentials OAuth Flow&lt;/td&gt;
-      &lt;td&gt;&lt;strong&gt;Token URL:&lt;/strong&gt; https://authsandbox.braspag.com.br/oauth2/token&lt;br /&gt;&lt;strong&gt;Scopes:&lt;/strong&gt;&lt;br /&gt;* Administrator - Admin everything&lt;br /&gt;* AnalyticsApiOverview - See the analytics&lt;br /&gt;* AdminBackoffice - Use the backoffice&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Token URL:&lt;/strong&gt; https://authsandbox.braspag.com.br/oauth2/token&lt;br /&gt;&lt;strong&gt;Scopes:&lt;/strong&gt;&lt;br /&gt;* &lt;code class=&quot;highlighter-rouge&quot;&gt;Administrator&lt;/code&gt; - Admin everything&lt;br /&gt;* &lt;code class=&quot;highlighter-rouge&quot;&gt;AnalyticsApiOverview&lt;/code&gt; - See the analytics&lt;br /&gt;* &lt;code class=&quot;highlighter-rouge&quot;&gt;AdminBackoffice&lt;/code&gt; - Use the backoffice&lt;/td&gt;
     &lt;/tr&gt;
   &lt;/tbody&gt;
 &lt;/table&gt;
