@@ -194,3 +194,137 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
   }
 ]
 ```
+
+### Venda com cartão de crédito com leitura de tarja e senha
+
+#### Requisição
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/</span></aside>
+
+```json
+{
+  "MerchantOrderId": "201904150002",
+  "Payment": {
+    "Type": "PhysicalCreditCard",
+    "SoftDescriptor": "Description",
+    "PaymentDateTime": "2019-04-15T12:00:00Z",
+    "Amount": 15798,
+    "Installments": 1,
+    "Interest": "ByMerchant",
+    "ProductId": 1,
+    "CreditCard": {
+      "ExpirationDate": "12/2020",
+      "SecurityCodeStatus": "Nonexistent",
+      "BrandId": 1,
+      "IssuerId": 2,
+      "InputMode": "MagStripe",
+      "AuthenticationMethod": "OnlinePassword",
+      "TrackOneData": "A1234567890123456^FULANO OLIVEIRA SA ^12345678901234567890123",
+      "TrackTwoData": "0123456789012345=012345678901234",
+      "PinBlock": {
+        "EncryptedPinBlock": "2280F6BDFD0C038D",
+        "EncryptionType": "Dukpt3Des",
+        "KsnIdentification": "1231vg31fv231313123"
+      }
+    },
+    "PinPadInformation": {
+      "TerminalId": "10000001",
+      "SerialNumber": "ABC123",
+      "PhysicalCharacteristics": "PinPadWithChipReaderWithSamModuleAndContactless",
+      "ReturnDataInfo": "00"
+    }
+  }
+}
+```
+
+#### Resposta 201
+
+```json
+{
+  "MerchantOrderId": "20180204",
+  "Customer": {
+    "Name": "[Guest]"
+  },
+  "Payment": {
+    "Installments": 1,
+    "Interest": "ByMerchant",
+    "CreditCard": {
+      "ExpirationDate": "12/2020",
+      "BrandId": 1,
+      "IssuerId": 2,
+      "TruncateCardNumberWhenPrinting": true,
+      "InputMode": "Emv",
+      "AuthenticationMethod": "OnlineAuthentication",
+      "EmvData": "112233445566778899011AABBC012D3456789E0123FF45678AB901234C5D112233445566778800",
+      "PinBlock": {
+        "EncryptedPinBlock": "2280F6BDFD0C038D",
+        "EncryptionType": "Dukpt3Des",
+        "KsnIdentification": "1231vg31fv231313123"
+      }
+    },
+    "PaymentDateTime": "2019-04-15T12:00:00Z",
+    "ServiceTaxAmount": 0,
+    "SoftDescriptor": "Description",
+    "ProductId": 1,
+    "PinPadInformation": {
+      "TerminalId": "10000001",
+      "SerialNumber": "ABC123",
+      "PhysicalCharacteristics": "PinPadWithChipReaderWithSamModule",
+      "ReturnDataInfo": "00"
+    },
+    "Amount": 15798,
+    "ReceivedDate": "2019-04-15T12:00:00Z",
+    "CapturedAmount": 15798,
+    "Provider": "Cielo",
+    "ConfirmationStatus": 0,
+    "InitializationVersion": 1558708320029,
+    "EmvResponseData": "123456789ABCD1345DEA",
+    "Status": 2,
+    "IsSplitted": false,
+    "ReturnCode": 0,
+    "ReturnMessage": "Successful",
+    "PaymentId": "f15889ea-5719-4e1a-a2da-f4e50d5bd702",
+    "Type": "PhysicalDebitCard",
+    "Currency": "BRL",
+    "Country": "BRA",
+    "Links": [
+      {
+        "Method": "GET",
+        "Rel": "self",
+        "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+      },
+      {
+        "Method": "DELETE",
+        "Rel": "self",
+        "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+      },
+      {
+        "Method": "PUT",
+        "Rel": "self",
+        "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/confirmation"
+      }
+    ],
+    "PrintMessage": [
+      {
+        "Position": "Top",
+        "Message": "Transação autorizada"
+      },
+      {
+        "Position": "Bottom",
+        "Message": "Obrigado e volte sempre!"
+      }
+    ]
+  }
+}
+```
+
+#### Resposta 400
+
+```json
+[
+  {
+    "Code": 126,
+    "Message": "The credit card expiration date is in an invalid format"
+  }
+]
+```
