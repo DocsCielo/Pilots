@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-07-11T00:40:47+00:00</updated>
+    <updated>2019-07-11T00:53:42+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -2534,22 +2534,18 @@
 
 &lt;p&gt;A autenticação é uma operação necessária para obtenção do token que será utilizado nas demais chamadas de APIs.&lt;/p&gt;
 
-&lt;p&gt;|Security scheme type:|OAuth2|
-|clientCredentials OAuth Flow|&lt;strong&gt;Token URL:&lt;/strong&gt; https://authsandbox.braspag.com.br/oauth2/token
-&lt;strong&gt;Scopes:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Administrator - Admin everything&lt;/li&gt;
-  &lt;li&gt;AnalyticsApiOverview - See the analytics&lt;/li&gt;
-  &lt;li&gt;
-    &lt;table&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;AdminBackoffice - Use the backoffice&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
+&lt;table&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Security scheme type:&lt;/td&gt;
+      &lt;td&gt;OAuth2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;clientCredentials OAuth Flow&lt;/td&gt;
+      &lt;td&gt;&lt;strong&gt;Token URL:&lt;/strong&gt; https://authsandbox.braspag.com.br/oauth2/token&lt;br /&gt;&lt;strong&gt;Scopes:&lt;/strong&gt;&lt;br /&gt;* Administrator - Admin everything&lt;br /&gt;* AnalyticsApiOverview - See the analytics&lt;br /&gt;* AdminBackoffice - Use the backoffice&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
 </content>
     </entry>
     
