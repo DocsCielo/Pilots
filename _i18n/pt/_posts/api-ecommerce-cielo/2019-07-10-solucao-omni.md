@@ -869,3 +869,106 @@ null
   ]
 }
 ```
+
+# Cancelamento
+
+## Cancela um pagamento
+
+### Cancelamento de pagamento com cartão digitado
+
+#### Requisição
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/{PaymentId}/voids/</span></aside>
+
+```json
+{
+  "MerchantVoidId": 2019042204,
+  "MerchantVoidDate": "2019-04-15T12:00:00Z",
+  "Card": {
+    "InputMode": "Typed",
+    "CardNumber": 1234567812345678
+  }
+}
+```
+
+#### Resposta
+
+```json
+{
+  "VoidId": "f15889ea-5719-4e1a-a2da-f4e50d5bd702",
+  "Status": 10,
+  "ReturnCode": 0,
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    },
+    {
+      "Method": "POST",
+      "Rel": "void",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids"
+    },
+    {
+      "Method": "DELETE",
+      "Rel": "reverse",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids/e5c889ea-5719-4e1a-a2da-f4f50d5bd7ca"
+    },
+    {
+      "Method": "PUT",
+      "Rel": "confirm",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids/e5c889ea-5719-4e1a-a2da-f4f50d5bd7ca/confirmation"
+    }
+  ]
+}
+```
+
+### Cancelamento de pagamento com cartão presente
+
+#### Requisição
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">/1/physicalSales/{PaymentId}/voids/</span></aside>
+
+```json
+{
+  "MerchantVoidId": 2019042204,
+  "MerchantVoidDate": "2019-04-15T12:00:00Z",
+  "Card": {
+    "InputMode": "MagStripe",
+    "TrackOneData": "A1234567890123456^FULANO OLIVEIRA SA ^12345678901234567890123",
+    "TrackTwoData": "0123456789012345=012345678901234"
+  }
+}
+```
+
+#### Resposta
+
+```json
+{
+  "VoidId": "f15889ea-5719-4e1a-a2da-f4e50d5bd702",
+  "Status": 10,
+  "ReturnCode": 0,
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    },
+    {
+      "Method": "POST",
+      "Rel": "void",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids"
+    },
+    {
+      "Method": "DELETE",
+      "Rel": "reverse",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids/e5c889ea-5719-4e1a-a2da-f4f50d5bd7ca"
+    },
+    {
+      "Method": "PUT",
+      "Rel": "confirm",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702/voids/e5c889ea-5719-4e1a-a2da-f4f50d5bd7ca/confirmation"
+    }
+  ]
+}
+```
