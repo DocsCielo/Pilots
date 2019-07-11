@@ -16,10 +16,6 @@ language_tabs:
 
 # Visão geral - API Solução Omni
 
-| SandBox                                             | Produção                                      |
-|:---------------------------------------------------:|:---------------------------------------------:|
-| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
-
 # Objetivo
 
 Possibilitar a integração de parceiros de negócio/Subadquirentes com a Cielo para transações com cartões não-presentes (transações digitadas) e cartões presentes nas modalidades Chip e Tarja.
@@ -68,6 +64,10 @@ A autenticação é uma operação necessária para obtenção do token que ser�
 ## Cria um novo pagamento
 
 Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Payment.Status) na resposta para certificar-se que o pagamento foi gerado com sucesso ou se houve alguma falha.
+
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
 ### Venda com cartão de crédito digitado e sem senha
 
@@ -801,6 +801,10 @@ Esta operação requer o PaymentId recebido no retorno do pagamento, além dos d
 
 A confirmação somente é necessária para pagamentos feitos através do POS.
 
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
+
 ### Confirmação de pagamento usando cartão digitado
 
 #### Requisição
@@ -873,6 +877,10 @@ null
 # Cancelamento
 
 ## Cancela um pagamento
+
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
 ### Cancelamento de pagamento com cartão digitado
 
@@ -981,6 +989,10 @@ O pagamente retornou com sucesso e pode ser desfeito.
 
 Deve-se solicitar o desfazimento através do PaymentId recebido no retorno do pagamento. 
 
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
+
 ### Requisição
 
 <aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/1/physicalSales/{PaymentId}</span></aside>
@@ -1005,6 +1017,10 @@ Deve-se solicitar o desfazimento através do PaymentId recebido no retorno do pa
 Quando o pagamente não retornar, o mesmo deve ser desfeito.
 
 Para solicitar o desfazimento é necessário informar o MerchantOrderId enviado no pagamento.
+
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://apisandbox.cieloecommerce.cielo.com.br      | https://api.cieloecommerce.cielo.com.br/      |
 
 ### Requisição
 
@@ -1033,9 +1049,13 @@ Essa operação é necessária para que o parceiro de negócio / Subadquirente r
 
 Solicita as tabelas e parametros para operação do terminal
 
+| SandBox                                             | Produção                                      |
+|:---------------------------------------------------:|:---------------------------------------------:|
+| https://parametersdownloadsandbox.cieloecommerce.cielo.com.br/api/v0.1/      | https://parametersdownload.cieloecommerce.cielo.com.br/api/v0.1/      |
+
 ### Requisição
 
-<aside class="request"><span class="method get">GET</span> <span class="endpoint">/1/initialization/{TerminalId}</span></aside>
+<aside class="request"><span class="method get">GET</span> <span class="endpoint">/initialization/{TerminalId}</span></aside>
 
 ```json
 {
