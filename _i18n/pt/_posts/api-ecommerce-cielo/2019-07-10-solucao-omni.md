@@ -972,3 +972,55 @@ null
   ]
 }
 ```
+
+# Desfaziamento
+
+## Desfaz um pagamento
+
+O pagamente retornou com sucesso e pode ser desfeito.
+
+Deve-se solicitar o desfazimento através do PaymentId recebido no retorno do pagamento. 
+
+### Requisição
+
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/1/physicalSales/{PaymentId}</span></aside>
+
+```json
+{
+  "ConfirmationStatus": 2,
+  "Status": 2,
+  "ReturnCode": 0,
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    }
+  ]
+}
+```
+
+## Desfaz um pagamento
+
+Quando o pagamente não retornar, o mesmo deve ser desfeito.
+
+Para solicitar o desfazimento é necessário informar o MerchantOrderId enviado no pagamento.
+
+### Requisição
+
+<aside class="request"><span class="method delete">DELETE</span> <span class="endpoint">/1/physicalSales/orderId/{MerchantOrderId}</span></aside>
+
+```json
+{
+  "ConfirmationStatus": 2,
+  "Status": 2,
+  "ReturnCode": 0,
+  "Links": [
+    {
+      "Method": "GET",
+      "Rel": "self",
+      "Href": "https://api.cieloecommerce.cielo.com.br/1/physicalSales/f15889ea-5719-4e1a-a2da-f4e50d5bd702"
+    }
+  ]
+}
+```
