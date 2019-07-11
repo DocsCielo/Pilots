@@ -105,6 +105,30 @@ Quando um pagamento é criado (201 - Created), deve-se analisar o Status (Paymen
 }
 ```
 
+|Propriedade|Tipo|Tamanho|Obrigatório|Descrição|
+|---|---|---|---|---|
+|MerchantOrderId|---|---|---|---|
+|Payment.Type|Texto|---|---|---|
+|Payment.SoftDescriptor|Texto|---|---|---|
+|Payment.PaymentDateTime|---|---|---|---|
+|Payment.Amount|---|---|---|---|
+|Payment.Installments|---|---|---|---|
+|Payment.Interest|Texto|---|---|---|
+|Payment.ProductId|---|---|---|---|
+|CreditCard.CardNumber|---|---|---|---|
+|CreditCard.ExpirationDate|---|---|---|---|
+|CreditCard.SecurityCodeStatus|Texto|---|---|---|
+|CreditCard.SecurityCode|---|---|---|---|
+|CreditCard.BrandId|---|---|---|---|
+|CreditCard.IssuerId|---|---|---|---|
+|CreditCard.InputMode|Texto|---|---|---|
+|CreditCard.AuthenticationMethod|Texto|---|---|---|
+|CreditCard.TruncateCardNumberWhenPrinting|Booleano|---|---|---|
+|PinPadInformation.TerminalId|---|---|---|---|
+|PinPadInformation.SerialNumber|Texto|---|---|---|
+|PinPadInformation.PhysicalCharacteristics|Texto|---|---|---|
+|PinPadInformation.ReturnDataInfo|---|---|---|---|
+
 ### Resposta
 
 ```json
