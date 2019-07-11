@@ -975,7 +975,7 @@ null
 }
 ```
 
-# Desfaziamento
+# Desfazimento
 
 ## Desfaz um pagamento
 
