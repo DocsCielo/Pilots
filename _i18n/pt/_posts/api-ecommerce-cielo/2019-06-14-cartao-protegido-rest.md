@@ -9,6 +9,7 @@ tags:
   - Cartão Protegido
 language_tabs:
   json: JSON
+  shell: cURL
 ---
 
 # O que é Cartão Protegido?
@@ -61,8 +62,11 @@ Para consumir os métodos da API, é necessário obter o AccessToken no padrão 
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
 
-``` json
-grant_type=client_credentials
+``` shell
+--request POST "https://authsandbox.braspag.com.br/oauth2/token"
+--header "Authorization: Basic _(Authorization)_"
+--header "Content-Type: application/x-www-form-urlencoded" 
+--body "grant_type=client_credentials"
 ```
 
 |Parâmetros|Descrição|
@@ -74,6 +78,14 @@ grant_type=client_credentials
 ### Response
 
 ``` json
+{
+  "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
+  "token_type": "bearer",
+  "expires_in": 599
+}
+```
+```shell
+curl
 {
   "access_token": "faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw",
   "token_type": "bearer",
@@ -96,6 +108,23 @@ O objetivo deste método é salvar um cartão e obter como resposta a referênci
 <aside class="request"><span class="method post">POST</span><span class="endpoint">/v1/Token</span></aside>
 
 ```json
+{
+    "Alias":"5R2O4042YP",
+    "Card": {
+        "Number": "4551870000000183",
+        "Holder": "Joao da Silva",
+        "ExpirationDate": "12/2021",
+        "SecurityCode": "123"
+    }
+}
+```
+```shell
+curl
+--request POST "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
 {
     "Alias":"5R2O4042YP",
     "Card": {
@@ -150,6 +179,40 @@ O objetivo deste método é salvar um cartão e obter como resposta a referênci
     ]
 }
 ```
+```shell
+curl
+--request POST "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"
+--header "Content-Type: application/json"
+--data-binary
+{
+    "Alias": "5R2O4042YP",
+    "TokenReference": "c2e0d46e-6a78-409b-9ad4-75bcb3985762",
+    "ExpirationDate": "2021-12-31",
+    "Card": {
+        "Number": "************0183",
+        "ExpirationDate": "12/2021",
+        "Holder": "Joao da Silva",
+        "SecurityCode": "***"
+    },
+    "Links": [
+        {
+            "Method": "GET",
+            "Rel": "self",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"
+        },
+        {
+            "Method": "DELETE",
+            "Rel": "remove",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"
+        },
+        {
+            "Method": "PUT",
+            "Rel": "suspend",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762/suspend"
+        }
+    ]
+}
+```
 
 |Propriedades|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
@@ -169,7 +232,14 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
-**Parâmetros no cabeçalho (Header)**
+```shell
+curl
+--request GET "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
+```
 
 |Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|---|---|
@@ -181,6 +251,22 @@ O objetivo deste método é obter as informações relacionadas a uma referênci
 ### Response
 
 ```json
+{
+    "TokenReference": "1fdb4ef8-17f3-4f26-87e9-3a5f34bca8a0",
+    "Status": "Active",
+    "Provider": "Braspag",
+    "Account": {
+        "Number": "************0183",
+        "ExpirationDate": "12/2021",
+        "Holder": "Runscope Teste"
+    }
+}
+```
+```shell
+curl
+--request GET "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"
+--header "Content-Type: application/json"
+--data-binary
 {
     "TokenReference": "1fdb4ef8-17f3-4f26-87e9-3a5f34bca8a0",
     "Status": "Active",
@@ -210,6 +296,15 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 
 ### Request
 
+```shell
+curl
+--request GET "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Alias/_{Alias}_/TokenReference"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
+```
+
 |Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|---|---|
 |`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
@@ -220,6 +315,15 @@ O objetivo deste método é obter a referência de token a partir de um alias pr
 ### Response
 
 ```json
+{
+    "TokenReference": "a36ffc37-e472-4d85-af2a-6f64c52bcccf"
+}
+```
+```shell
+curl
+--request GET "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Alias/_{Alias}_/TokenReference"
+--header "Content-Type: application/json"
+--data-binary
 {
     "TokenReference": "a36ffc37-e472-4d85-af2a-6f64c52bcccf"
 }
@@ -238,6 +342,18 @@ O objetivo deste método é remover a referência do token da base definitivamen
 ### Request
 
 ```json
+{
+	"RemovedBy":"Merchant",
+	"Reason":"Other"
+}
+```
+```shell
+curl
+--request DELETE "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
 {
 	"RemovedBy":"Merchant",
 	"Reason":"Other"
@@ -267,6 +383,23 @@ O objetivo deste método é remover a referência do token da base definitivamen
     ]
 }
 ```
+```shell
+curl
+--request DELETE "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"
+--header "Content-Type: application/json"
+--data-binary
+{
+    "TokenReference": "26eb7cb4-c2b4-4409-8d2e-810215c42eee",
+    "Status": "Removed",
+    "Links": [
+        {
+            "Method": "GET",
+            "Rel": "self",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/26eb7cb4-c2b4-4409-8d2e-810215c42eee"
+        }
+    ]
+}
+```
 
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
@@ -282,6 +415,18 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
 ### Request
 
 ```json
+{
+	"RemovedBy":"Merchant",
+	"Reason":"FraudSuspicion"
+}
+```
+```shell
+curl
+--request PUT "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/suspend"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
 {
 	"RemovedBy":"Merchant",
 	"Reason":"FraudSuspicion"
@@ -316,6 +461,28 @@ O objetivo deste método é suspender uma referência do token temporariamente. 
     ]
 }
 ```
+```shell
+curl
+--request PUT "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/suspend"
+--header "Content-Type: application/json"
+--data-binary
+{
+    "TokenReference": "0a69a878-e50a-4252-bccc-24942a6225a9",
+    "Status": "Suspended",
+    "Links": [
+        {
+            "Method": "GET",
+            "Rel": "self",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        },
+        {
+            "Method": "DELETE",
+            "Rel": "remove",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        }
+    ]
+}
+```
 
 |Propriedade|Descrição|Tipo|Tamanho|Formato|
 |-----------|---------|----|-------|-------|
@@ -330,6 +497,15 @@ O objetivo deste método é reativar uma referência do token.
 
 ### Request
 
+```shell
+curl
+--request PUT "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/unsuspend"
+--header "Content-Type: application/json"
+--header "MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+--header "Authorization: Barear {access_token}"
+--data-binary
+```
+
 |Parâmetros|Tipo|Tamanho|Obrigatório|Descrição|
 |---|---|---|
 |`MerchantID`|GUID|-|Sim|Merchant ID do estabelecimento para plataforma Cartão Protegido no respectivo ambiente (Sandbox/Produção)|
@@ -339,6 +515,33 @@ O objetivo deste método é reativar uma referência do token.
 ### Response
 
 ```json
+{
+    "TokenReference": "0a69a878-e50a-4252-bccc-24942a6225a9",
+    "Status": "Active",
+    "Links": [
+        {
+            "Method": "GET",
+            "Rel": "self",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        },
+        {
+            "Method": "DELETE",
+            "Rel": "remove",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"
+        },
+        {
+            "Method": "PUT",
+            "Rel": "suspend",
+            "HRef": "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9/suspend"
+        }
+    ]
+}
+```
+```shell
+curl
+--request PUT "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/unsuspend"
+--header "Content-Type: application/json"
+--data-binary
 {
     "TokenReference": "0a69a878-e50a-4252-bccc-24942a6225a9",
     "Status": "Active",
@@ -374,6 +577,20 @@ Em casos de erro na requisição, serão informados os códos de erro e sua desc
 ### Response
 
 ```json
+{
+    "Errors": [
+        {
+            "Code": "CP903",
+            "Message": "Token alias already exists"
+        }
+    ]
+}
+```
+```shell
+curl
+--request PUT "https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"
+--header "Content-Type: application/json"
+--data-binary
 {
     "Errors": [
         {
