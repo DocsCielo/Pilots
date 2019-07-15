@@ -47,6 +47,8 @@
                     
                     <li><a data-language-name='json'>JSON</a></li>
                     
+                    <li><a data-language-name='shell'>cURL</a></li>
+                    
                 </ul>
             </div>
             <div class="dark-box"></div>
@@ -210,8 +212,11 @@
 
 <aside class="request"><span class="method post">POST</span> <span class="endpoint">oauth2/token</span></aside>
 
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="err">grant_type=client_credentials</span><span class="w">
-</span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">--request</span> POST <span class="s2">"https://authsandbox.braspag.com.br/oauth2/token"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Basic _(Authorization)_"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/x-www-form-urlencoded"</span> 
+<span class="nt">--body</span> <span class="s2">"grant_type=client_credentials"</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -244,6 +249,13 @@
   </span><span class="s2">"expires_in"</span><span class="p">:</span><span class="w"> </span><span class="mi">599</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="o">{</span>
+  <span class="s2">"access_token"</span>: <span class="s2">"faSYkjfiod8ddJxFTU3vti_ ... _xD0i0jqcw"</span>,
+  <span class="s2">"token_type"</span>: <span class="s2">"bearer"</span>,
+  <span class="s2">"expires_in"</span>: 599
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -286,6 +298,22 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> POST <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"Alias"</span>:<span class="s2">"5R2O4042YP"</span>,
+    <span class="s2">"Card"</span>: <span class="o">{</span>
+        <span class="s2">"Number"</span>: <span class="s2">"4551870000000183"</span>,
+        <span class="s2">"Holder"</span>: <span class="s2">"Joao da Silva"</span>,
+        <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2021"</span>,
+        <span class="s2">"SecurityCode"</span>: <span class="s2">"123"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -388,6 +416,39 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> POST <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"Alias"</span>: <span class="s2">"5R2O4042YP"</span>,
+    <span class="s2">"TokenReference"</span>: <span class="s2">"c2e0d46e-6a78-409b-9ad4-75bcb3985762"</span>,
+    <span class="s2">"ExpirationDate"</span>: <span class="s2">"2021-12-31"</span>,
+    <span class="s2">"Card"</span>: <span class="o">{</span>
+        <span class="s2">"Number"</span>: <span class="s2">"************0183"</span>,
+        <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2021"</span>,
+        <span class="s2">"Holder"</span>: <span class="s2">"Joao da Silva"</span>,
+        <span class="s2">"SecurityCode"</span>: <span class="s2">"***"</span>
+    <span class="o">}</span>,
+    <span class="s2">"Links"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"DELETE"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"remove"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"suspend"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/c2e0d46e-6a78-409b-9ad4-75bcb3985762/suspend"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -460,7 +521,13 @@
 
 <aside class="request"><span class="method get">GET</span> <span class="endpoint">/v1/Token/{TokenReference}</span></aside>
 
-<p><strong>Parâmetros no cabeçalho (Header)</strong></p>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> GET <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -517,6 +584,21 @@
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> GET <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"TokenReference"</span>: <span class="s2">"1fdb4ef8-17f3-4f26-87e9-3a5f34bca8a0"</span>,
+    <span class="s2">"Status"</span>: <span class="s2">"Active"</span>,
+    <span class="s2">"Provider"</span>: <span class="s2">"Braspag"</span>,
+    <span class="s2">"Account"</span>: <span class="o">{</span>
+        <span class="s2">"Number"</span>: <span class="s2">"************0183"</span>,
+        <span class="s2">"ExpirationDate"</span>: <span class="s2">"12/2021"</span>,
+        <span class="s2">"Holder"</span>: <span class="s2">"Runscope Teste"</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -582,6 +664,14 @@
 
 <h3 id="request-3">Request</h3>
 
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> GET <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Alias/_{Alias}_/TokenReference"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+</code></pre></div></div>
+
 <table>
   <thead>
     <tr>
@@ -630,6 +720,14 @@
     </span><span class="s2">"TokenReference"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a36ffc37-e472-4d85-af2a-6f64c52bcccf"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> GET <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Alias/_{Alias}_/TokenReference"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"TokenReference"</span>: <span class="s2">"a36ffc37-e472-4d85-af2a-6f64c52bcccf"</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -665,6 +763,17 @@
 	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"Other"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> DELETE <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+	<span class="s2">"RemovedBy"</span>:<span class="s2">"Merchant"</span>,
+	<span class="s2">"Reason"</span>:<span class="s2">"Other"</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -729,6 +838,22 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> DELETE <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"TokenReference"</span>: <span class="s2">"26eb7cb4-c2b4-4409-8d2e-810215c42eee"</span>,
+    <span class="s2">"Status"</span>: <span class="s2">"Removed"</span>,
+    <span class="s2">"Links"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/26eb7cb4-c2b4-4409-8d2e-810215c42eee"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -771,6 +896,17 @@
 	</span><span class="s2">"Reason"</span><span class="p">:</span><span class="s2">"FraudSuspicion"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> PUT <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/suspend"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+	<span class="s2">"RemovedBy"</span>:<span class="s2">"Merchant"</span>,
+	<span class="s2">"Reason"</span>:<span class="s2">"FraudSuspicion"</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -840,6 +976,27 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> PUT <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/suspend"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"TokenReference"</span>: <span class="s2">"0a69a878-e50a-4252-bccc-24942a6225a9"</span>,
+    <span class="s2">"Status"</span>: <span class="s2">"Suspended"</span>,
+    <span class="s2">"Links"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"DELETE"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"remove"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -876,6 +1033,14 @@
 <aside class="request"><span class="method put">PUT</span> <span class="endpoint">/v1/Token/{TokenReference}/unsuspend</span></aside>
 
 <h3 id="request-6">Request</h3>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> PUT <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/unsuspend"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--header</span> <span class="s2">"MerchantId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"</span>
+<span class="nt">--header</span> <span class="s2">"Authorization: Barear {access_token}"</span>
+<span class="nt">--data-binary</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -936,6 +1101,32 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> PUT <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/{TokenReference}/unsuspend"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"TokenReference"</span>: <span class="s2">"0a69a878-e50a-4252-bccc-24942a6225a9"</span>,
+    <span class="s2">"Status"</span>: <span class="s2">"Active"</span>,
+    <span class="s2">"Links"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"GET"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"self"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"DELETE"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"remove"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9"</span>
+        <span class="o">}</span>,
+        <span class="o">{</span>
+            <span class="s2">"Method"</span>: <span class="s2">"PUT"</span>,
+            <span class="s2">"Rel"</span>: <span class="s2">"suspend"</span>,
+            <span class="s2">"HRef"</span>: <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token/0a69a878-e50a-4252-bccc-24942a6225a9/suspend"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -980,6 +1171,19 @@
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre></div></div>
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>curl
+<span class="nt">--request</span> PUT <span class="s2">"https://cartaoprotegidoapisandbox.braspag.com.br/v1/Token"</span>
+<span class="nt">--header</span> <span class="s2">"Content-Type: application/json"</span>
+<span class="nt">--data-binary</span>
+<span class="o">{</span>
+    <span class="s2">"Errors"</span>: <span class="o">[</span>
+        <span class="o">{</span>
+            <span class="s2">"Code"</span>: <span class="s2">"CP903"</span>,
+            <span class="s2">"Message"</span>: <span class="s2">"Token alias already exists"</span>
+        <span class="o">}</span>
+    <span class="o">]</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <table>
   <thead>
@@ -1095,6 +1299,9 @@ A recomendação é que o CVV seja sempre solicitado no ato da compra.</p>
             
             langs += "<a data-language-name='json'>JSON</a>";
             langsArray.push('json');
+            
+            langs += "<a data-language-name='shell'>cURL</a>";
+            langsArray.push('shell');
             
 
             var toggleCode = 'Comutar';
