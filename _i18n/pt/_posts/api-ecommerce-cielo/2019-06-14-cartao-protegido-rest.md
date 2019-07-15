@@ -48,6 +48,13 @@ A integração é realizada através de serviços disponibilizados como Web Serv
 
 # Como se integra?
 
+## Coleção do Postman
+
+Para quem quiser experimentar as APIs diretamente via Postman, segue o link para baixar a coleção:
+
+* Coleção do Postman: https://bit.ly/2YX3YwE[https://bit.ly/2YX3YwE]
+* Variáveis do Sandbox: https://bit.ly/2YX3YwE[https://bit.ly/2YX3YwE]
+
 ## Etapa de Autenticação
 
 Para consumir os métodos da API, é necessário obter o AccessToken no padrão OAuth 2.0
