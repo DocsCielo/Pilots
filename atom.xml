@@ -5,7 +5,7 @@
     <link href="https://docscielo.github.io/Pilots/"/>
     <logo>https://docscielo.github.io/Pilots/assets/images/logo.png</logo>
     <icon>https://docscielo.github.io/Pilots/assets/favicon.ico</icon>
-    <updated>2019-07-15T14:38:03+00:00</updated>
+    <updated>2019-07-15T14:42:35+00:00</updated>
     <id>https://docscielo.github.io/Pilots/</id>
     <author>
         <name>João Batista Neto</name>
@@ -5417,8 +5417,8 @@
 &lt;p&gt;Para quem quiser experimentar as APIs diretamente via Postman, segue o link para baixar a coleção:&lt;/p&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;Coleção do Postman: https://bit.ly/2YX3YwE[https://bit.ly/2YX3YwE]&lt;/li&gt;
-  &lt;li&gt;Variáveis do Sandbox: https://bit.ly/2YX3YwE[https://bit.ly/2YX3YwE]&lt;/li&gt;
+  &lt;li&gt;Coleção do Postman: &lt;a href=&quot;https://bit.ly/2YX3YwE&quot;&gt;https://bit.ly/2YX3YwE&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Variáveis do Sandbox: &lt;a href=&quot;https://bit.ly/2YX3YwE&quot;&gt;https://bit.ly/2YX3YwE&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;h2 id=&quot;etapa-de-autenticação&quot;&gt;Etapa de Autenticação&lt;/h2&gt;
