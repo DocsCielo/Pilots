@@ -1,0 +1,262 @@
+---
+layout: manual
+title: Merchant Onboarding
+description: Manual integração técnica via API
+search: true
+translated: true
+toc_footers: true
+categories: manual
+sort_order: 1
+tags:
+  - Outros
+language_tabs:
+  json: JSON
+  shell: cURL
+---
+
+# Autenticação OAuth
+
+A Autenticação OAuth é um processo para obtenção de autorização de acesso utilizado em APIs. Ele utiliza como segurança o protocolo **[OAUTH2](https://oauth.net/2/)**, onde é necessário primeiramente obter um token de acesso, utlizando suas credenciais, que deverá posteriormente ser enviado à API CieloOAuth
+
+> Para obter o `ClientID` e o `ClientSecret`, acione a equipe de Produtos Cielo. Credênciais liberadas apenas com análise prévia dos responsáveis.
+
+Para utilizar o OAuth são necessarias as seguintes credenciais:
+
+| PROPRIEDADE    | DESCRIÇÃO                   | TIPO   |
+|----------------|-----------------------------|--------|
+| `ClientId`     | Identificador chave         | guid   |
+| `ClientSecret` | Chave que valida o ClientID | string |
+
+## Token de acesso
+
+Para obter acesso a serviços Cielo que utilizam o `Cielo Oauth`, será necessário obter um token de acesso, conforme os passos abaixo:
+
+1. Concatenar o _ClientId_ e o _ClientSecret_, **ClientId:ClientSecret**
+2. Codificar o resultado em **Base64**
+3. Enviar uma requisição, utilizando o método HTTP POST
+
+### Concatenação
+
+|Campo|Formato|
+|-|-|
+|**ClientId** | b521b6b2-b9b4-4a30-881d-3b63dece0006|
+|**ClientSecret**| 08Qkje79NwWRx5BdgNJsIkBuITt5cIVO |
+|**ClientId:ClientSecret**| *b521b6b2-b9b4-4a30-881d-3b63dece0006:08Qkje79NwWRx5BdgNJsIkBuITt5cIVO*|
+|**Base64**| *YjUyMWI2YjItYjliNC00YTMwLTg4MWQtM2I2M2RlY2UwMDA2OiAwOFFramU3OU53V1J4NUJkZ05Kc0lrQnVJVHQ1Y0lWTw*|
+
+### Request
+
+O Request dever ser enviado apenas no Header da requisição.
+
+<aside class="request"><span class="method post">POST</span><span class="endpoint">https://adminsandbox.braspag.com.br/api/auth/v1/token</span></aside>
+
+``` json
+x-www-form-urlencoded
+--header "Authorization: Basic {base64}"  
+--header "Content-Type: application/x-www-form-urlencoded"  
+grant_type=client_credentials&scope=AdminApiEc
+```
+
+### Response
+
+O response possuirá o Token utilizado para novas requisições em Serviços Cielo
+
+```json
+{
+    "access_token": "702921da6a0540d2b1246a49e6efdeb3",
+    "token_type": "Bearer",
+    "expires_in": 600,
+    "scope": "AdminApiEc"
+}
+```
+
+|PROPRIEDADE   | DESCRIÇÃO                                                 |TIPO  |
+|--------------|-----------------------------------------------------------|------|
+|`access_token`| Utilizado para acesso aos serviços da API                 |string|
+|`token_type`  | Sempre será do tipo `bearer`                              |texto |
+|`expires_in`  | Validade do token em segundos (10 minutos)                |int   |
+|`scope`       | O escopo da autorização (retornará fixo `AdminApiEc`)     |string|
+
+> O token retornado (access_token) deverá ser utilizado em toda requisição como uma chave de autorização, destacando que este possui uma validade de 10 minutos (600 segundos) e após esse intervalo, será necessário obter um novo token. Como uma boa prática, recomenda-se cachear o token durante a vigência do mesmo para evitar consumo desnecessário de recursos na API.
+
+# Inclusão de uma nova Loja
+
+É a API que viabiliza a inclusão de uma nova loja nas plataformas E-Commerce 3.0, Checkout Cielo ou Link de Pagamento. 
+
+A inclusão requer um request do tipo POST, conforme abaixo:
+
+<aside class="request"><span class="method post">POST</span> <span class="endpoint">https://adminsandbox.braspag.com.br/api/v1/ec</span></aside>
+
+## Request
+
+``` json
+{
+  "GeneralData": {
+    "Email": "2019121601@cielo.com.br",
+    "DocumentType": 0,
+    "ContactName": "João da Silva",
+    "Phone": "(99) 99999-9999",
+    "AntiFraudMerchantId": null	
+  },
+  "PersonalData": {
+    "Cpf": "999.999.999-99",
+    "FullName": "João da Silva"
+  },
+  "CompanyData": {
+    "FancyName": "Nome Fantasia",
+    "CorporateName": "Razão Social Ltda.",
+    "Cnpj": "99.999.999/9999-99"
+  },
+  "BusinessAddress": {
+    "ZipCode": "99999-999",
+    "Address": "Alameda Xingu",
+    "Number": "512",
+    "Complement": "27 andar",
+    "District": "Alphaville Industrial",
+    "City": "São Paulo",
+    "State": "SP"
+  },
+  "TransactionalConfiguration": {
+    "EC": "2019121601",
+    "ProductionKey": "65d156641f765861451c7c1270a4c09a617863b031b2e4b0c4a09cd390783c82",
+    "IntegrationType": 3,
+	"CvvRequired": true,
+    "Mcc": "7032",
+	"Plan": 0,
+	"PaymentMethods": [
+      {
+        "Name": "CreditCardVisa",
+        "MaxInstallments": 12
+      },
+      {
+        "Name": "CreditCardMaster",
+        "MaxInstallments": 12
+      },
+      {
+        "Name": "CreditCardElo",
+        "MaxInstallments": 12
+      }
+    ]
+  }	
+}
+```
+
+|Campo|Descrição|Tipo|Tamanho|Obrigatório|
+|-----|---------|----|-------|-----------|
+| **GeneralData** | **Informações gerais da loja** ||||
+| `GeneralData.Email` | E-mail de comunicação com o lojista. Quando IntegrationType=3 (Checkout Cielo ou Link de Pagamento), o e-mail deve ser único (não se pode repetir) | String | 60 | Sim |
+| `GeneralData.DocumentType` | Tipo de documentação <br><br>Pessoa Física = 0 <br>Pessoa Jurídica = 1 | Numérico | 1 | Sim |
+| `GeneralData.ContactName` | Nome de contato responsável pela loja | String | 255 | Sim |
+| `GeneralData.Phone` | Telefone do contato reponsável pela loja no formato "(99) 99999-9999" | String | 10 | Sim |
+| `GeneralData.AntiFraudMerchantId` | Aplicável somente se IntegrationType=6. Representa o ID customizado do Antifraude | GUID | 36 | Não |
+|  **PersonalData** | **Informações sobre a loja, se DocumentType=0** ||||
+| `PersonalData.Cpf` | CPF no formato "999.999.999-99" | String | 14 | Sim |
+| `PersonalData.FullName`| Nome completo do lojista | String | 128 | Sim |
+| **CompanyData** | **Informações sobre a loja, se DocumentType=1** ||||
+| `CompanyData.FancyName` | Nome fantasia | String | 128 | Sim |
+| `CompanyData.CorporateName`| Razão social| String | 128 | Sim |
+| `CompanyData.Cnpj` | CNPJ no formato "99.999.999/9999-99" | String | 18 | Sim | 
+| **BusinessAddress** | **Informações sobre endereço da loja** ||||
+| `BusinessAddress.ZipCode` | CEP da loja no formato "99999-999" | String | 9 | Sim |
+| `BusinessAddress.Address` | Endereço da loja | String | 100 | Sim |
+| `BusinessAddress.Number` | Número da loja | String | 5 | Sim |
+| `BusinessAddress.Complement` | Complemento | String | 50| Não |
+| `BusinessAddress.District` | Bairro da loja | String | 32 | Sim |
+| `BusinessAddress.City` | Cidade da loja | String | 32 | Sim |
+| `BusinessAddress.State` | Estado - Unidade Federativa (Ex: SP, RJ, etc) | String | 2 | Sim |
+| **TransactionalConfiguration** |||||
+| `TransactionalConfiguration.EC` | Código de Afiliação da loja fornecido pela Cielo. Caso já exista um cadastro com código previamente utilizado, retornará os dados já cadastrados. | String | 10 | Sim |
+| `TransactionalConfiguration.ProductionKey` | Chave de Produção de Afiliação da loja fornecido pela Cielo | String | 255 | Sim |
+| `IntegrationType` | Api Cielo Ecommerce = 6 <br> Checkout Cielo ou Link de Pagamento = 3 | Numérico | 1 | Sim |
+| `TransactionalConfiguration.Mcc` | Código da categoria da loja (Merchant Category Code), fornecido pela Cielo | String | 4 | Sim |
+| `Plan` | Aplicável somente para IntegrationType=3 (Checkout Cielo ou Link de Pagamento). Enviar fixo "0"| Numérico | 1 | Sim |
+| **TransactionalConfiguration.PaymentMethods** | Aplicável somente para IntegrationType=3 (Checkout Cielo ou Link de Pagamento) ||||
+| `TransactionalConfiguration.PaymentMethods.Name` | Nome do meio de pagamento a ser disponibilizado no Checkout ou Link de Pagamento.| Vide Anexo 1 | 4 | Sim |
+| `TransactionalConfiguration.PaymentMethods.MaxInstallments` | Representa o número máximo de parcelas disponível para meio de pagamento correspondente.| Vide Anexo 1 | 1 | Sim |
+
+## Response
+
+``` json
+{
+    "Model": {
+        "GeneralData": {
+            "Email": "2019121604@cielo.com.br",
+            "DocumentType": 0,
+            "ContactName": "João da Silva",
+            "Phone": "(99) 99999-9999",
+            "AntiFraudMerchantId": null
+        },
+        "CompanyData": {
+            "FancyName": "Nome Fantasia",
+            "CorporateName": "Razão Social Ltda.",
+            "Cnpj": "99.999.999/9999-99"
+        },
+        "PersonalData": {
+            "FullName": "João da Silva",
+            "Cpf": "999.999.999-99"
+        },
+        "BusinessAddress": {
+            "ZipCode": "99999-999",
+            "Address": "Alameda Xingu",
+            "Number": "512",
+            "Complement": "27 andar",
+            "District": "Alphaville Industrial",
+            "City": "São Paulo",
+            "State": "SP"
+        },
+        "TransactionalConfiguration": {
+            "Ec": "2019121604",
+            "ProductionKey": "65d156641f765861451c7c1270a4c09a617863b031b2e4b0c4a09cd390783c82",
+            "Mcc": "7032",
+            "PaymentMethods": [
+                {
+                    "Name": "CreditCardVisa",
+                    "MaxInstallments": 12
+                },
+                {
+                    "Name": "CreditCardMaster",
+                    "MaxInstallments": 12
+                },
+                {
+                    "Name": "CreditCardElo",
+                    "MaxInstallments": 12
+                }
+            ],
+            "CvvRequired": true,
+            "IntegrationType": 3,
+            "MerchantId": "968e6689-df11-49b6-b717-fe37172a777c",
+            "ClientSecret": "dLaEYSdpjmez7hJx24S4RKtNoY6scfjmIUc1/Dp6GhU=",
+            "Plan": 9
+        }
+    },
+    "Links": [
+        {
+            "Method": "PUT",
+            "Rel": "update",
+            "Href": "https://adminsandbox.braspag.com.br/v1/ec/2019121604"
+        }
+    ]
+}
+```
+
+|Campo|Descrição|Tipo|Tamanho|Obrigatório|
+|-----|---------|----|-------|-----------|
+| **Model** | **Response** ||||
+| `Model.TransactionalConfiguration.MerchantId` | ID necessário para geração de link de pagamento | String | GUID | Sim |
+| `Model.TransactionalConfiguration.ClientSecret` | Aplicável somente para IntegrationType=3. Secret necessário para geração de link de pagamento. Caso o código do estabelecimento (EC) já esteja cadastrado, a API gerará um novo ClientSecret, invalidando o anterior. | String | - | Sim |
+| `Model.Links` | Traz as especificações para atualização cadastral | - | - | Sim |
+
+# Anexos
+
+## Anexo 1 - PaymentMethods
+
+|PaymentMethod|Descrição|Máximo de Parcelas|
+|-|-|-|
+|`CreditCardVisa`|Cartão de Crédito Visa|12|
+|`CreditCardMaster`|Cartão de Crédito Mastercard|12|
+|`CreditCardElo`|Cartão de Crédito Elo|12|
+|`CreditCardAmex`|Cartão de Crédito American Express|12|
+|`CreditCardDiners`|Cartão de Crédito Diners|12|
+|`CreditCardJcb`|Cartão de Crédito JCB|12|
+|`DebitCardVisa`|Cartão de Débito Visa|12|
+|`DebitCardMaster`|Cartão de Débito Mastercard|12|
