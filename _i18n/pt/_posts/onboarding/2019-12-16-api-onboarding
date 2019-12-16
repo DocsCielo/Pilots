@@ -11,7 +11,7 @@ tags:
   - Outros
 language_tabs:
   json: JSON
-  shell: cURL
+  shell: cURL 
 ---
 
 # Autenticação OAuth
