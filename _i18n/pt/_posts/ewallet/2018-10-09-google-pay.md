@@ -164,4 +164,4 @@ Verifique se todas as diretrizes de branding foram seguidas conforme o link: [ht
 
 ## Passo 2 - Checklist e solicitação de credenciais de produção
 
-Verifique se todos os itens do checklist foram atendidos. Quando estiver tudo validado, solicite os dados de acesso produtivos. O checklist está disponível em: [https://developers.google.com/pay/api/android/guides/test-and-deploy/integration-checklist](https://developers.google.com/pay/api/android/guides/test-and-deploy/integration-checklist)
+Verifique se todos os itens do checklist foram atendidos. Quando estiver tudo validado, solicite os dados de acesso produtivos. O checklist está disponível em: [https://developers.google.com/pay/api/android/guides/test-and-deploy/integration-checklist](https://developers.google.com/pay/api/android/guides/test-and-deploy/integration-checklist) 
